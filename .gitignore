@@ -1,3 +1,6 @@
 autoload/
+colors/
+spell/
 .netrwhist
+*.swp
 
