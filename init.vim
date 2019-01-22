@@ -2,7 +2,8 @@ nnoremap Y y$
 nnoremap do ddO
 vnoremap P "0p
 
-"external copy/paste
+"clipboard
+inoremap <C-v> <Esc>"+pa
 inoremap <S-Ins> <Esc>"+pa
 nnoremap <S-Ins> "+p
 vnoremap <S-Ins> x"+p
