@@ -51,8 +51,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "ctrlp
 let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.stack-work\|node_modules\|dist\||tmp\',
-  \ 'file': ''
+  \ 'dir':  '\v[\/]\.(git|stack-work|node_modules|dist|tmp)$',
+  \ 'file': '\v\.(exe|dll|zip)$'
   \ }
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:20'
 
