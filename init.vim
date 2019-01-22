@@ -54,6 +54,7 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.stack-work\|node_modules\|dist\||tmp\',
   \ 'file': ''
   \ }
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:20'
 
 "haskell
 let g:haskell_enable_quantification = 1
