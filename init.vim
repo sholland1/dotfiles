@@ -76,6 +76,7 @@ Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'rakr/vim-one'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 
