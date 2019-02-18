@@ -33,6 +33,7 @@ command! DeleteCurrentFile call delete(@%)|bd!
 set termguicolors
 set number
 set shortmess=I
+set autochdir "might break plugins?
 
 "colorscheme mac_classic
 let g:one_allow_italics=1
