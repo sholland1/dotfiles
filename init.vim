@@ -51,6 +51,29 @@ function! s:defx_my_settings() abort
     nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
 endfunction
 
+"Omnisharp
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+augroup omnisharp_commands
+    autocmd!
+
+    " Show type information automatically when the cursor stops moving
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nnoremap <buffer> <F12> :OmniSharpGotoDefinition<cr>
+    "uses quickfix window: https://stackoverflow.com/a/1747286
+    autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
+augroup END
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <C-.> :OmniSharpGetCodeActions<cr>
+" Run code actions with text selected in visual mode to extract method
+xnoremap <C-.> :call OmniSharp#GetCodeActions('visual')<cr>
+
+nnoremap <F2> :OmniSharpRename<cr>
+
 command! DeleteCurrentFile call delete(@%)|bd!
 
 "org
@@ -60,6 +83,8 @@ set termguicolors
 set number
 set shortmess=I
 set autochdir "might break plugins?
+set completeopt=longest,menuone,preview
+set updatetime=1000
 
 "colorscheme mac_classic
 let g:one_allow_italics=1
@@ -104,6 +129,8 @@ Plug 'Konfekt/vim-alias'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'rakr/vim-one'
 Plug 'kshenoy/vim-signature'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'w0rp/ale'
 if has('nvim')
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
