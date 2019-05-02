@@ -75,6 +75,7 @@ xnoremap <C-.> :call OmniSharp#GetCodeActions('visual')<cr>
 nnoremap <F2> :OmniSharpRename<cr>
 
 command! DeleteCurrentFile call delete(@%)|bd!
+command! TrimWhitespace %s/\s\+$//e
 
 "org
 "let g:org_todo_keywords=['TODO', 'WAITING', 'CANCELLED', 'FAILED', 'DONE']
