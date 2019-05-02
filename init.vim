@@ -21,9 +21,58 @@ nnoremap <C-s> :w<Enter>
 inoremap <C-s> <Esc>:w<Enter>a
 nnoremap <Enter> o<Esc>
 
-"nerdtree
-"map <C-n> :NERDTreeToggle<Enter>
-"autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
+"file explorer
+map <C-n> :Defx -columns="mark:filename:size:time"<Enter>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+    " Define mappings
+    nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
+    nnoremap <silent><buffer><expr> l defx#do_action('open')
+    nnoremap <silent><buffer><expr> c defx#do_action('copy')
+    nnoremap <silent><buffer><expr> m defx#do_action('move')
+    nnoremap <silent><buffer><expr> p defx#do_action('paste')
+    nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
+    nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
+    nnoremap <silent><buffer><expr> d defx#do_action('remove')
+    nnoremap <silent><buffer><expr> r defx#do_action('rename')
+    nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
+    nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
+    nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+    nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
+    nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+    nnoremap <silent><buffer><expr> q defx#do_action('quit')
+    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+    nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+    nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+    nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+endfunction
+
+"Omnisharp
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+augroup omnisharp_commands
+    autocmd!
+
+    " Show type information automatically when the cursor stops moving
+    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nnoremap <buffer> <F12> :OmniSharpGotoDefinition<cr>
+    "uses quickfix window: https://stackoverflow.com/a/1747286
+    autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
+augroup END
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <C-.> :OmniSharpGetCodeActions<cr>
+" Run code actions with text selected in visual mode to extract method
+xnoremap <C-.> :call OmniSharp#GetCodeActions('visual')<cr>
+
+nnoremap <F2> :OmniSharpRename<cr>
 
 command! DeleteCurrentFile call delete(@%)|bd!
 
@@ -36,6 +85,8 @@ set shortmess=I
 set listchars=tab:▸\ ,eol:¬
 set list
 set autochdir "might break plugins?
+set completeopt=longest,menuone,preview
+set updatetime=1000
 
 "colorscheme mac_classic
 let g:one_allow_italics=1
@@ -80,6 +131,15 @@ Plug 'Konfekt/vim-alias'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'rakr/vim-one'
 Plug 'kshenoy/vim-signature'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'w0rp/ale'
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
@@ -255,8 +315,8 @@ set nowrap "Don't wrap lines
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<cr>/<C-R>=@/<cr><cr>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-R>=@/<cr><cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,7 +349,7 @@ map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
-nmap <leader>tl :exe "tabn ".g:lasttab<CR>
+nmap <leader>tl :exe "tabn ".g:lasttab<cr>
 au TabLeave * let g:lasttab = tabpagenr()
 
 
