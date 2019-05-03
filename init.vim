@@ -53,8 +53,8 @@ endfunction
 
 "Omnisharp
 let g:ale_linters = {
-\ 'cs': ['OmniSharp']
-\}
+    \ 'cs': ['OmniSharp']
+    \}
 augroup omnisharp_commands
     autocmd!
 
@@ -106,9 +106,9 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "ctrlp
 let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|stack-work|node_modules|dist|tmp)$',
-  \ 'file': '\v\.(exe|dll|zip)$'
-  \ }
+    \ 'dir':  '\v[\/]\.(git|stack-work|node_modules|dist|tmp)$',
+    \ 'file': '\v\.(exe|dll|zip)$'
+    \ }
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:20'
 
 "haskell
@@ -135,11 +135,11 @@ Plug 'kshenoy/vim-signature'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
 if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'Shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 call plug#end()
