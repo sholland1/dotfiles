@@ -279,7 +279,11 @@ endif
 set encoding=utf8
 
 " Use DOS as the standard file type
-set ffs=dos,unix,mac
+if has('unix')
+    set ffs=unix,dos,mac
+else
+    set ffs=dos,unix,mac
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
