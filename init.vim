@@ -119,6 +119,17 @@ let g:haskell_enable_pattern_synonyms=1
 let g:haskell_indent_disable=1
 
 " Plugins
+let g:plugautoload ='~/.vim/autoload/plug.vim'
+if has('unix')
+  let g:plugautoload ='~/.local/share/nvim/site/autoload/plug.vim'
+endif
+
+if empty(glob(g:plugautoload))
+  silent !curl -fLo g:plugautoload --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 "Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
