@@ -54,7 +54,7 @@ function! s:defx_my_settings() abort
 endfunction
 
 "Omnisharp
-let g:ale_linters = {
+let g:ale_linters={
     \ 'cs': ['OmniSharp']
     \}
 augroup omnisharp_commands
@@ -96,27 +96,27 @@ let g:one_allow_italics=1
 let g:airline_theme='one'
 set background=light
 
-"let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
 
 "if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
+"    let g:airline_symbols={}
 "endif
-"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.linenr='¶'
 
 "ctrlp
 let g:ctrlp_show_hidden=1
-let g:ctrlp_custom_ignore = {
+let g:ctrlp_custom_ignore={
     \ 'dir':  '\v[\/]\.(git|stack-work|node_modules|dist|tmp)$',
     \ 'file': '\v\.(exe|dll|zip)$'
     \ }
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:20'
+let g:ctrlp_match_window='bottom,order:btt,min:1,max:50,results:20'
 
 "haskell
-let g:haskell_enable_quantification = 1
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_indent_disable = 1
+let g:haskell_enable_quantification=1
+let g:haskell_enable_pattern_synonyms=1
+let g:haskell_indent_disable=1
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -190,7 +190,7 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = " "
+let mapleader=" "
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -347,9 +347,9 @@ map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
-let g:lasttab = 1
+let g:lasttab=1
 nmap <leader>tl :exe "tabn ".g:lasttab<cr>
-au TabLeave * let g:lasttab = tabpagenr()
+au TabLeave * let g:lasttab=tabpagenr()
 
 
 " Opens a new tab with the current buffer's path
@@ -398,8 +398,8 @@ endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
+    let save_cursor=getpos(".")
+    let old_query=getreg('/')
     silent! %s/\s\+$//e
     call setpos('.', save_cursor)
     call setreg('/', old_query)
@@ -450,8 +450,8 @@ endfunction
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
+    let l:currentBufNum=bufnr("%")
+    let l:alternateBufNum=bufnr("#")
 
     if buflisted(l:alternateBufNum)
         buffer #
@@ -473,11 +473,11 @@ function! CmdLine(str)
 endfunction
 
 function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
+    let l:saved_reg=@"
     execute "normal! vgvy"
 
-    let l:pattern = escape(@", "\\/.*'$^~[]")
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    let l:pattern=escape(@", "\\/.*'$^~[]")
+    let l:pattern=substitute(l:pattern, "\n$", "", "")
 
     if a:direction == 'gv'
         call CmdLine("Ack '" . l:pattern . "' " )
@@ -485,8 +485,8 @@ function! VisualSelection(direction, extra_filter) range
         call CmdLine("%s" . '/'. l:pattern . '/')
     endif
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
+    let @/=l:pattern
+    let @"=l:saved_reg
 endfunction
 
 "nerdcommenter
