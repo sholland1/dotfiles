@@ -3,6 +3,7 @@ nnoremap do ddO
 vnoremap P "0p
 nnoremap <C--> <C-o>
 nnoremap - <C-i>
+nnoremap <C-/> :nohlsearch<cr>
 
 "clipboard
 inoremap <C-v> <Esc>"+pa
