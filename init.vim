@@ -19,12 +19,12 @@ abbrev Hlland Holland
 abbrev Holand Holland
 
 "save
-nnoremap <C-s> :w<Enter>
-inoremap <C-s> <Esc>:w<Enter>a
-nnoremap <Enter> o<Esc>
+nnoremap <C-s> :w<cr>
+inoremap <C-s> <Esc>:w<cr>a
+nnoremap <cr> o<Esc>
 
 "file explorer
-map <C-n> :Defx -columns="mark:filename:size:time"<Enter>
+map <C-n> :Defx -columns="mark:filename:size:time"<cr>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
     " Define mappings
@@ -295,21 +295,17 @@ set noswapfile
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
-set expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
 " Linebreak on 500 characters
-set lbr
-set tw=500
+set linebreak
+set textwidth=500
 
-set ai "Auto indent
-set si "Smart indent
+set autoindent
+set smartindent
 set nowrap "Don't wrap lines
 
 
