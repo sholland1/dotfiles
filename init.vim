@@ -5,6 +5,14 @@ nnoremap <C--> <C-o>
 nnoremap - <C-i>
 nnoremap <C-/> :nohlsearch<cr>
 
+map <C-l> :bnext<cr>
+map <C-h> :bprevious<cr>
+
+"NERDcommenter
+nmap <C-c> <nop>
+map <C-k><C-c> <leader>cl
+map <C-k><C-u> <leader>cu
+
 "clipboard
 inoremap <C-v> <Esc>"+pa
 inoremap <S-Ins> <Esc>"+pa
@@ -80,9 +88,6 @@ nnoremap <F2> :OmniSharpRename<cr>
 command! DeleteCurrentFile call delete(@%)|bd!
 command! TrimWhitespace %s/\s\+$//e
 
-"org
-"let g:org_todo_keywords=['TODO', 'WAITING', 'CANCELLED', 'FAILED', 'DONE']
-
 set termguicolors
 set number
 set shortmess=I
@@ -120,9 +125,9 @@ let g:haskell_enable_pattern_synonyms=1
 let g:haskell_indent_disable=1
 
 " Plugins
-let g:plugautoload ='~/.vim/autoload/plug.vim'
+let g:plugautoload=expand('~/AppData/Local/nvim/autoload/plug.vim')
 if has('unix')
-  let g:plugautoload ='~/.local/share/nvim/site/autoload/plug.vim'
+  let g:plugautoload='~/.local/share/nvim/site/autoload/plug.vim'
 endif
 
 if empty(glob(g:plugautoload))
@@ -134,8 +139,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'jceb/vim-orgmode'
-"Plug 'tpope/vim-speeddating'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -325,9 +328,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-R>=@/<cr><cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
 " Smart way to move between windows
 map <leader>j <C-W>j
 map <leader>k <C-W>k
@@ -339,9 +339,6 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-
-map <C-l> :bnext<cr>
-map <C-h> :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -399,20 +396,6 @@ if has("mac") || has("macunix")
     vmap <D-j> <M-j>
     vmap <D-k> <M-k>
 endif
-
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor=getpos(".")
-    let old_query=getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -492,10 +475,5 @@ function! VisualSelection(direction, extra_filter) range
     let @/=l:pattern
     let @"=l:saved_reg
 endfunction
-
-"nerdcommenter
-nmap <C-c> <nop>
-map <C-k><C-c> <leader>cc
-map <C-k><C-u> <leader>cu
 
 colorscheme one
