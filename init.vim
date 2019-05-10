@@ -2,7 +2,7 @@ nnoremap Y y$
 nnoremap do ddO
 vnoremap P "0p
 nnoremap <C--> <C-o>
-nnoremap <C-_> <C-i>
+nnoremap - <C-i>
 
 "clipboard
 inoremap <C-v> <Esc>"+pa
