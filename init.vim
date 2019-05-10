@@ -10,7 +10,8 @@ map <C-h> :bprevious<cr>
 
 "NERDcommenter
 nmap <C-c> <nop>
-map <C-k><C-c> <leader>cl
+nmap <C-k><C-c> yy<leader>cl
+vmap <C-k><C-c> ygv<leader>cl
 map <C-k><C-u> <leader>cu
 
 "clipboard
