@@ -139,19 +139,20 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'kshenoy/vim-signature'
 Plug 'danro/rename.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'rakr/vim-one'
-Plug 'kshenoy/vim-signature'
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'OmniSharp/omnisharp-vim'
 if has('nvim')
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
