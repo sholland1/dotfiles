@@ -151,8 +151,6 @@ Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
 Plug 'rakr/vim-one'
 Plug 'w0rp/ale'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'OmniSharp/omnisharp-vim'
 if has('nvim')
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -160,6 +158,10 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'vmchale/dhall-vim'
 
 call plug#end()
 
