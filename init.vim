@@ -97,6 +97,7 @@ set list
 set autochdir "might break plugins?
 set completeopt=longest,menuone,preview
 set updatetime=1000
+set diffopt+=vertical
 
 "colorscheme mac_classic
 let g:one_allow_italics=1
