@@ -1,0 +1,27 @@
+super + d
+        dmenu_run
+# i3-dmenu-desktop
+XF86AudioRaiseVolume
+        pulsemixer --change-volume +5
+XF86AudioLowerVolume
+        pulsemixer --change-volume -5
+XF86AudioMute
+        pulsemixer --toggle-mute
+
+super + shift + s
+        sleep 0.25; systemctl suspend
+
+#Button9
+#        ctrl + shift + Tab
+#Button8
+#        ctrl + Tab
+
+Print
+        scrot -z -q 80 -m -e 'mv $f ~/images/screenshots/'
+alt + Print
+        scrot -z -q 100 -u -e 'mv $f ~/images/screenshots/'
+#Super_L + Print
+#        scrot -z -q 100 -s -e 'mv $f ~/images/screenshots/'
+#Super_R + Print
+#        scrot -z -q 100 -s -e 'mv $f ~/images/screenshots/'
+
