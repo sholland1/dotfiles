@@ -1,0 +1,68 @@
+<Macro>
+    <KeyBoardEvent Down="true">35</KeyBoardEvent>
+    <KeyBoardEvent Down="false">35</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">24</KeyBoardEvent>
+    <KeyBoardEvent Down="false">24</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">38</KeyBoardEvent>
+    <KeyBoardEvent Down="false">38</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">38</KeyBoardEvent>
+    <KeyBoardEvent Down="false">38</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">30</KeyBoardEvent>
+    <KeyBoardEvent Down="false">30</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">49</KeyBoardEvent>
+    <KeyBoardEvent Down="false">49</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">32</KeyBoardEvent>
+    <KeyBoardEvent Down="false">32</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">42</KeyBoardEvent>
+    <KeyBoardEvent Down="true">12</KeyBoardEvent>
+    <KeyBoardEvent Down="false">42</KeyBoardEvent>
+    <KeyBoardEvent Down="false">12</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">31</KeyBoardEvent>
+    <KeyBoardEvent Down="false">31</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">10</KeyBoardEvent>
+    <KeyBoardEvent Down="false">10</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">2</KeyBoardEvent>
+    <KeyBoardEvent Down="false">2</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">54</KeyBoardEvent>
+    <KeyBoardEvent Down="true">3</KeyBoardEvent>
+    <KeyBoardEvent Down="false">54</KeyBoardEvent>
+    <KeyBoardEvent Down="false">3</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">21</KeyBoardEvent>
+    <KeyBoardEvent Down="false">21</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">30</KeyBoardEvent>
+    <KeyBoardEvent Down="false">30</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">35</KeyBoardEvent>
+    <KeyBoardEvent Down="false">35</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">24</KeyBoardEvent>
+    <KeyBoardEvent Down="false">24</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">24</KeyBoardEvent>
+    <KeyBoardEvent Down="false">24</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">52</KeyBoardEvent>
+    <KeyBoardEvent Down="false">52</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">46</KeyBoardEvent>
+    <KeyBoardEvent Down="false">46</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">24</KeyBoardEvent>
+    <KeyBoardEvent Down="false">24</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">50</KeyBoardEvent>
+    <KeyBoardEvent Down="false">50</KeyBoardEvent>
+</Macro>
