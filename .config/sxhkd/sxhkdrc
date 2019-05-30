@@ -11,10 +11,14 @@ XF86AudioMute
 super + shift + s
         sleep 0.25; systemctl suspend
 
-#Button9
-#        ctrl + shift + Tab
-#Button8
-#        ctrl + Tab
+button8
+        xdotool key --clearmodifiers ctrl+Page_Down
+button9
+        xdotool key --clearmodifiers ctrl+Page_Up
+shift + button8
+        xdotool key --clearmodifiers ctrl+shift+Page_Down
+shift + button9
+        xdotool key --clearmodifiers ctrl+shift+Page_Up
 
 Print
         scrot -z -q 80 -m -e 'mv $f ~/images/screenshots/'
