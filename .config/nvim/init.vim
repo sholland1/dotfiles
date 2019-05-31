@@ -1,8 +1,8 @@
+let mapleader=" "
+
 nnoremap Y y$
 nnoremap do :echo "Use cc instead"<cr>
 vnoremap P "0p
-nnoremap <C--> <C-o>
-nnoremap - <C-i>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 
@@ -34,36 +34,6 @@ nnoremap <C-s> :w<cr>
 inoremap <C-s> <Esc>:w<cr>a
 nnoremap <cr> o<Esc>
 
-"file explorer
-map <C-n> :Defx -columns="mark:filename:size:time"<cr>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-    " Define mappings
-    nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
-    nnoremap <silent><buffer><expr> l defx#do_action('open')
-    nnoremap <silent><buffer><expr> c defx#do_action('copy')
-    nnoremap <silent><buffer><expr> m defx#do_action('move')
-    nnoremap <silent><buffer><expr> p defx#do_action('paste')
-    nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
-    nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
-    nnoremap <silent><buffer><expr> d defx#do_action('remove')
-    nnoremap <silent><buffer><expr> r defx#do_action('rename')
-    nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
-    nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
-    nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
-    nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
-    nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
-    nnoremap <silent><buffer><expr> q defx#do_action('quit')
-    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
-    nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-    nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
-    nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-endfunction
-
 "Omnisharp
 let g:ale_linters={
     \ 'cs': ['OmniSharp']
@@ -81,7 +51,7 @@ augroup omnisharp_commands
 augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <C-.> :OmniSharpGetCodeActions<cr>
+nnoremap <leader>. :OmniSharpGetCodeActions<cr>
 " Run code actions with text selected in visual mode to extract method
 xnoremap <C-.> :call OmniSharp#GetCodeActions('visual')<cr>
 
@@ -90,7 +60,6 @@ nnoremap <F2> :OmniSharpRename<cr>
 command! DeleteCurrentFile call delete(@%)|bd!
 command! TrimWhitespace %s/\s\+$//e
 
-set termguicolors
 set number
 set shortmess=I
 set listchars=tab:▸\ ,eol:¬
@@ -98,11 +67,13 @@ set list
 set autochdir "might break plugins?
 set completeopt=longest,menuone,preview
 set updatetime=1000
+set diffopt+=vertical
 
 "colorscheme mac_classic
 let g:one_allow_italics=1
 let g:airline_theme='one'
 set background=light
+set termguicolors
 
 "let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -152,15 +123,9 @@ Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
 Plug 'rakr/vim-one'
 Plug 'w0rp/ale'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'OmniSharp/omnisharp-vim'
-if has('nvim')
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/defx.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'neovimhaskell/haskell-vim'
+Plug 'vmchale/dhall-vim'
 
 call plug#end()
 
@@ -201,10 +166,6 @@ set history=500
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader=" "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
