@@ -5,6 +5,8 @@ nnoremap do :echo "Use cc instead"<cr>
 vnoremap P "0p
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
