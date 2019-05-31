@@ -1,9 +1,10 @@
 let mapleader=" "
 
 nnoremap Y y$
-nnoremap do ddO
+nnoremap do :echo "Use cc instead"<cr>
 vnoremap P "0p
-nnoremap <leader>/ :nohlsearch<cr>
+nnoremap <silent> <leader>/ :nohlsearch<cr>
+nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
