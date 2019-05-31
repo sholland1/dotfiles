@@ -4,6 +4,7 @@ vnoremap P "0p
 nnoremap <C--> <C-o>
 nnoremap - <C-i>
 nnoremap <C-/> :nohlsearch<cr>
+nnoremap <leader>so :source %<cr>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
