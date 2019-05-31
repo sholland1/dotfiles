@@ -2,9 +2,9 @@ super + d
         dmenu_run
 # i3-dmenu-desktop
 XF86AudioRaiseVolume
-        pulsemixer --change-volume +5
+        pulsemixer --change-volume +2
 XF86AudioLowerVolume
-        pulsemixer --change-volume -5
+        pulsemixer --change-volume -2
 XF86AudioMute
         pulsemixer --toggle-mute
 
