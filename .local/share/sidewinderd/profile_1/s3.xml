@@ -1,0 +1,47 @@
+<Macro>
+    <KeyBoardEvent Down="true">8</KeyBoardEvent>
+    <KeyBoardEvent Down="false">8</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">11</KeyBoardEvent>
+    <KeyBoardEvent Down="false">11</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">4</KeyBoardEvent>
+    <KeyBoardEvent Down="false">4</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">57</KeyBoardEvent>
+    <KeyBoardEvent Down="false">57</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">42</KeyBoardEvent>
+    <KeyBoardEvent Down="true">49</KeyBoardEvent>
+    <KeyBoardEvent Down="false">49</KeyBoardEvent>
+    <KeyBoardEvent Down="false">42</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">57</KeyBoardEvent>
+    <KeyBoardEvent Down="false">57</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">8</KeyBoardEvent>
+    <KeyBoardEvent Down="false">8</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">20</KeyBoardEvent>
+    <KeyBoardEvent Down="false">20</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">35</KeyBoardEvent>
+    <KeyBoardEvent Down="false">35</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">57</KeyBoardEvent>
+    <KeyBoardEvent Down="false">57</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">54</KeyBoardEvent>
+    <KeyBoardEvent Down="true">30</KeyBoardEvent>
+    <KeyBoardEvent Down="false">54</KeyBoardEvent>
+    <KeyBoardEvent Down="false">30</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">47</KeyBoardEvent>
+    <KeyBoardEvent Down="false">47</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">18</KeyBoardEvent>
+    <KeyBoardEvent Down="false">18</KeyBoardEvent>
+    <DelayEvent>0</DelayEvent>
+    <KeyBoardEvent Down="true">52</KeyBoardEvent>
+    <KeyBoardEvent Down="false">52</KeyBoardEvent>
+</Macro>
