@@ -1,5 +1,5 @@
 nnoremap Y y$
-nnoremap do ddO
+nnoremap do :echo "Use cc instead"<cr>
 vnoremap P "0p
 nnoremap <C--> <C-o>
 nnoremap - <C-i>
