@@ -2,14 +2,18 @@ super + d
         dmenu_run
 # i3-dmenu-desktop
 XF86AudioRaiseVolume
-        pulsemixer --change-volume +5
+        pulsemixer --change-volume +2
 XF86AudioLowerVolume
-        pulsemixer --change-volume -5
+        pulsemixer --change-volume -2
 XF86AudioMute
         pulsemixer --toggle-mute
 
 super + shift + s
-        sleep 0.25; systemctl suspend
+        sleep 0.5; systemctl suspend
+super + ctrl + r
+        systemctl reboot
+super + ctrl + s
+        systemctl shutdown
 
 button8
         xdotool key --clearmodifiers ctrl+Page_Down

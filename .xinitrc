@@ -4,4 +4,4 @@ sxhkd &
 xset s off -dmps &
 xset r rate 250 65 &
 compton &
-exec i3
+exec spectrwm
