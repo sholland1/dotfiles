@@ -61,6 +61,7 @@ nnoremap <F2> :OmniSharpRename<cr>
 
 command! DeleteCurrentFile call delete(@%)|bd!
 command! TrimWhitespace %s/\s\+$//e
+command! RemoveExtraWhitespace %s/ \{2,}/ /g
 
 set number
 set shortmess=I
