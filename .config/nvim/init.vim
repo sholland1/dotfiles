@@ -3,8 +3,10 @@ let mapleader=" "
 nnoremap Y y$
 nnoremap do :echo "Use cc instead"<cr>
 vnoremap P "0p
+nnoremap <cr> o<Esc>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
+nnoremap <silent> <leader>d :bd<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 
@@ -34,7 +36,6 @@ abbrev Holand Holland
 "save
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <Esc>:w<cr>a
-nnoremap <cr> o<Esc>
 
 "Omnisharp
 let g:ale_linters={
@@ -281,9 +282,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-R>=@/<cr><cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
@@ -314,7 +312,7 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
@@ -379,27 +377,6 @@ function! HasPaste()
         return 'PASTE MODE  '
     endif
     return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum=bufnr("%")
-    let l:alternateBufNum=bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
 endfunction
 
 function! CmdLine(str)
