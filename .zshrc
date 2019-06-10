@@ -68,8 +68,11 @@ plugins=(archlinux git) #zsh-syntax-highlighting
 #   export EDITOR='mvim'
 # fi
 
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export TERMINAL="urxvt"
+export BROWSER="waterfox"
+export FILE="ranger"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -84,16 +87,16 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vv="nvim ~/.config/nvim/init.vim"
-alias vz="nvim ~/.zshrc"
-alias vk="nvim ~/.config/sxhkd/sxhkdrc"
-alias vw="nvim ~/.spectrwm.conf"
-alias vr="nvim ~/.config/ranger/rc.conf"
-alias vc="nvim ~/.compton.conf"
+alias vv="nvim ~/dotfiles/.config/nvim/init.vim"
+alias vz="nvim ~/dotfiles/.zshrc"
+alias vk="nvim ~/dotfiles/.config/sxhkd/sxhkdrc"
+alias vw="nvim ~/dotfiles/.spectrwm.conf"
+alias vr="nvim ~/dotfiles/.config/ranger/rc.conf"
+alias vc="nvim ~/dotfiles/.compton.conf"
 alias vs="sudo nvim /etc/pulse/default.pa"
 alias clip="xsel"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias notes='cd ~/OneDrive/Documents/Notes; nvim -S Session.vim'
+alias notes='pushd ~/OneDrive/Documents/Notes; nvim -S Session.vim; popd'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
