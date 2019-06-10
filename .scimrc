@@ -2,3 +2,5 @@ nnoremap "<C-d>" "<C-f>"
 nnoremap "<C-u>" "<C-b>"
 nnoremap "i" "E"
 nnoremap "s" "\"
+
+set half_page_scroll=1
