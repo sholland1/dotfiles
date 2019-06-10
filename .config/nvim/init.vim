@@ -1,7 +1,8 @@
 let mapleader=" "
 
-nnoremap Y y$
 nnoremap do :echo "Use cc instead"<cr>
+
+nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
@@ -32,10 +33,6 @@ abbrev Sth Seth
 abbrev Steh Seth
 abbrev Hlland Holland
 abbrev Holand Holland
-
-"save
-nnoremap <C-s> :w<cr>
-inoremap <C-s> <Esc>:w<cr>a
 
 "Omnisharp
 let g:ale_linters={
