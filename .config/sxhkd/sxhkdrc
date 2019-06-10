@@ -1,6 +1,6 @@
 super + d
         dmenu_run
-# i3-dmenu-desktop
+
 XF86AudioRaiseVolume
         pulsemixer --change-volume +2
 XF86AudioLowerVolume
