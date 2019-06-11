@@ -87,19 +87,19 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v="nvim"
-alias vv="nvim ~/dotfiles/.config/nvim/init.vim"
-alias vz="nvim ~/dotfiles/.zshrc"
-alias vk="nvim ~/dotfiles/.config/sxhkd/sxhkdrc"
-alias vw="nvim ~/dotfiles/.spectrwm.conf"
-alias vr="nvim ~/dotfiles/.config/ranger/rc.conf"
-alias vc="nvim ~/dotfiles/.compton.conf"
-alias vs="sudo nvim /etc/pulse/default.pa"
+alias v="$EDITOR"
+alias vv="$EDITOR ~/dotfiles/.config/nvim/init.vim"
+alias vz="$EDITOR ~/dotfiles/.zshrc"
+alias vk="$EDITOR ~/dotfiles/.config/sxhkd/sxhkdrc"
+alias vw="$EDITOR ~/dotfiles/.spectrwm.conf"
+alias vr="$EDITOR ~/dotfiles/.config/ranger/rc.conf"
+alias vc="$EDITOR ~/dotfiles/.compton.conf"
+alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
 alias gs="git status"
 alias clip="xsel"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias notes='pushd ~/OneDrive/Documents/Notes; nvim -S Session.vim; popd'
+alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
