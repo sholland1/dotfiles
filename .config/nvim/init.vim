@@ -5,11 +5,22 @@ nnoremap do :echo "Use cc instead"<cr>
 nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
+inoremap <M-p> <backspace>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+
+cnoremap <M-h> <left>
+cnoremap <M-j> <down>
+cnoremap <M-k> <up>
+cnoremap <M-l> <right>
+
+inoremap <M-h> <left>
+inoremap <M-j> <down>
+inoremap <M-k> <up>
+inoremap <M-l> <right>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
@@ -331,13 +342,6 @@ nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-    nmap <D-j> <M-j>
-    nmap <D-k> <M-k>
-    vmap <D-j> <M-j>
-    vmap <D-k> <M-k>
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
