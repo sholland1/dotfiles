@@ -72,7 +72,7 @@ export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export TERMINAL="urxvt"
 export BROWSER="waterfox"
-export FILE="ranger"
+export FILE="vifm"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -92,13 +92,12 @@ alias vv="$EDITOR ~/dotfiles/.config/nvim/init.vim"
 alias vz="$EDITOR ~/dotfiles/.zshrc"
 alias vk="$EDITOR ~/dotfiles/.config/sxhkd/sxhkdrc"
 alias vw="$EDITOR ~/dotfiles/.spectrwm.conf"
-alias vr="$EDITOR ~/dotfiles/.config/ranger/rc.conf"
+alias vf="$EDITOR ~/dotfiles/.config/vifm/vifmrc"
 alias vc="$EDITOR ~/dotfiles/.compton.conf"
 alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
 alias gs="git status"
 alias clip="xsel"
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
