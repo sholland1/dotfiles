@@ -110,7 +110,7 @@ endif
 
 " Set custom status line look
 
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+set statusline="  Hint: %z%= %2* %A %1* %10u:%-7g %2* %15s %1* %20d  "
 
 " ------------------------------------------------------------------------------
 
@@ -118,6 +118,7 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 mark b ~/bin/
 mark h ~/
+mark n ~/OneDrive/Documents/Notes/
 
 " ------------------------------------------------------------------------------
 
@@ -330,6 +331,9 @@ filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx docx2txt.pl %f -
 
+" Sc-im files
+filextype *.csv,*.sc sc-im %f
+
 " TuDu files
 filetype *.tudu tudu -f %c
 
@@ -413,6 +417,16 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " ------------------------------------------------------------------------------
 
 " Sample mappings
+nnoremap <space>q :q<cr>
+nnoremap <space>w :w<cr>
+nnoremap <space>so :source $MYVIFMRC<cr>
+
+cnoremap <M-p> <bs>
+
+cnoremap <M-h> <left>
+cnoremap <M-j> <down>
+cnoremap <M-k> <up>
+cnoremap <M-l> <right>
 
 " Start shell in current directory
 nnoremap s :shell<cr>
