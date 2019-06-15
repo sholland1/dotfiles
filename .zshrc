@@ -98,7 +98,6 @@ alias vc="$EDITOR ~/dotfiles/.compton.conf"
 alias vt="$EDITOR ~/dotfiles/.config/termite/config"
 alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
-alias gs="git status"
 alias clip="xsel"
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 
