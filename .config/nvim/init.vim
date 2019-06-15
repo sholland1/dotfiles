@@ -6,6 +6,7 @@ nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
 inoremap <M-p> <backspace>
+inoremap <M-x> <delete>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
