@@ -70,7 +70,8 @@ plugins=(archlinux git) #zsh-syntax-highlighting
 
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
-export TERMINAL="urxvt"
+export TERMINAL="termite"
+export TERM="termite"
 export BROWSER="waterfox"
 export FILE="vifm"
 
@@ -94,6 +95,7 @@ alias vk="$EDITOR ~/dotfiles/.config/sxhkd/sxhkdrc"
 alias vw="$EDITOR ~/dotfiles/.spectrwm.conf"
 alias vf="$EDITOR ~/dotfiles/.config/vifm/vifmrc"
 alias vc="$EDITOR ~/dotfiles/.compton.conf"
+alias vt="$EDITOR ~/dotfiles/.config/termite/config"
 alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
 alias gs="git status"
