@@ -74,7 +74,7 @@ command! TrimWhitespace %s/\s\+$//e
 command! RemoveExtraWhitespace %s/ \{2,}/ /g
 
 set number
-set shortmess=I
+set shortmess=atI
 set listchars=tab:▸\ ,eol:¬
 set list
 set autochdir "might break plugins?
