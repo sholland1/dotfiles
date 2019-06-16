@@ -7,6 +7,7 @@ vnoremap P "0p
 nnoremap <cr> o<Esc>
 inoremap <M-p> <backspace>
 inoremap <M-x> <delete>
+nnoremap <tab> <C-w><C-w>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
@@ -188,6 +189,9 @@ set so=7
 
 " Turn on the Wild menu
 set wildmenu
+
+" Ignore case when completing files
+set wildignorecase
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
