@@ -1,4 +1,3 @@
-xrdb ~/.Xresources &
 feh --bg-scale ~/images/garrett-parker-247225-unsplash.jpg &
 sxhkd &
 setxkbmap -option caps:swapescape &
