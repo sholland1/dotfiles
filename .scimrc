@@ -2,5 +2,19 @@ nnoremap "<C-d>" "<C-f>"
 nnoremap "<C-u>" "<C-b>"
 nnoremap "i" "E"
 nnoremap "s" "\"
+nnoremap " w" ":w<cr>"
+nnoremap " q" ":q<cr>"
+
+redefine_color "WHITE" 1000 1000 1000
+
+color "type=HEADINGS underline=1 fg=WHITE bg=GREEN"
+color "type=NUMB fg=CYAN bg=DEFAULT_COLOR"
+color "type=STRG fg=BLUE bg=DEFAULT_COLOR"
+color "type=CELL_SELECTION bold=1 fg=GREEN bg=DEFAULT_COLOR"
+color "type=CELL_SELECTION_SC fg=WHITE bg=BLACK"
+color "type=CELL_CONTENT fg=MAGENTA bg=DEFAULT_COLOR"
+color "type=INFO_MSG fg=YELLOW bg=DEFAULT_COLOR"
+color "type=INPUT fg=BLACK bg=DEFAULT_COLOR"
+color "type=MODE fg=BLACK bg=DEFAULT_COLOR"
 
 set half_page_scroll=1
