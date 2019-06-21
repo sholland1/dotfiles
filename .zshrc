@@ -89,8 +89,18 @@ alias vc="$EDITOR ~/dotfiles/.compton.conf"
 alias vt="$EDITOR ~/dotfiles/.config/termite/config"
 alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
+alias cdn="cd ~/OneDrive/Documents/Notes"
 alias clip="xsel"
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
+
+gstat () {
+  if [ $1 ]; then
+    RESULT=`git log -"$1" --pretty=format:"%h" | tail -1`
+    git --no-pager diff "$RESULT" --shortstat
+  else
+    git log --shortstat --oneline
+  fi
+}
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

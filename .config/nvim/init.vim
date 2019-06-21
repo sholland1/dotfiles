@@ -13,6 +13,7 @@ nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>o :only<cr>
 
 cnoremap <M-h> <left>
 cnoremap <M-j> <down>
@@ -34,12 +35,12 @@ vmap <C-k><C-c> ygv<leader>cl
 map <C-k><C-u> <leader>cu
 
 "clipboard
-inoremap <C-v> <Esc>"+pa
-inoremap <S-Ins> <Esc>"+pa
-nnoremap <S-Ins> "+p
-vnoremap <S-Ins> x"+p
-vnoremap <C-c> "+y
-vnoremap <C-x> "+d
+inoremap <C-v> <Esc>"*pa
+inoremap <S-Ins> <Esc>"*pa
+nnoremap <S-Ins> "*p
+vnoremap <S-Ins> x"*p
+vnoremap <C-c> "*y
+vnoremap <C-x> "*d
 
 "abbreviations
 abbrev Sth Seth
