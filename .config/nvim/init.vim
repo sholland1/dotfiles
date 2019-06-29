@@ -5,8 +5,6 @@ nnoremap do :echo "Use cc instead"<cr>
 nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
-inoremap <M-p> <backspace>
-inoremap <M-x> <delete>
 nnoremap <tab> <C-w><C-w>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
@@ -15,15 +13,12 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 
-cnoremap <M-h> <left>
-cnoremap <M-j> <down>
-cnoremap <M-k> <up>
-cnoremap <M-l> <right>
-
-inoremap <M-h> <left>
-inoremap <M-j> <down>
-inoremap <M-k> <up>
-inoremap <M-l> <right>
+noremap! <M-h> <left>
+noremap! <M-j> <down>
+noremap! <M-k> <up>
+noremap! <M-l> <right>
+noremap! <M-p> <backspace>
+noremap! <M-x> <delete>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
