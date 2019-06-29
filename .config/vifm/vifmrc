@@ -174,6 +174,10 @@ command! reload :write | restart
 
 " Pdf
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
+fileviewer *.pdf
+        \ imgpdf %px %py %pw %ph %c
+        \ %pc
+        \ imgc %px %py %pw %ph
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
@@ -233,6 +237,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in feh}
+        \ feh %f &,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -240,7 +246,9 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in shotwell}
         \ shotwell,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ convert -identify %f -verbose /dev/null
+        \ imgt %px %py %pw %ph %c
+        \ %pc
+        \ imgc %px %py %pw %ph
 
 " OpenRaster
 filextype *.ora
@@ -421,6 +429,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
 nnoremap <space>so :source $MYVIFMRC<cr>
+nnoremap <space>p :!sh ~/.config/variety/scripts/set_wallpaper %f<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 
