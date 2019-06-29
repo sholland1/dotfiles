@@ -118,6 +118,7 @@ set statusline="  Hint: %z%= %2* %A %1* %10u:%-7g %2* %15s %1* %20d  "
 
 mark b ~/bin/
 mark h ~/
+mark d ~/dotfiles
 mark p ~/Projects
 mark n ~/OneDrive/Documents/Notes/
 
@@ -428,12 +429,13 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " Sample mappings
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
-nnoremap <space>so :source $MYVIFMRC<cr>
+nnoremap <space>r :restart<cr>
 nnoremap <space>p :!sh ~/.config/variety/scripts/set_wallpaper %f<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 
 cnoremap <M-p> <bs>
+cnoremap <M-x> <delete>
 
 cnoremap <M-h> <left>
 cnoremap <M-j> <down>
