@@ -179,7 +179,6 @@ fileviewer *.pdf
         \ imgpdf %px %py %pw %ph %c
         \ %pc
         \ imgc %px %py %pw %ph
-fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
@@ -221,13 +220,14 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
+        \ {Open with waterfox}
+        \ waterfox %f &,
+        \ {Open with qutebrowser}
+        \ qutebrowser %f &
+filetype *.html,*.htm
+        \ {Open with w3m}
+        \ w3m %c
+fileviewer *.html,*.htm w3m %c
 
 " Object
 filetype *.o nm %f | less
