@@ -8,6 +8,11 @@ super + shift + s
 super + ctrl + {r,s}
         systemctl {reboot,shutdown}
 
+super + {p,n}
+        variety -{p,n}
+super + alt + f
+        grep '^feh' .fehbg | awk '\{ print $3 \}' | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
+
 {_,shift + }{button8,button9}
         xdotool key --clearmodifiers ctrl+{_,shift+}{Page_Down,Page_Up}
 
