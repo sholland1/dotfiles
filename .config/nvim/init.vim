@@ -43,6 +43,10 @@ abbrev Steh Seth
 abbrev Hlland Holland
 abbrev Holand Holland
 
+"emoji 😏
+let g:emoji_complete_overwrite_standard_keymaps = 0
+imap <C-E> <Plug>(emoji-start-complete)
+
 "Omnisharp
 let g:ale_linters={
     \ 'cs': ['OmniSharp']
@@ -131,6 +135,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
+Plug 'kyuhi/vim-emoji-complete'
 Plug 'rakr/vim-one'
 Plug 'w0rp/ale'
 Plug 'OmniSharp/omnisharp-vim'
