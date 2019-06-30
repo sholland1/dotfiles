@@ -430,7 +430,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
 nnoremap <space>r :restart<cr>
-nnoremap <space>p :!sh ~/.config/variety/scripts/set_wallpaper %f<cr>
+nnoremap <space>p :!~/.config/variety/scripts/set_wallpaper %f &<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 
