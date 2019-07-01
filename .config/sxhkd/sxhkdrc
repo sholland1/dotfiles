@@ -1,33 +1,23 @@
-super + d
-        dmenu_run
-
-XF86AudioRaiseVolume
-        pulsemixer --change-volume +2
-XF86AudioLowerVolume
-        pulsemixer --change-volume -2
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+        pulsemixer --change-volume {+,-}2
 XF86AudioMute
         pulsemixer --toggle-mute
 
 super + shift + s
         sleep 0.5; systemctl suspend
-super + ctrl + r
-        systemctl reboot
-super + ctrl + s
-        systemctl shutdown
+super + ctrl + {r,s}
+        systemctl {reboot,shutdown}
 
-button8
-        xdotool key --clearmodifiers ctrl+Page_Down
-button9
-        xdotool key --clearmodifiers ctrl+Page_Up
-shift + button8
-        xdotool key --clearmodifiers ctrl+shift+Page_Down
-shift + button9
-        xdotool key --clearmodifiers ctrl+shift+Page_Up
+super + {p,n}
+        variety -{p,n}
+super + alt + f
+        grep '^feh' .fehbg | awk '\{ print $3 \}' | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
 
-Print
-        scrot -z -q 80 -m -e 'mv $f ~/images/screenshots/'
-alt + Print
-        scrot -z -q 100 -u -e 'mv $f ~/images/screenshots/'
+{_,shift + }{button8,button9}
+        xdotool key --clearmodifiers ctrl+{_,shift+}{Page_Down,Page_Up}
+
+{_,alt + }Print
+        scrot -z -q {80 -m,100 -u} -e 'mv $f ~/images/screenshots/'
 #Super_L + Print
 #        scrot -z -q 100 -s -e 'mv $f ~/images/screenshots/'
 #Super_R + Print
