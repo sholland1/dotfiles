@@ -43,6 +43,9 @@ abbrev Steh Seth
 abbrev Hlland Holland
 abbrev Holand Holland
 
+"auto-reload
+autocmd! BufWritePost $MYVIMRC source %
+
 "Omnisharp
 let g:ale_linters={
     \ 'cs': ['OmniSharp']
