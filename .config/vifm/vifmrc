@@ -118,6 +118,7 @@ set statusline="  Hint: %z%= %2* %A %1* %10u:%-7g %2* %15s %1* %20d  "
 
 mark b ~/bin/
 mark h ~/
+mark d ~/dotfiles
 mark p ~/Projects
 mark n ~/OneDrive/Documents/Notes/
 
@@ -174,7 +175,10 @@ command! reload :write | restart
 
 " Pdf
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
-fileviewer *.pdf pdftotext -nopgbrk %c -
+fileviewer *.pdf
+        \ imgpdf %px %py %pw %ph %c
+        \ %pc
+        \ imgc %px %py %pw %ph
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
@@ -216,13 +220,14 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
+        \ {Open with waterfox}
+        \ waterfox %f &,
+        \ {Open with qutebrowser}
+        \ qutebrowser %f &
+filetype *.html,*.htm
+        \ {Open with w3m}
+        \ w3m %c
+fileviewer *.html,*.htm w3m %c
 
 " Object
 filetype *.o nm %f | less
@@ -233,6 +238,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in feh}
+        \ feh %f &,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -240,7 +247,9 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in shotwell}
         \ shotwell,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ convert -identify %f -verbose /dev/null
+        \ imgt %px %py %pw %ph %c
+        \ %pc
+        \ imgc %px %py %pw %ph
 
 " OpenRaster
 filextype *.ora
@@ -420,11 +429,13 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " Sample mappings
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
-nnoremap <space>so :source $MYVIFMRC<cr>
+nnoremap <space>r :restart<cr>
+nnoremap <space>p :!~/.config/variety/scripts/set_wallpaper %f &<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 
 cnoremap <M-p> <bs>
+cnoremap <M-x> <delete>
 
 nnoremap <C-h> :histprev<cr>
 nnoremap <C-l> :histnext<cr>
