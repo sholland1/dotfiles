@@ -426,6 +426,9 @@ nnoremap <S-Tab> <C-w><C-x>
 
 cnoremap <M-p> <bs>
 
+nnoremap <C-h> :histprev<cr>
+nnoremap <C-l> :histnext<cr>
+
 cnoremap <M-h> <left>
 cnoremap <M-j> <down>
 cnoremap <M-k> <up>
