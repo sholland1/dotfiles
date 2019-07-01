@@ -116,12 +116,11 @@ let g:haskell_indent_disable=1
 " Plugins
 let g:plugautoload=expand('~/AppData/Local/nvim/autoload/plug.vim')
 if has('unix')
-  let g:plugautoload='~/.local/share/nvim/site/autoload/plug.vim'
+  let g:plugautoload='~/.config/nvim/autoload/plug.vim'
 endif
 
 if empty(glob(g:plugautoload))
-  silent !curl -fLo g:plugautoload --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent execute '!curl -fLo ' . g:plugautoload . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
