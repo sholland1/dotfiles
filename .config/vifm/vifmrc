@@ -445,6 +445,8 @@ cnoremap <M-j> <down>
 cnoremap <M-k> <up>
 cnoremap <M-l> <right>
 
+nnoremap ` <C-w>x
+
 " Start shell in current directory
 nnoremap s :shell<cr>
 
