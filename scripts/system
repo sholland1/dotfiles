@@ -1,0 +1,20 @@
+#!/bin/sh
+RESULT=`echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | dmenu "$@"`
+case "$RESULT" in
+    "sleep")
+        i3lock
+        sleep 0.5; systemctl suspend
+        ;;
+    "lock")
+        i3lock
+        ;;
+    "logout")
+        pkill spectrwm
+        ;;
+    "reboot")
+        shutdown -r now
+        ;;
+    "shutdown")
+        shutdown now
+        ;;
+esac
