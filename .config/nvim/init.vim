@@ -33,7 +33,7 @@ map <C-k><C-u> <leader>cu
 inoremap <S-Ins> <C-o>"*p
 nnoremap <S-Ins> "*p
 vnoremap <S-Ins> x"*p
-vnoremap <C-c> "*y
+vnoremap <C-c> "*ygv"+y
 vnoremap <C-x> "*d
 
 "abbreviations
