@@ -1,0 +1,24 @@
+# vim: filetype=neomuttrc
+source personal.conf
+
+set date_format="%m/%d/%Y %I:%M%p"
+
+bind index,pager,browser \Cd half-down
+bind index,pager,browser \Cu half-up
+
+bind generic,index,pager,browser <Space> noop
+macro generic,index,pager,browser <Space>r ":source ~/.config/mutt/muttrc\n" "Reloaded config."
+
+# New mail is boldened:
+color index brightyellow default "~N"
+color index_author brightred default "~N"
+color index_subject brightcyan default "~N"
+
+color index_flags magenta default '.*'
+
+# Other colors and aesthetic settings:
+color sidebar_divider color15 brightgreen
+color sidebar_flagged color15 red
+color sidebar_new color15 green
+color status color15 brightgreen
+
