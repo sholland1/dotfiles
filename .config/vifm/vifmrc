@@ -431,6 +431,7 @@ nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
 nnoremap <space>r :restart<cr>
 nnoremap <space>p :!~/.config/variety/scripts/set_wallpaper %f &<cr>
+nnoremap <space>c :e $MYVIFMRC<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 

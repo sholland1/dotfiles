@@ -12,6 +12,7 @@ nnoremap <silent> <leader>d :bd<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
+nnoremap <leader>c :e $MYVIMRC<cr>
 
 command! SudoEdit e suda://%
 command! SudoWrite w suda://%
