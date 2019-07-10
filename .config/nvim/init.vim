@@ -13,6 +13,9 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 
+command! SudoEdit e suda://%
+command! SudoWrite w suda://%
+
 noremap! <M-h> <left>
 noremap! <M-j> <down>
 noremap! <M-k> <up>
@@ -132,6 +135,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'kshenoy/vim-signature'
 Plug 'danro/rename.vim'
+Plug 'lambdalisue/suda.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
