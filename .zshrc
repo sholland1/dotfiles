@@ -92,6 +92,7 @@ alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
 alias cdn="cd ~/OneDrive/Documents/Notes"
 alias clip="xsel"
+alias cloc="tokei"
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 
 gstat () {
