@@ -1,3 +1,4 @@
+cat ~/.location | xargs redshift -l &
 setxkbmap -option caps:swapescape &
 cat ~/.config/variety/wallpaper/wallpaper.jpg.txt | xargs -I{} feh --bg-fill {} &
 sxhkd &
