@@ -2,6 +2,7 @@
 source personal.conf
 
 set date_format="%m/%d/%Y %I:%M%p"
+set editor=/usr/bin/nvim
 
 bind generic,pager <Esc>/ noop
 bind generic,index <Esc><T noop
