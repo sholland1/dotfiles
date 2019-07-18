@@ -59,12 +59,12 @@ plugins=(archlinux git vi-mode) # sudo
 
 # User configuration
 
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-export TERMINAL="termite"
-export TERM="termite"
-export BROWSER="waterfox"
-export FILE="vifm"
+export TERMINAL=termite
+export TERM=termite
+export EDITOR=/usr/bin/nvim
+export GIT_EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/waterfox
+export FILE=/usr/bin/vifm
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
