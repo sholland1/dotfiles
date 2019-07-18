@@ -48,6 +48,10 @@ abbrev Holand Holland
 
 "auto-reload
 autocmd! BufWritePost $MYVIMRC source %
+autocmd! BufWritePost .zshrc silent! execute "!source %"
+autocmd! BufWritePost .compton.conf silent! execute "!pkill compton;compton &"
+autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
+autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 
 "emoji 😏
 let g:emoji_complete_overwrite_standard_keymaps = 0
