@@ -59,7 +59,6 @@ plugins=(archlinux git vi-mode) # sudo
 
 # User configuration
 
-export TERMINAL=termite
 export TERM=termite
 export EDITOR=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
