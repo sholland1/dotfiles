@@ -8,6 +8,9 @@ super + {p,n}
 super + alt + f
         grep '^feh' .fehbg | awk '\{ print $3 \}' | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
 
+super + u
+        $TERM -e 'sudo pacman -Syu'
+
 {_,shift + }{button8,button9}
         xdotool key --clearmodifiers ctrl+{_,shift+}{Page_Down,Page_Up}
 
