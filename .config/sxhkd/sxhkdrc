@@ -6,7 +6,7 @@ XF86AudioMute
 super + {p,n}
         variety -{p,n}
 super + alt + f
-        grep '^feh' .fehbg | awk '\{ print $3 \}' | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
+        grep '^feh' .fehbg | cut -d ' ' -f3 | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
 
 super + u
         $TERM -e 'sudo pacman -Syu'
@@ -16,8 +16,7 @@ super + u
 
 {_,alt + }Print
         scrot -z -q {80 -m,100 -u} -e 'mv $f ~/images/screenshots/'
-#Super_L + Print
-#        scrot -z -q 100 -s -e 'mv $f ~/images/screenshots/'
-#Super_R + Print
-#        scrot -z -q 100 -s -e 'mv $f ~/images/screenshots/'
+shift + Print
+        offset=`xdotool get_desktop | xargs expr 1920 \*`; \
+        scrot -z -q 80 -m -a $offset,0,1920,1080 -e 'mv $f ~/images/screenshots/'
 
