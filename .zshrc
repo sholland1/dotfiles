@@ -59,12 +59,11 @@ plugins=(archlinux git vi-mode) # sudo
 
 # User configuration
 
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-export TERMINAL="termite"
-export TERM="termite"
-export BROWSER="waterfox"
-export FILE="vifm"
+export TERM=termite
+export EDITOR=/usr/bin/nvim
+export GIT_EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/waterfox
+export FILE=/usr/bin/vifm
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -87,10 +86,12 @@ alias vw="$EDITOR ~/dotfiles/.spectrwm.conf"
 alias vf="$EDITOR ~/dotfiles/.config/vifm/vifmrc"
 alias vc="$EDITOR ~/dotfiles/.compton.conf"
 alias vt="$EDITOR ~/dotfiles/.config/termite/config"
+alias ve="$EDITOR ~/dotfiles/.config/mutt/muttrc"
 alias vs="sudo $EDITOR /etc/pulse/default.pa"
 alias cd.="cd ~/dotfiles"
 alias cdn="cd ~/OneDrive/Documents/Notes"
 alias clip="xsel"
+alias cloc="tokei"
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 
 gstat () {

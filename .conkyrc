@@ -1,8 +1,8 @@
 out_to_x no
 out_to_console yes
-update_interval 1.0
+update_interval 0.5
 total_run_times 0
 use_spacer none
 temperature_unit fahrenheit
 TEXT
-${time %a %m/%d/%Y %l:%M %P} |Mail:${new_mails} |Up:${uptime_short} |Temp:${acpitemp}°F |${addr wlan0} |RAM:$memperc% |CPU:${cpu}% | ${downspeedf wlan0}
+${time %a %m/%d/%Y %l:%M %P} |Mail:$new_mails |Up:$uptime_short |Temp:$acpitemp°F | RAM:$memperc% | CPU:$cpu% | [${exec xdotool getactivewindow getwindowname}]
