@@ -14,6 +14,9 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
 
+command! SudoEdit e suda://%
+command! SudoWrite w suda://%
+
 noremap! <M-h> <left>
 noremap! <M-j> <down>
 noremap! <M-k> <up>
@@ -45,6 +48,10 @@ abbrev Holand Holland
 
 "auto-reload
 autocmd! BufWritePost $MYVIMRC source %
+autocmd! BufWritePost .zshrc silent! execute "!source %"
+autocmd! BufWritePost .compton.conf silent! execute "!pkill compton;compton &"
+autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
+autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 
 "emoji 😏
 let g:emoji_complete_overwrite_standard_keymaps = 0
@@ -133,7 +140,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'kshenoy/vim-signature'
 Plug 'danro/rename.vim'
-Plug 'vifm/vifm.vim'
+Plug 'lambdalisue/suda.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
