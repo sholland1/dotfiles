@@ -108,13 +108,6 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 "endif
 "let g:airline_symbols.linenr='¶'
 
-"ctrlp
-let g:ctrlp_show_hidden=1
-let g:ctrlp_custom_ignore={
-    \ 'dir':  '\v[\/]\.(git|stack-work|node_modules|dist|tmp)$',
-    \ 'file': '\v\.(exe|dll|zip)$'
-    \ }
-let g:ctrlp_match_window='bottom,order:btt,min:1,max:50,results:20'
 
 "haskell
 let g:haskell_enable_quantification=1
