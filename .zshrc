@@ -78,20 +78,20 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v="$EDITOR"
-alias vv="$EDITOR ~/dotfiles/.config/nvim/init.vim"
-alias vz="$EDITOR ~/dotfiles/.zshrc"
-alias vk="$EDITOR ~/dotfiles/.config/sxhkd/sxhkdrc"
-alias vw="$EDITOR ~/dotfiles/.spectrwm.conf"
-alias vf="$EDITOR ~/dotfiles/.config/vifm/vifmrc"
-alias vc="$EDITOR ~/dotfiles/.compton.conf"
-alias vt="$EDITOR ~/dotfiles/.config/termite/config"
-alias ve="$EDITOR ~/dotfiles/.config/mutt/muttrc"
-alias vs="sudo $EDITOR /etc/pulse/default.pa"
-alias cd.="cd ~/dotfiles"
-alias cdn="cd ~/OneDrive/Documents/Notes"
-alias clip="xsel"
-alias cloc="tokei"
+alias v='$EDITOR'
+alias vv='$EDITOR ~/dotfiles/.config/nvim/init.vim'
+alias vz='$EDITOR ~/dotfiles/.zshrc'
+alias vk='$EDITOR ~/dotfiles/.config/sxhkd/sxhkdrc'
+alias vw='$EDITOR ~/dotfiles/.spectrwm.conf'
+alias vf='$EDITOR ~/dotfiles/.config/vifm/vifmrc'
+alias vc='$EDITOR ~/dotfiles/.compton.conf'
+alias vt='$EDITOR ~/dotfiles/.config/termite/config'
+alias ve='$EDITOR ~/dotfiles/.config/mutt/muttrc'
+alias vs='sudo $EDITOR /etc/pulse/default.pa'
+alias cd.='cd ~/dotfiles'
+alias cdn='cd ~/OneDrive/Documents/Notes'
+alias clip='xsel'
+alias cloc='tokei'
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
 alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
 alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
