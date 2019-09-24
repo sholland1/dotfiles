@@ -90,7 +90,7 @@ set listchars=tab:▸\ ,eol:¬
 set list
 set autochdir "might break plugins?
 set completeopt=longest,menuone,preview
-set updatetime=1000
+set updatetime=200
 set diffopt+=vertical
 
 "colorscheme mac_classic
@@ -113,6 +113,27 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:haskell_enable_quantification=1
 let g:haskell_enable_pattern_synonyms=1
 let g:haskell_indent_disable=1
+
+set completefunc=LanguageClient#complete
+set splitbelow
+"lsp
+function! LSP_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        nnoremap <F12> :call LanguageClient#textDocument_definition()<cr>
+        nnoremap <F9> :call LanguageClient#textDocument_references()<cr>
+        nnoremap <leader>r :call LanguageClient#textDocument_rename()<cr>
+        nnoremap <leader>. :call LanguageClient_contextMenu()<cr>
+
+        augroup lsp_commands
+            autocmd!
+            autocmd CursorHold *
+                \ call LanguageClient#textDocument_hover()
+                \ | call LanguageClient#textDocument_documentHighlight()
+            "autocmd CursorHoldI * call LanguageClient#textDocument_completion()
+        augroup END
+    endif
+endfunction
+autocmd FileType * call LSP_maps()
 
 " Plugins
 let g:plugautoload=expand('~/AppData/Local/nvim/autoload/plug.vim')
@@ -140,8 +161,12 @@ Plug '907th/vim-auto-save'
 Plug 'Konfekt/vim-alias'
 Plug 'kyuhi/vim-emoji-complete'
 Plug 'rakr/vim-one'
-Plug 'w0rp/ale'
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'dense-analysis/ale'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vmchale/dhall-vim'
 
