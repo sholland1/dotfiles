@@ -93,6 +93,8 @@ alias cdn="cd ~/OneDrive/Documents/Notes"
 alias clip="xsel"
 alias cloc="tokei"
 alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
+alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
+alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
 
 gstat () {
   if [ $1 ]; then
