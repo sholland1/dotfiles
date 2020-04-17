@@ -3,10 +3,8 @@
 XF86AudioMute
         pulsemixer --toggle-mute
 
-super + {p,n}
-        variety -{p,n}
-super + alt + f
-        grep '^feh' .fehbg | cut -d ' ' -f3 | xargs -I '\{\}' mv \{\} ~/.config/variety/Favorites
+super + n
+        setrandom -r ~/images/wallpaper
 
 super + u
         $TERM -e 'sudo pacman -Syu'
