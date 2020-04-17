@@ -9,6 +9,7 @@ case "$RESULT" in
         i3lock
         ;;
     "logout")
+        setxkbmap -option
         pkill spectrwm
         ;;
     "reboot")

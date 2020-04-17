@@ -5,4 +5,8 @@ total_run_times 0
 use_spacer none
 temperature_unit fahrenheit
 TEXT
-${time %a %m/%d/%Y %l:%M %P} |Mail:$new_mails |Up:$uptime_short |Temp:$acpitemp°F | RAM:$memperc% | CPU:$cpu% | [${exec xdotool getactivewindow getwindowname}]
+Up:$uptime_short \
+| Temp:$acpitemp°F \
+| RAM:$memperc% \
+| CPU:$cpu% \
+| ${time %a %m/%d/%Y %l:%M %P}
