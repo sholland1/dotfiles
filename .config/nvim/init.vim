@@ -1,7 +1,5 @@
 let mapleader=" "
 
-nnoremap do :echo "Use cc instead"<cr>
-
 nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
@@ -13,6 +11,23 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<cr>/<C-R>=@/<cr><cr>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-R>=@/<cr><cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
 
 command! SudoEdit e suda://%
 command! SudoWrite w suda://%
@@ -40,11 +55,12 @@ vnoremap <S-Ins> x"*p
 vnoremap <C-c> "*ygv"+y
 vnoremap <C-x> "*d
 
-"abbreviations
-abbrev Sth Seth
-abbrev Steh Seth
-abbrev Hlland Holland
-abbrev Holand Holland
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+command! DeleteCurrentFile call delete(@%)|bd!
+command! TrimWhitespace %s/\s\+$//e
+command! RemoveExtraWhitespace %s/ \{2,}/ /g
 
 "auto-reload
 autocmd! BufWritePost $MYVIMRC source %
@@ -57,43 +73,7 @@ autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 let g:emoji_complete_overwrite_standard_keymaps = 0
 imap <C-E> <Plug>(emoji-start-complete)
 
-"Omnisharp
-let g:ale_linters={
-    \ 'cs': ['OmniSharp']
-    \}
-augroup omnisharp_commands
-    autocmd!
-
-    " Show type information automatically when the cursor stops moving
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-    " The following commands are contextual, based on the cursor position.
-    autocmd FileType cs nnoremap <buffer> <F12> :OmniSharpGotoDefinition<cr>
-    "uses quickfix window: https://stackoverflow.com/a/1747286
-    autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
-augroup END
-
-" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <leader>. :OmniSharpGetCodeActions<cr>
-" Run code actions with text selected in visual mode to extract method
-xnoremap <C-.> :call OmniSharp#GetCodeActions('visual')<cr>
-
-nnoremap <F2> :OmniSharpRename<cr>
-
-command! DeleteCurrentFile call delete(@%)|bd!
-command! TrimWhitespace %s/\s\+$//e
-command! RemoveExtraWhitespace %s/ \{2,}/ /g
-
-set number
-set shortmess=atI
-set listchars=tab:▸\ ,eol:¬
-set list
-set autochdir "might break plugins?
-set completeopt=longest,menuone,preview
-set updatetime=200
-set diffopt+=vertical
-
-"colorscheme mac_classic
+"colorscheme
 let g:one_allow_italics=1
 let g:airline_theme='one'
 set background=light
@@ -103,11 +83,43 @@ set termguicolors
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols={}
-"endif
-"let g:airline_symbols.linenr='¶'
+"c#
+let g:ale_linters={
+    \ 'cs': ['OmniSharp']
+    \}
+let g:ale_sign_error = '❗'
+let g:ale_sign_warning = '⚠️'
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_selector_ui = 'fzf'
+let g:omnicomplete_fetch_full_documentation = 1
+sign define OmniSharpCodeActions text=💡
 
+augroup OSCountCodeActions
+  autocmd!
+  autocmd FileType cs set signcolumn=yes
+  autocmd CursorHold *.cs call OSCountCodeActions()
+augroup END
+
+augroup omnisharp_commands
+    autocmd!
+
+    " Show type information automatically when the cursor stops moving
+
+    " The following commands are contextual, based on the cursor position.
+    autocmd FileType cs nnoremap <buffer> <F12> :OmniSharpGotoDefinition<cr>
+    "uses quickfix window: https://stackoverflow.com/a/1747286
+    autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
+    autocmd FileType cs nnoremap <buffer> <leader>t :OmniSharpTypeLookup<cr>
+    autocmd FileType cs nnoremap <buffer> [e :ALEPreviousWrap<cr>
+    autocmd FileType cs nnoremap <buffer> ]e :ALENextWrap<cr>
+augroup END
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <leader>. :OmniSharpGetCodeActions<cr>
+" Run code actions with text selected in visual mode to extract method
+xnoremap <leader>. :call OmniSharp#GetCodeActions('visual')<cr>
+
+nnoremap <F2> :OmniSharpRename<cr>
 
 "haskell
 let g:haskell_enable_quantification=1
@@ -159,48 +171,19 @@ Plug 'lambdalisue/suda.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
-Plug 'Konfekt/vim-alias'
 Plug 'kyuhi/vim-emoji-complete'
 Plug 'rakr/vim-one'
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'dense-analysis/ale'
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vmchale/dhall-vim'
 
 call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Amir Salihefendic — @amix3k
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -210,6 +193,18 @@ set history=500
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
+set noswapfile
+
+set number
+set shortmess=atI
+set listchars=tab:▸\ ,eol:¬
+set list
+"set autochdir "might break plugins?
+set completeopt=longest,menuone,preview
+set updatetime=200
+set diffopt+=vertical
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -244,17 +239,11 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
+" For search
+set ignorecase smartcase
 
 " Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
+set hlsearch incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -286,68 +275,20 @@ else
     set ffs=dos,unix,mac
 endif
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git etc. anyway...
-"set nobackup
-"set nowb
-set noswapfile
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-
-" Be smart when using tabs ;)
-set smarttab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
 
 " Linebreak on 500 characters
 set linebreak textwidth=500
 
-set autoindent
-set smartindent
-set nowrap "Don't wrap lines
-
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<cr>/<C-R>=@/<cr><cr>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-R>=@/<cr><cr>
-
+set autoindent smartindent nowrap "Don't wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Close all the buffers
-map <leader>ba :bufdo bd<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
-
-" Let 'tl' toggle between this and the last accessed tab
-let g:lasttab=1
-nmap <leader>tl :exe "tabn ".g:lasttab<cr>
-au TabLeave * let g:lasttab=tabpagenr()
-
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Specify the behavior when switching between buffers
 try
     set switchbuf=useopen,usetab,newtab
@@ -358,7 +299,6 @@ endtry
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -367,42 +307,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -434,6 +338,24 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/=l:pattern
     let @"=l:saved_reg
+endfunction
+
+function! OSCountCodeActions() abort
+  if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
+  if !OmniSharp#IsServerRunning() | return | endif
+  let opts = {
+  \ 'CallbackCount': function('s:CBReturnCount'),
+  \ 'CallbackCleanup': {-> execute('sign unplace 99')}
+  \}
+  call OmniSharp#CountCodeActions(opts)
+endfunction
+
+function! s:CBReturnCount(count) abort
+  if a:count
+    let l = getpos('.')[1]
+    let f = expand('%:p')
+    execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
+  endif
 endfunction
 
 colorscheme one
