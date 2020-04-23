@@ -112,6 +112,10 @@ endif
 
 set statusline="  Hint: %z%= %2* %A %1* %10u:%-7g %2* %15s %1* %20d  "
 
+" Don't require confirmation for (non-permanent) delete
+
+set confirm-=delete
+
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
