@@ -1,4 +1,4 @@
-{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+XF86Audio{Raise,Lower}Volume
         pulsemixer --change-volume {+,-}2
 XF86AudioMute
         pulsemixer --toggle-mute
@@ -9,8 +9,8 @@ super + n
 super + u
         $TERM -e 'sudo pacman -Syu'
 
-{_,shift + }{button8,button9}
-        xdotool key --clearmodifiers ctrl+{_,shift+}{Page_Down,Page_Up}
+{_,shift + }button{8,9}
+        xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}
 
 {_,alt + }Print
         scrot -z -q {80 -m,100 -u} -e 'mv $f ~/images/screenshots/'
