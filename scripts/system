@@ -1,12 +1,14 @@
 #!/bin/sh
+lock() {
+    find ~/images/wallpaper | sort -R | tail -1 | xargs -I {} i3lock -i "{}" -et
+}
 RESULT=`echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | dmenu "$@"`
 case "$RESULT" in
     "sleep")
-        i3lock
-        sleep 0.5; systemctl suspend
+        lock; sleep 0.5; systemctl suspend
         ;;
     "lock")
-        i3lock
+        lock
         ;;
     "logout")
         setxkbmap -option

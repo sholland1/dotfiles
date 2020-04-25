@@ -4,7 +4,7 @@ XF86AudioMute
         pulsemixer --toggle-mute
 
 super + n
-        setrandom -r ~/images/wallpaper
+        feh --recursive --randomize --bg-fill ~/images/wallpaper
 
 super + u
         $TERM -e 'sudo pacman -Syu'
