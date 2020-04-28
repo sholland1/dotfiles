@@ -11,6 +11,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
+nnoremap <leader>v :Vifm<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -41,6 +42,11 @@ noremap! <M-x> <delete>
 
 map <C-l> :bnext<cr>
 map <C-h> :bprevious<cr>
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif
 
 "NERDcommenter
 nmap <C-c> <nop>
@@ -110,9 +116,10 @@ augroup omnisharp_commands
     "uses quickfix window: https://stackoverflow.com/a/1747286
     autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
     autocmd FileType cs nnoremap <buffer> <leader>t :OmniSharpTypeLookup<cr>
-    autocmd FileType cs nnoremap <buffer> [e :ALEPreviousWrap<cr>
-    autocmd FileType cs nnoremap <buffer> ]e :ALENextWrap<cr>
 augroup END
+
+autocmd! FileType c,cs nnoremap <buffer> [e :ALEPreviousWrap<cr>
+autocmd! FileType c,cs nnoremap <buffer> ]e :ALENextWrap<cr>
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
 nnoremap <leader>. :OmniSharpGetCodeActions<cr>
@@ -356,6 +363,27 @@ function! s:CBReturnCount(count) abort
     let f = expand('%:p')
     execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
   endif
+endfunction
+
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
 endfunction
 
 colorscheme one
