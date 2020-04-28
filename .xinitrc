@@ -1,3 +1,4 @@
+#!/bin/sh
 cat ~/.location | xargs redshift -t 6500:3000 -l &
 setxkbmap -option caps:swapescape &
 feh --recursive --randomize --bg-fill ~/images/wallpaper &
