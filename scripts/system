@@ -12,7 +12,7 @@ case "$RESULT" in
         ;;
     "logout")
         setxkbmap -option
-        pkill spectrwm
+        who | cut -d' ' -f1 | xargs pkill -Kill -u
         ;;
     "reboot")
         shutdown -r now
