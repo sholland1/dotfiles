@@ -14,7 +14,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -59,7 +59,7 @@ plugins=(archlinux git vi-mode) # sudo
 export TERM=termite
 export EDITOR=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
-export BROWSER=/usr/bin/waterfox
+export BROWSER=/usr/bin/waterfox-classic
 export FILE=/usr/bin/vifm
 
 # Compilation flags
@@ -101,6 +101,21 @@ gstat () {
     git log --shortstat --oneline
   fi
 }
+
+swap () {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}
+
+# --preview="head -$LINES {}"
+# TODO: should probably export this sooner (in .xinitrc)
+export FZF_DEFAULT_OPTS='--layout=reverse --color=light
+    --bind=alt-j:down,alt-k:up,ctrl-d:half-page-down,ctrl-u:half-page-up,down:preview-down,up:preview-up'
+export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard || find -type f'
+export FZF_COMPLETION_TRIGGER='##'
+
+#git log --oneline | fzf --preview 'git show {+1}'
+alias hist='eval "$(fc -ln 0 | fzf --tac --no-sort)"'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

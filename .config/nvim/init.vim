@@ -77,10 +77,6 @@ autocmd! BufWritePost .compton.conf silent! execute "!pkill picom;picom &"
 autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
 autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 
-"emoji 😏
-let g:emoji_complete_overwrite_standard_keymaps = 0
-imap <C-E> <Plug>(emoji-start-complete)
-
 "colorscheme
 let g:one_allow_italics=1
 let g:airline_theme='one'
@@ -180,7 +176,6 @@ Plug 'lambdalisue/suda.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
-Plug 'kyuhi/vim-emoji-complete'
 Plug 'rakr/vim-one'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
