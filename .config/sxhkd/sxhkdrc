@@ -1,13 +1,30 @@
+# Don't forget to use ';\' for multiline commands
 XF86Audio{Raise,Lower}Volume
-        pulsemixer --change-volume {+,-}2
+        pulsemixer --change-volume {+,-}2;\
+        xsetroot -name $(status)
 XF86AudioMute
-        pulsemixer --toggle-mute
+        pulsemixer --toggle-mute;\
+        xsetroot -name $(status)
+
+super + shift + e
+        NAME='emojis';\
+        setsid $TERM -t "fzf: $NAME" -e $NAME;\
+        xdotool key Shift+Insert
+
+super + {d,grave}
+        fuzzy_win {programs,system}
+
+super + {f,u}
+        $TERM -e {vifm,update}
+
+super + i
+        $BROWSER
 
 super + n
         feh --recursive --randomize --bg-fill ~/images/wallpaper
 
-super + u
-        $TERM -e 'sudo pacman -Syu'
+#super + Return
+#        cd ~;$TERM
 
 {_,shift + }button{8,9}
         xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}
