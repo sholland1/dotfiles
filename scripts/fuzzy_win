@@ -1,0 +1,4 @@
+#!/bin/sh
+xdotool search --onlyvisible --classname MyFuzzy windowunmap \
+  || xdotool search --classname MyFuzzy windowmap \
+  || termite --class=MyFuzzy -t 'fzf: '$(basename $1 | cut -d' ' -f1) -e $(which $1)

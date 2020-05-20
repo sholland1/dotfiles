@@ -1,3 +1,4 @@
+#!/bin/sh
 cd ~
 rm .compton.conf .conkyrc .scimrc .spectrwm.conf .xinitrc .zprofile .zshrc
 ln -s ~/dotfiles/.compton.conf .compton.conf
@@ -7,6 +8,9 @@ ln -s ~/dotfiles/.spectrwm.conf .spectrwm.conf
 ln -s ~/dotfiles/.xinitrc .xinitrc
 ln -s ~/dotfiles/.zprofile .zprofile
 ln -s ~/dotfiles/.zshrc .zshrc
+
+rm -rdf ~/bin
+ln -s ~/dotfiles/scripts/ ~/bin
 
 rm -rdf .local/share/sidewinderd
 ln -s ~/dotfiles/.local/share/sidewinderd .local/share/sidewinderd
