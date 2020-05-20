@@ -1,0 +1,3 @@
+#!/bin/sh
+RESULT=`dmenu_path | fzf`
+set -m; exec "$RESULT" & disown

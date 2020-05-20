@@ -1,0 +1,40 @@
+#!/bin/sh
+getdate () {
+    date +'📆 %m/%d/%Y 🕒%_I:%M %p'
+}
+
+volume () {
+    if [ `pulsemixer --get-mute` = 1 ]; then
+        echo -n '🔇[M]'
+        exit
+    fi
+
+    VOL=`pulsemixer --get-volume | cut -d' ' -f1`
+    ICON=🔈
+    if [ $VOL -gt 95 ]; then
+        ICON=🔊
+    elif [ $VOL -gt 40 ]; then
+        ICON=🔉
+    fi
+    echo -n "$ICON[$VOL]"
+}
+
+mem () {
+    free | awk '/^Mem/{printf "💾 %.2fG/%.1fG", ($3+$5)/1024/1024, $2/1024/1024}'
+}
+
+cpu () {
+    #conky
+    top -bn 2 -d 0.01\
+        | grep '^%Cpu'\
+        | tail -n 1\
+        | awk '{printf "⏳%.0f%%", $2+$4+$6}'
+}
+
+up () {
+    uptime -p\
+        | sed -r 's/ ([a-z])[a-z]*,?/\1/g'\
+        | sed 's/^up/⬆/'
+}
+
+echo -n "$(cpu) :: $(up) :: $(mem) :: $(volume) :: $(getdate)"

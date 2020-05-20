@@ -1,0 +1,9 @@
+#!/bin/sh
+chosen=`cut -d';' -f1 ~/emoji.txt | fzf | sed 's/ .*//'`
+
+if [ -z $chosen ]; then
+    xsel -c
+    exit
+fi
+
+echo -n $chosen | xsel

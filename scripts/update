@@ -1,0 +1,4 @@
+#!/bin/sh
+yay -Syu
+echo 'Press <Enter> to exit...'
+read -r
