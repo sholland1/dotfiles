@@ -12,8 +12,8 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
 nnoremap <leader>v :Vifm<cr>
-nmap <C-e> :wq<cr>
-imap <C-e> <Esc>:wq<cr>
+nmap <C-q> :wq<cr>
+imap <C-q> <Esc>:wq<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>

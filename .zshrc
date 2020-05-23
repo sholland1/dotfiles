@@ -56,12 +56,6 @@ plugins=(archlinux git vi-mode) # sudo
 
 # User configuration
 
-export TERM=termite
-export EDITOR=/usr/bin/nvim
-export GIT_EDITOR=/usr/bin/nvim
-export BROWSER=/usr/bin/waterfox-classic
-export FILE=/usr/bin/vifm
-
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
@@ -75,6 +69,11 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+vproj () {
+    pushd $1
+    $EDITOR -S Session.vim
+    popd
+}
 alias v='$EDITOR'
 alias vv='$EDITOR ~/dotfiles/.config/nvim/init.vim'
 alias vz='$EDITOR ~/dotfiles/.zshrc'
@@ -89,7 +88,8 @@ alias cd.='cd ~/dotfiles'
 alias cdn='cd ~/OneDrive/Documents/Notes'
 alias clip='xsel'
 alias cloc='tokei'
-alias notes='pushd ~/OneDrive/Documents/Notes; $EDITOR -S Session.vim; popd'
+alias notes='vproj ~/OneDrive/Documents/Notes'
+alias dotfiles='vproj ~/dotfiles'
 alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
 alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
 
@@ -108,14 +108,17 @@ swap () {
 }
 
 # --preview="head -$LINES {}"
-# TODO: should probably export this sooner (in .xinitrc)
-export FZF_DEFAULT_OPTS='--layout=reverse --color=light
-    --bind=alt-j:down,alt-k:up,ctrl-d:half-page-down,ctrl-u:half-page-up,down:preview-down,up:preview-up'
-export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard || find -type f'
-export FZF_COMPLETION_TRIGGER='##'
 
 #git log --oneline | fzf --preview 'git show {+1}'
-alias hist='eval "$(fc -ln 0 | fzf --tac --no-sort)"'
+hist () {
+    fc -ln 0 |
+        grep -xv ".\{1,4\}" |
+        awk '!a[$0]++' |
+        fzf --tac |
+        xargs -I{} xdotool type --delay 0 "{}"
+}
+
+export HISTCONTROL=ignoreboth:erasedups
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
