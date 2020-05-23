@@ -49,6 +49,7 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
+autocmd! BufEnter,VimEnter * ColorHighlight
 
 "NERDcommenter
 nmap <C-c> <nop>
@@ -177,6 +178,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
+Plug 'chrisbra/colorizer'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
