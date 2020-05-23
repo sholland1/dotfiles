@@ -15,7 +15,7 @@ super + {d,grave}
         fuzzy_win {programs,system}
 
 super + {f,u}
-        $TERM -e {vifm,update}
+        $TERM -e {$FILE,update}
 
 super + i
         $BROWSER
