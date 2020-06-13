@@ -1,2 +1,2 @@
 #!/bin/sh
-wal-set < ~/.bg
+wal-set < ~/.cache/.bg
