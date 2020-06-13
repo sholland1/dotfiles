@@ -79,7 +79,7 @@ vproj () {
 alias v='$EDITOR'
 alias vifm='$FILE'
 alias vs='sudo $EDITOR /etc/pulse/default.pa'
-alias tig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig'
+alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig'
 alias cdn='cd ~/OneDrive/Documents/Notes'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias cloc='tokei'
