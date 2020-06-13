@@ -1,5 +1,5 @@
 #!/bin/sh
-chosen=`fzf < ~/kaomoji.txt | cut -d'	' -f1`
+chosen=`fzf < ~/.local/share/kaomoji.txt | cut -d'	' -f1`
 
 if [ -z "$chosen" ]; then
     xsel -c
