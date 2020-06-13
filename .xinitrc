@@ -14,7 +14,7 @@ export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard --
 
 cat ~/.location | xargs redshift -t 6500:3000 -l &
 setxkbmap -option caps:swapescape &
-feh --recursive --randomize --bg-fill ~/images/wallpaper &
+~/.local/bin/wal -R -o wal-set-last &
 ([ "$(xset q | awk '/Num /{print $8}')" == "off" ] && xdotool key Num_Lock) &
 xset s off -dpms &
 xset r rate 250 80 &
