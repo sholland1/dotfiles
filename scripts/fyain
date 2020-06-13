@@ -1,0 +1,7 @@
+#!/bin/sh
+yay -Slq |
+    fzf --multi --preview 'yay -Si {1}' |
+    xargs -ro yay -S
+echo -n 'Press <Enter> to exit...'
+read -r
+
