@@ -123,9 +123,9 @@ set confirm-=delete
 
 mark b ~/bin/
 mark h ~/
-mark d ~/dotfiles
 mark p ~/Projects
 mark n ~/OneDrive/Documents/Notes/
+mark i ~/images
 
 " ------------------------------------------------------------------------------
 
