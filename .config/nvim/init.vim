@@ -201,6 +201,9 @@ set history=500
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" Allow using mouse to resize splits
+set mouse=a
+
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set noswapfile
 
@@ -212,6 +215,7 @@ set list
 set completeopt=longest,menuone,preview
 set updatetime=200
 set diffopt+=vertical
+set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
