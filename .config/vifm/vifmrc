@@ -377,10 +377,11 @@ filetype *.tudu tudu -f %c
 filextype *.pro qtcreator %f &
 
 " Directories
-fileviewer */ tree %f
+fileviewer ../ tree %d
+fileviewer */,.*/ tree %f
 filextype */
         \ {View in thunar}
-        \ Thunar %f &,
+        \ Thunar %f &
 
 " Gameboy
 filetype *.gb,*.gbc,*.gba mgba -2 %f
