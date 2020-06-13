@@ -1,0 +1,11 @@
+#!/bin/sh
+RESULT=$(pacman -Slq |
+    fzf --multi --preview 'pacman -Si {1}')
+
+if [ $? -eq 0 ]; then
+    sudo pacman -S $RESULT
+    if [ $? -eq 0 ]; then
+        echo -n 'Press <Enter> to exit...'
+        read -r
+    fi
+fi
