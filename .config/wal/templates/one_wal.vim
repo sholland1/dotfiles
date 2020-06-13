@@ -1,0 +1,1 @@
+/home/sholland/Projects/vim-wal/colors/one_wal.vim

@@ -13,7 +13,7 @@ export FZF_DEFAULT_OPTS='--reverse --color=light
 export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard --exclude .git || find -type f'
 #export FZF_COMPLETION_TRIGGER='##'
 
-cat ~/.location | xargs redshift -t 6500:3000 -l &
+cat ~/.cache/.location | xargs redshift -t 6500:3000 -l &
 setxkbmap -option caps:swapescape &
 ~/.local/bin/wal -R -o wal-set-last &
 ([ "$(xset q | awk '/Num /{print $8}')" == "off" ] && xdotool key Num_Lock) &
