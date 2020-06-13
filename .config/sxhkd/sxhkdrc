@@ -1,10 +1,10 @@
 # Don't forget to use ';\' for multiline commands
 XF86Audio{Raise,Lower}Volume
         pulsemixer --change-volume {+,-}2;\
-        xsetroot -name $(status)
+        xsetroot -name "$(status)"
 XF86AudioMute
         pulsemixer --toggle-mute;\
-        xsetroot -name $(status)
+        xsetroot -name "$(status)"
 
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
