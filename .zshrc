@@ -69,6 +69,8 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+(cat ~/.cache/wal/sequences &)
 vproj () {
     pushd $1
     $EDITOR -S Session.vim

@@ -179,6 +179,7 @@ Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
 Plug 'chrisbra/colorizer'
+Plug 'sprockmonty/wal.vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -385,4 +386,4 @@ function! AutoRestoreWinView()
     endif
 endfunction
 
-colorscheme one
+source ~/.config/nvim/colors.vim
