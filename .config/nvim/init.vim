@@ -78,11 +78,6 @@ autocmd! BufWritePost .compton.conf silent! execute "!pkill picom;picom &"
 autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
 autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 
-"colorscheme
-let g:one_allow_italics=1
-let g:airline_theme='one'
-set background=light
-set termguicolors
 
 "let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
