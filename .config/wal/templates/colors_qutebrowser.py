@@ -6,7 +6,7 @@ qutewal_dynamic_loading = False
 home = os.getenv('HOME')
 daemon_relative = '.config/qutebrowser/qutewald.py'
 daemon_absolute = os.path.join(home, daemon_relative)
-with open(os.path.join(home,'.bg')) as bgfile:
+with open(os.path.join(home, '.cache', '.bg')) as bgfile:
     bg = bgfile.read().strip()
 
 hue_1  = '{color6}'
