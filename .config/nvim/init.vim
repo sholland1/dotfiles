@@ -76,7 +76,6 @@ autocmd! BufWritePost $MYVIMRC source %
 autocmd! BufWritePost .zshrc silent! execute "!source %"
 autocmd! BufWritePost .compton.conf silent! execute "!pkill picom;picom &"
 autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
-autocmd! BufWritePost .spectrwm.conf silent! execute "!pkill -HUP spectrwm &"
 
 
 "let g:airline_powerline_fonts=1
