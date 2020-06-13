@@ -5,7 +5,7 @@ export TERM=/usr/bin/termite
 export EDITOR=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/waterfox-classic
-export FILE=/usr/bin/vifm
+export FILE=~/.config/vifm/scripts/vifmrun
 
 export FZF_DEFAULT_OPTS='--reverse --color=light
     --bind=alt-j:down,alt-k:up,ctrl-d:half-page-down,ctrl-u:half-page-up,down:preview-down,up:preview-up'
