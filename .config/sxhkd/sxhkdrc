@@ -6,13 +6,13 @@ XF86AudioMute
         pulsemixer --toggle-mute;\
         xsetroot -name $(status)
 
-super + shift + e
-        NAME='emojis';\
+super + {shift, alt} + e
+        NAME='{e,kao}moji';\
         setsid $TERM -t "fzf: $NAME" -e $NAME;\
         xdotool key Shift+Insert
 
-super + {d,grave}
-        fuzzy_win {programs,system}
+super + {d,grave,p,r}
+        fuzzy_win {programs,system,fpacin,fpacrem}
 
 super + {f,u}
         $TERM -e {$FILE,update}

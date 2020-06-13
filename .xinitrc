@@ -1,5 +1,6 @@
 #!/bin/sh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 export TERM=/usr/bin/termite
 export EDITOR=/usr/bin/nvim

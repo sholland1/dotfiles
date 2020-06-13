@@ -1,4 +1,4 @@
 #!/bin/sh
 yay -Syu
-echo 'Press <Enter> to exit...'
+echo -n 'Press <Enter> to exit...'
 read -r
