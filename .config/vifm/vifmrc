@@ -64,7 +64,8 @@ set norunexec
 
 " Selected color scheme
 
-colorscheme terminal
+"colorscheme terminal
+colorscheme wal
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -438,8 +439,10 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
 nnoremap <space>r :restart<cr>
-nnoremap <space>p :!feh --bg-fill %f &<cr>
+nnoremap <space>lp :!~/.local/bin/wal -l -i %f -o wal-set-light &<cr>
+nnoremap <space>dp :!~/.local/bin/wal -i %f -o wal-set-dark &<cr>
 nnoremap <space>c :e $MYVIFMRC<cr>
+nnoremap <space>ll :!ln -s %d/%f %D/%c<cr>
 
 nnoremap <S-Tab> <C-w><C-x>
 

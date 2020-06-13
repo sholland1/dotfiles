@@ -3,11 +3,9 @@
 highlight Win cterm=none ctermfg=black ctermbg=255
 highlight Directory cterm=bold ctermfg=blue ctermbg=255
 highlight Link cterm=bold ctermfg=cyan ctermbg=default
-
 highlight BrokenLink cterm=italic ctermfg=red ctermbg=default
 highlight Socket cterm=bold ctermfg=magenta ctermbg=default
 highlight Device cterm=bold ctermfg=yellow ctermbg=default
-
 highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
 highlight Executable cterm=bold ctermfg=green ctermbg=default
 highlight Selected cterm=bold ctermfg=magenta ctermbg=default
@@ -16,12 +14,14 @@ highlight CurrLine cterm=standout ctermfg=default ctermbg=default
 highlight TopLine cterm=none ctermfg=green ctermbg=255
 highlight TopLineSel cterm=standout ctermfg=green ctermbg=255
 
-highlight StatusLine cterm=none ctermfg=magenta ctermbg=255
-highlight WildMenu cterm=underline,reverse ctermfg=black ctermbg=255
-highlight CmdLine cterm=none ctermfg=black ctermbg=255
+highlight StatusLine cterm=bold ctermfg=magenta ctermbg=black
+highlight WildMenu cterm=underline,reverse ctermfg=255 ctermbg=black
+"highlight CmdLine cterm=none ctermfg=black ctermbg=255
+highlight CmdLine cterm=none ctermfg=255 ctermbg=black
 
 highlight ErrorMsg cterm=none ctermfg=red ctermbg=default
-highlight Border cterm=none ctermfg=black ctermbg=255
+"highlight Border cterm=none ctermfg=black ctermbg=255
+highlight Border cterm=none ctermfg=255 ctermbg=black
 
 highlight User1 cterm=standout ctermfg=default ctermbg=default
 highlight User2 cterm=none ctermfg=default ctermbg=default
