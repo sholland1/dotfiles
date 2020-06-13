@@ -1,0 +1,16 @@
+#!/bin/sh
+echo $1 > ~/.bg
+# nvim
+~/reload_neovim.py &
+# fzf
+# dwm
+xdotool key F13 &
+# qutebrowser
+~/.config/qutebrowser/reload_colors.py &
+# tig/lazygit
+# sc-im
+# zathura
+# neomutt
+# htop
+# mgba
+
