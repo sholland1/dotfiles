@@ -182,9 +182,12 @@ command! reload :write | restart
 " Pdf
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf
-        \ imgpdf %px %py %pw %ph %c
+        \ vifmimg pdfpreview %px %py %pw %ph %c
         \ %pc
-        \ imgc %px %py %pw %ph
+        \ vifmimg clear
+        "\ imgpdf %px %py %pw %ph %c
+        "\ %pc
+        "\ imgc %px %py %pw %ph
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
@@ -206,8 +209,12 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ ffplay -nodisp -autoexit %c,
        \ {Play using MPlayer}
        \ mplayer %f,
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
+fileviewer *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+        \ vifmimg audio %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+"fileviewer *.mp3 mp3info
+"fileviewer *.flac soxi
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -222,7 +229,10 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
           \*.as[fx]
-         \ ffprobe -pretty %c 2>&1
+        \ vifmimg videopreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+        "\ ffprobe -pretty %c 2>&1
 
 " Web
 filextype *.html,*.htm
@@ -243,19 +253,29 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in feh}
-        \ feh %f &,
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ {View in sxiv}
         \ sxiv %f,
+        \ {View in feh}
+        \ feh %f &,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ imgt %px %py %pw %ph %c
+filextype *.gif
+        \ {View in sxiv}
+        \ sxiv -a %f,
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+        \ vifmimg draw %px %py %pw %ph %c
         \ %pc
-        \ imgc %px %py %pw %ph
+        \ vifmimg clear
+fileviewer *.gif
+        \ vifmimg gifpreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+        "\ imgt %px %py %pw %ph %c
+        "\ %pc
+        "\ imgc %px %py %pw %ph
 
 " OpenRaster
 filextype *.ora
@@ -357,6 +377,7 @@ filetype *.tudu tudu -f %c
 filextype *.pro qtcreator %f &
 
 " Directories
+fileviewer */ tree %f
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
@@ -457,6 +478,7 @@ cnoremap <M-j> <down>
 cnoremap <M-k> <up>
 cnoremap <M-l> <right>
 
+"swap dirs in panes
 nnoremap ` <C-w>x
 
 " Start shell in current directory
