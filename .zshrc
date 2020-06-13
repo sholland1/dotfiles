@@ -74,18 +74,18 @@ export ARCHFLAGS="-arch x86_64"
 vproj () {
     pushd $1 > /dev/null
     $EDITOR -S Session.vim
-    popd > /dev/null
+    popd > /dev/null 2>&1
 }
 alias v='$EDITOR'
 alias vifm='$FILE'
 alias vs='sudo $EDITOR /etc/pulse/default.pa'
-alias cd.='cd ~/dotfiles'
+alias tig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig'
 alias cdn='cd ~/OneDrive/Documents/Notes'
-alias clip='xsel'
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias cloc='tokei'
 alias notes='vproj ~/OneDrive/Documents/Notes'
-alias dotfiles='vproj ~/dotfiles'
-alias scripts='vproj ~/dotfiles/scripts'
+alias dotfiles='vproj ~'
+alias scripts='vproj ~/bin'
 alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
 alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
 
