@@ -109,13 +109,12 @@ swap () {
 
 # --preview="head -$LINES {}"
 
-#git log --oneline | fzf --preview 'git show {+1}'
-hist () {
-    fc -ln 0 |
-        grep -xv ".\{1,4\}" |
-        awk '!a[$0]++' |
-        fzf --tac |
-        xargs -I{} xdotool type --delay 0 "{}"
+fhist () {
+    print -z $(
+        ([ -n "$ZSH_NAME" ] && fc -ln 1 || history) |
+            fzf +s --tac |
+            sed -r 's/ *[0-9]*\*? *//' |
+            sed -r 's/\\/\\\\/g')
 }
 
 export HISTCONTROL=ignoreboth:erasedups
