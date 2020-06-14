@@ -22,11 +22,11 @@ xset r rate 250 80 &
 compton &
 sxhkd &
 
-#exec spectrwm
 while true; do
     xsetroot -name "$(status)"
     sleep 2s
 done &
+
 while true; do
     dwm > /dev/null
 done;
