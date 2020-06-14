@@ -126,6 +126,8 @@ mark h ~/
 mark p ~/Projects
 mark n ~/OneDrive/Documents/Notes/
 mark i ~/images
+mark r /
+mark w /mnt/windows/Users/sholland
 
 " ------------------------------------------------------------------------------
 
