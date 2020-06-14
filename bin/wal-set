@@ -4,7 +4,7 @@ echo $1 > ~/.cache/.bg
 ~/.config/nvim/reload_neovim.py &
 # fzf
 # dwm
-xdotool key F13 &
+xdotool key Super+Shift+Alt+Control+F12 &
 # qutebrowser
 ~/.config/qutebrowser/reload_colors.py &
 # tig/lazygit
