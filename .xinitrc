@@ -21,6 +21,7 @@ xset s off -dpms &
 xset r rate 250 80 &
 compton &
 sxhkd &
+mpd &
 
 while true; do
     xsetroot -name "$(status)"
