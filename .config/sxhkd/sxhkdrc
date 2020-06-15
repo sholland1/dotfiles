@@ -5,6 +5,8 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
         pulsemixer --toggle-mute;\
         xsetroot -name "$(status)"
+XF86Audio{Next,Prev,Stop,Play}
+        mpc {next,prev,stop,toggle}
 
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
