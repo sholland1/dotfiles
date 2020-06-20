@@ -25,7 +25,7 @@ mpd &
 
 while true; do
     xsetroot -name "$(status)"
-    sleep 2s
+    sleep 1s
 done &
 
 while true; do

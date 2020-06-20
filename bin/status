@@ -37,4 +37,10 @@ up () {
         | sed 's/^up/⬆/'
 }
 
-echo -n "$(cpu) :: $(up) :: $(mem) :: $(volume) :: $(getdate)"
+music () {
+    progress=`mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}'`
+    track=`mpc current -f '%title% - %artist%'`
+    [[ -z $progress && -z $track ]] || echo -n "$progress - $track :: "
+}
+
+echo -n " $(music)$(cpu) :: $(up) :: $(mem) :: $(volume) :: $(getdate)"
