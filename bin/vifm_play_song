@@ -1,0 +1,12 @@
+#!/bin/sh
+dir=~/Music/tmp
+mpc -q clear
+rm $dir/*
+cp "$@" $dir
+mpc -q update
+ls $dir | while read x; do
+    mpc -q add "tmp/$x"
+done
+mpc -q single off
+mpc -q repeat off
+mpc -q play
