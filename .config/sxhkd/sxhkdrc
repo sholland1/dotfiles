@@ -8,6 +8,10 @@ XF86AudioMute
 XF86Audio{Next,Prev,Stop,Play}
         mpc {next,prev,stop,toggle};\
         xsetroot -name "$(status)"
+super + XF86AudioStop
+        mpc -q stop;\
+        mpc -q clear;\
+        eject -T
 
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
