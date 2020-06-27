@@ -49,7 +49,6 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
-autocmd! BufEnter,VimEnter * ColorHighlight
 
 "NERDcommenter
 nmap <C-c> <nop>
@@ -195,7 +194,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
-Plug 'chrisbra/colorizer'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sprockmonty/wal.vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -233,6 +232,9 @@ set completeopt=longest,menuone,preview
 set updatetime=200
 set diffopt+=vertical
 set clipboard=unnamedplus
+
+set guicursor=n-v-c:block-blinkon100-Cursor/Cursor
+set guicursor+=i:ver100-blinkon100-Cursor/Cursor
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
