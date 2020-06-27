@@ -106,8 +106,8 @@ swap () {
 # --preview="head -$LINES {}"
 
 fproj () {
-    RESULT=$(ls ~/Projects | fzf --preview 'ls -a ~/Projects/{1}')
-    if [ ! -z "$RESULT" ]; then
+    RESULT=`ls ~/Projects | fzf --preview 'ls -a ~/Projects/{}'`
+    if [ -n "$RESULT" ]; then
         vproj ~/Projects/$RESULT
     fi
 }

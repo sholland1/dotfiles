@@ -1,4 +1,5 @@
 #!/bin/sh
+echo 'Initiating system update...'
 yay -Syu
 echo -n 'Press <Enter> to exit...'
 read -r
