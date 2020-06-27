@@ -2,7 +2,6 @@
 echo $1 > ~/.cache/.bg
 # nvim
 ~/.config/nvim/reload_neovim.py &
-# fzf
 # dwm
 xdotool key Super+Shift+Alt+Control+F12 &
 # qutebrowser

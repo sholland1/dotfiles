@@ -1,6 +1,7 @@
 #!/bin/sh
-RESULT=$(pacman -Slq |
-    fzf --multi --preview 'pacman -Si {1}')
+RESULT=`pacman -Slq |
+    fzf --multi --preview 'pacman -Si {}' \
+        --preview-window=:75%`
 
 if [ $? -eq 0 ]; then
     sudo pacman -S $RESULT

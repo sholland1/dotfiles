@@ -1,6 +1,7 @@
 #!/bin/sh
-RESULT=$(pacman -Q |
-    fzf --multi --preview 'pacman -Si {1}')
+RESULT=`pacman -Q |
+    fzf --multi --preview 'pacman -Si {}' \
+        --preview-window=:75%`
 
 if [ $? -eq 0 ]; then
     echo $RESULT | cut -d' ' -f1 | xargs -ro sudo pacman -Rns
