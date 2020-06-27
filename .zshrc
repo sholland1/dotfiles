@@ -72,21 +72,28 @@ export ARCHFLAGS="-arch x86_64"
 
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors.sh
+
 vproj () {
     pushd $1 > /dev/null
     $EDITOR -S Session.vim
     popd > /dev/null 2>&1
 }
+
 alias v='$EDITOR'
 alias vifm='$FILE'
 alias tig='tig status'
-alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig status'
-alias cdn='cd ~/OneDrive/Documents/Notes'
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias cloc='tokei'
+
+alias cdn='cd ~/OneDrive/Documents/Notes'
+
+alias config='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/git'
+alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig status'
+alias fconfiglog='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME fgitlog'
+
 alias notes='vproj ~/OneDrive/Documents/Notes'
 alias dotfiles='vproj ~'
 alias scripts='vproj ~/bin'
+
 alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
 alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
 
