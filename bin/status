@@ -10,17 +10,22 @@ volume () {
     fi
 
     VOL=`pulsemixer --get-volume | cut -d' ' -f1`
+    let VOL_PERCENT=$VOL*100/150
     ICON=🔈
-    if [ $VOL -gt 95 ]; then
+    if [ $VOL_PERCENT -gt 65 ]; then
         ICON=🔊
-    elif [ $VOL -gt 40 ]; then
+    elif [ $VOL_PERCENT -gt 25 ]; then
         ICON=🔉
     fi
-    echo -n "$ICON[$VOL]"
+    echo -n "$ICON[$VOL_PERCENT%]"
 }
 
 mem () {
     free | awk '/^Mem/{printf "💾 %.2fG/%.1fG", ($3+$5)/1024/1024, $2/1024/1024}'
+}
+
+disk () {
+    df | awk '/\/$/{printf "💽 %.2fG/%.0fG", $3/1024/1024, $2/1024/1024}'
 }
 
 cpu () {
@@ -40,7 +45,12 @@ up () {
 music () {
     progress=`mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}'`
     track=`mpc current -f '%title% - %artist%'`
-    [[ -z $progress && -z $track ]] || echo -n "$progress - $track :: "
+    if [ "$track" == ' - ' ]; then
+        msg="$progress"
+    else
+        msg="$progress - $track"
+    fi
+    [[ -z $progress && -z $track ]] || echo -n "$msg :: "
 }
 
-echo -n " $(music)$(cpu) :: $(up) :: $(mem) :: $(volume) :: $(getdate)"
+echo -n " $(music)$(cpu) :: $(up) :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
