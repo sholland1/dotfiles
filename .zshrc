@@ -71,6 +71,7 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 (cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors.sh
 vproj () {
     pushd $1 > /dev/null
     $EDITOR -S Session.vim
@@ -78,7 +79,6 @@ vproj () {
 }
 alias v='$EDITOR'
 alias vifm='$FILE'
-alias vs='sudo $EDITOR /etc/pulse/default.pa'
 alias tig='tig status'
 alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig status'
 alias cdn='cd ~/OneDrive/Documents/Notes'
