@@ -120,6 +120,16 @@ fhist () {
             sed -r 's/\\/\\\\/g')
 }
 
+frepl () {
+    RESULT=`echo "REPL - $1 {}" | fzf --print-query --phony \
+        --bind 'alt-h:backward-char,alt-l:forward-char' \
+        --preview "$1 {q}" --preview-window=down:99% | head -1`
+    if [ -n "$RESULT" ]; then
+        echo -n "$1 '$RESULT'" | xsel
+        echo "Copied '$1 '$RESULT'' to clipboard."
+    fi
+}
+
 export HISTCONTROL=ignoreboth:erasedups
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh

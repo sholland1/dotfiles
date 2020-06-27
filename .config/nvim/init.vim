@@ -77,6 +77,29 @@ autocmd! BufWritePost .zshrc silent! execute "!source %"
 autocmd! BufWritePost .compton.conf silent! execute "!pkill picom;picom &"
 autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
 
+"fzf
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--preview-window=:65%']}), <bang>0)
+
+nnoremap \f :Files<cr>
+nnoremap \b :Buffers<cr>
+nnoremap \l :Lines<cr>
+nnoremap \c :Commands<cr>
+nnoremap \r :Rg<cr>
 
 "let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
