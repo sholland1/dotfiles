@@ -8,7 +8,7 @@ export GIT_EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/waterfox-classic
 export FILE=~/.config/vifm/scripts/vifmrun
 
-export FZF_DEFAULT_OPTS='--reverse --color=light
+export FZF_DEFAULT_OPTS='--reverse --cycle
     --bind=alt-j:down,alt-k:up,ctrl-d:half-page-down,ctrl-u:half-page-up,down:preview-down,up:preview-up'
 export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard --exclude .git || find -type f'
 #export FZF_COMPLETION_TRIGGER='##'
