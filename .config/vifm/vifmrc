@@ -209,11 +209,11 @@ filextype *.djvu
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
         \ vifm_play_song %f &
-fileviewer *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
+fileviewer *.mp3 mp3info
+fileviewer *.wav,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
         \ vifmimg audio %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
-"fileviewer *.mp3 mp3info
 "fileviewer *.flac soxi
 
 " Video
