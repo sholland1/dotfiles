@@ -121,11 +121,12 @@ set confirm-=delete
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark b ~/bin
 mark h ~/
 mark p ~/Projects
-mark n ~/OneDrive/Documents/Notes/
+mark n ~/OneDrive/Documents/Notes
 mark i ~/images
+mark m ~/Music
 mark r /
 mark w /mnt/windows/Users/sholland
 
@@ -207,10 +208,7 @@ filextype *.djvu
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
-       \ {Play using MPlayer}
-       \ mplayer %f,
+        \ vifm_play_song %f &
 fileviewer *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
         \ vifmimg audio %px %py %pw %ph %c
         \ %pc
@@ -467,6 +465,7 @@ nnoremap <space>lp :!~/.local/bin/wal -l -i %f -o wal-set-light &<cr>
 nnoremap <space>dp :!~/.local/bin/wal -i %f -o wal-set-dark &<cr>
 nnoremap <space>c :e $MYVIFMRC<cr>
 nnoremap <space>ll :!ln -s %d/%f %D/%c<cr>
+nnoremap <space> <nop>
 
 nnoremap <S-Tab> <C-w><C-x>
 

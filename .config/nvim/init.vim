@@ -77,9 +77,29 @@ autocmd! BufWritePost .zshrc silent! execute "!source %"
 autocmd! BufWritePost .compton.conf silent! execute "!pkill picom;picom &"
 autocmd! BufWritePost sxhkdrc silent! execute "!pkill sxhkd;sxhkd &"
 
-"emoji 😏
-let g:emoji_complete_overwrite_standard_keymaps = 0
-imap <C-E> <Plug>(emoji-start-complete)
+"fzf
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--preview-window=:65%']}), <bang>0)
+
+nnoremap \f :Files<cr>
+nnoremap \b :Buffers<cr>
+nnoremap \l :Lines<cr>
+nnoremap \c :Commands<cr>
+nnoremap \r :Rg<cr>
 
 "let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -176,7 +196,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
-Plug 'chrisbra/colorizer'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sprockmonty/wal.vim'
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
@@ -214,6 +234,9 @@ set completeopt=longest,menuone,preview
 set updatetime=200
 set diffopt+=vertical
 set clipboard=unnamedplus
+
+set guicursor=n-v-c:block-blinkon100-Cursor/Cursor
+set guicursor+=i:ver100-blinkon100-Cursor/Cursor
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface

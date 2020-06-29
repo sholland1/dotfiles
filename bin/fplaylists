@@ -1,0 +1,11 @@
+#!/bin/sh
+chosen=`mpc lsplaylist |
+    fzf --preview 'mpc playlist -f "%title% - %artist%" {}' \
+        --preview-window=:80%`
+
+if [ $chosen ]; then
+    mpc -q clear
+    mpc -q load $chosen
+    mpc -q single off
+    mpc -q repeat on
+fi
