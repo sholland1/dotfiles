@@ -17,7 +17,7 @@ def get_all_instances():
             # check if the nvim directories contains a socket
             dc = os.listdir('/tmp/' + directory)
             if '0' in dc:
-                instances.append('/tmp/' + directory + '/0') 
+                instances.append('/tmp/' + directory + '/0')
     return instances
 
 
