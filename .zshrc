@@ -51,7 +51,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux git vi-mode) # sudo
+plugins=(git vi-mode) # sudo
 
 
 # User configuration
@@ -71,31 +71,34 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 (cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors.sh
+
 vproj () {
     pushd $1 > /dev/null
     $EDITOR -S Session.vim
     popd > /dev/null 2>&1
 }
+
 alias v='$EDITOR'
 alias vifm='$FILE'
-alias vs='sudo $EDITOR /etc/pulse/default.pa'
-alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig'
-alias cdn='cd ~/OneDrive/Documents/Notes'
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
+alias tig='tig status'
 alias cloc='tokei'
+
+alias cdn='cd ~/OneDrive/Documents/Notes'
+
+alias config='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/git'
+alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig status'
+alias fconfiglog='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME fgitlog'
+
 alias notes='vproj ~/OneDrive/Documents/Notes'
 alias dotfiles='vproj ~'
 alias scripts='vproj ~/bin'
+
 alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
 alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
 
-gstat () {
-  if [ $1 ]; then
-    RESULT=`git log -"$1" --pretty=format:"%h" | tail -1`
-    git --no-pager diff "$RESULT" --shortstat
-  else
-    git log --shortstat --oneline
-  fi
+gh-clone () {
+    git clone "https://{$2:-github.com}/$1"
 }
 
 swap () {
@@ -103,11 +106,25 @@ swap () {
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
 
-# --preview="head -$LINES {}"
+fgitlog () {
+    STATS='git --no-pager diff --shortstat'
+    git log --graph --color=always \
+        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+    fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort \
+        --preview "(grep -o '[a-f0-9]\{7\}' | xargs -I% sh -c '$STATS % HEAD;$STATS %^ %') << 'FZF-EOF'
+            {}
+FZF-EOF" \
+        --preview-window=up:2 \
+        --bind "enter:execute:
+                  (grep -o '[a-f0-9]\{7\}' |
+                  xargs -I% sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                  {}
+FZF-EOF"
+}
 
 fproj () {
-    RESULT=$(ls ~/Projects | fzf --preview 'ls -a ~/Projects/{1}')
-    if [ ! -z "$RESULT" ]; then
+    RESULT=`ls ~/Projects | fzf --preview 'ls -a ~/Projects/{}'`
+    if [ -n "$RESULT" ]; then
         vproj ~/Projects/$RESULT
     fi
 }
@@ -118,6 +135,16 @@ fhist () {
             fzf +s --tac |
             sed -r 's/ *[0-9]*\*? *//' |
             sed -r 's/\\/\\\\/g')
+}
+
+frepl () {
+    RESULT=`echo "REPL - $1 {}" | fzf --print-query --phony \
+        --bind 'alt-h:backward-char,alt-l:forward-char' \
+        --preview "$1 {q}" --preview-window=down:99% | head -1`
+    if [ -n "$RESULT" ]; then
+        echo -n "$1 '$RESULT'" | xsel
+        echo "Copied '$1 '$RESULT'' to clipboard."
+    fi
 }
 
 export HISTCONTROL=ignoreboth:erasedups
