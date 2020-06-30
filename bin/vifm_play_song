@@ -1,10 +1,10 @@
 #!/bin/sh
-dir=~/Music/tmp
+DIR=~/Music/tmp
 mpc -q clear
-rm $dir/*
-cp "$@" $dir
+rm $DIR/*
+cp "$@" $DIR
 mpc -q update
-ls $dir | while read x; do
+ls $DIR | while read x; do
     mpc -q add "tmp/$x"
 done
 mpc -q single off
