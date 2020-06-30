@@ -51,7 +51,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode) # sudo
+plugins=(vi-mode) # sudo
 
 
 # User configuration
@@ -86,16 +86,18 @@ alias cloc='tokei'
 
 alias cdn='cd ~/OneDrive/Documents/Notes'
 
-alias config='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/git'
-alias contig='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME /usr/bin/tig status'
-alias fconfiglog='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME fgitlog'
+GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
+alias config="$GIT_ENV /usr/bin/git"
+alias contig="$GIT_ENV /usr/bin/tig status"
+alias fconfiglog="$GIT_ENV fgitlog"
 
 alias notes='vproj ~/OneDrive/Documents/Notes'
 alias dotfiles='vproj ~'
 alias scripts='vproj ~/bin'
 
-alias gbtile='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbtd/GBTD.EXE &'
-alias gbmap='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files/gbmb/GBMB.EXE &'
+WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
+alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
+alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
 
 gh-clone () {
     git clone "https://{$2:-github.com}/$1"
@@ -124,24 +126,21 @@ FZF-EOF"
 
 fproj () {
     RESULT=`ls ~/Projects | fzf --preview 'ls -a ~/Projects/{}'`
-    if [ -n "$RESULT" ]; then
-        vproj ~/Projects/$RESULT
-    fi
+    [ $RESULT ] && vproj ~/Projects/$RESULT
 }
 
 fhist () {
     print -z $(
-        ([ -n "$ZSH_NAME" ] && fc -ln 1 || history) |
+        ([ $ZSH_NAME ] && fc -ln 1 || history) |
             fzf +s --tac |
-            sed -r 's/ *[0-9]*\*? *//' |
-            sed -r 's/\\/\\\\/g')
+            sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')
 }
 
 frepl () {
     RESULT=`echo "REPL - $1 {}" | fzf --print-query --phony \
         --bind 'alt-h:backward-char,alt-l:forward-char' \
         --preview "$1 {q}" --preview-window=down:99% | head -1`
-    if [ -n "$RESULT" ]; then
+    if [ $RESULT ]; then
         echo -n "$1 '$RESULT'" | xsel
         echo "Copied '$1 '$RESULT'' to clipboard."
     fi

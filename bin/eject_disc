@@ -1,0 +1,8 @@
+#!/bin/sh
+RESULT=`mpc | grep -c '^cdda:'`
+if [ $RESULT -gt 0 ]; then
+    mpc -q stop
+    mpc -q clear
+fi
+eject -T
+
