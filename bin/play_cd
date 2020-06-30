@@ -1,0 +1,9 @@
+#!/bin/sh
+N=`cdparanoia -sQ |& tail -n+7 | head -n-2 | wc -l`
+mpc -q clear
+for i in $(seq 1 $N); do
+    mpc -q add cdda:///$i
+done
+mpc -q single off
+mpc -q repeat on
+mpc -q play
