@@ -51,7 +51,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode) # sudo
+plugins=(vi-mode) # sudo
 
 
 # User configuration
@@ -133,8 +133,7 @@ fhist () {
     print -z $(
         ([ $ZSH_NAME ] && fc -ln 1 || history) |
             fzf +s --tac |
-            sed -r 's/ *[0-9]*\*? *//' |
-            sed -r 's/\\/\\\\/g')
+            sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')
 }
 
 frepl () {
