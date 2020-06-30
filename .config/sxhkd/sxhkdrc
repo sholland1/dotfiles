@@ -16,8 +16,8 @@ super + {shift, alt} + e
         setsid $TERM -t "fzf: $NAME" -e $NAME;\
         xdotool key Shift+Insert
 
-super + {grave,d,p,r,shift + x,XF86AudioPlay,shift + XF86AudioPlay}
-        fuzzy_win {system,programs,fpacin,fpacrem,fkill,fsongs,fplaylists}
+super + {grave,d,p,shift + p,r,shift + x,XF86AudioPlay,shift + XF86AudioPlay}
+        fuzzy_win {system,programs,fpacin,fyain,fpacrem,fkill,fsongs,fplaylists}
 
 super + {f,u}
         $TERM -e {$FILE,update}
