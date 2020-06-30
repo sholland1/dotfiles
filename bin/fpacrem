@@ -1,6 +1,6 @@
 #!/bin/sh
 RESULT=`pacman -Q |
-    fzf --multi --preview 'pacman -Si {1}' \
+    fzf --multi --preview 'pacman -Si {1} || yay -Si {1}' \
         --preview-window=:75%`
 
 if [ $? -eq 0 ]; then

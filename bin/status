@@ -30,16 +30,15 @@ disk () {
 
 cpu () {
     #conky
-    top -bn 2 -d 0.01\
-        | grep '^%Cpu'\
-        | tail -n 1\
-        | awk '{printf "⏳%.0f%%", $2+$4+$6}'
+    top -bn 2 -d 0.01 |
+        grep '^%Cpu' |
+        tail -n 1 |
+        awk '{printf "⏳%.0f%%", $2+$4+$6}'
 }
 
 up () {
-    uptime -p\
-        | sed -r 's/ ([a-z])[a-z]*,?/\1/g'\
-        | sed 's/^up/⬆/'
+    uptime -p |
+        sed -r 's/ ([a-z])[a-z]*,?/\1/g;s/^up/⬆/'
 }
 
 music () {
