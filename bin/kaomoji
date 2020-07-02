@@ -1,9 +1,9 @@
 #!/bin/sh
-RESULT=`fzf < ~/.local/share/kaomoji.txt | cut -d'	' -f1`
+RESULT=$(fzf < ~/.local/share/kaomoji.txt | cut -d'	' -f1)
 
 if [ -z "$RESULT" ]; then
     xsel -c
     exit
 fi
 
-echo -n $RESULT | xsel
+echo -n "$RESULT" | xsel

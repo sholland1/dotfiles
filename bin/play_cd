@@ -1,8 +1,8 @@
 #!/bin/sh
-N=`cdparanoia -sQ |& tail -n+7 | head -n-2 | wc -l`
+N=$(cdparanoia -sQ 2>&1 | tail -n+7 | head -n-2 | wc -l)
 mpc -q clear
-for i in $(seq 1 $N); do
-    mpc -q add cdda:///$i
+for i in $(seq 1 "$N"); do
+    mpc -q add "cdda:///$i"
 done
 mpc -q single off
 mpc -q repeat on

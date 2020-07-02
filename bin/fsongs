@@ -1,5 +1,5 @@
 #!/bin/sh
-RESULT=`mpc playlist -f '%position%. %time% - %title% - %artist% - %album%' |
-    fzf | cut -d'.' -f1`
+RESULT=$(mpc playlist -f '%position%. %time% - %title% - %artist% - %album%' |
+    fzf | cut -d'.' -f1)
 
-[ $RESULT ] && mpc play -q $RESULT
+[ "$RESULT" ] && mpc play -q "$RESULT"
