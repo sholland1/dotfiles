@@ -67,6 +67,7 @@ vnoremap <C-x> "*d
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 command! DeleteCurrentFile call delete(@%)|bd!
+command! MakeExecutable !chmod +x %
 command! TrimWhitespace %s/\s\+$//e
 command! RemoveExtraWhitespace %s/ \{2,}/ /g
 
