@@ -1,2 +1,2 @@
 #!/bin/sh
-wal-set $(cat ~/.cache/.bg)
+wal-set "$(cat ~/.cache/.bg)"

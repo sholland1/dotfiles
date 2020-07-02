@@ -4,17 +4,17 @@ getdate () {
 }
 
 volume () {
-    if [ `pulsemixer --get-mute` = 1 ]; then
+    if [ "$(pulsemixer --get-mute)" = 1 ]; then
         echo -n '🔇[M]'
         exit
     fi
 
-    VOL=`pulsemixer --get-volume | cut -d' ' -f1`
+    VOL=$(pulsemixer --get-volume | cut -d' ' -f1)
     let VOL_PERCENT=$VOL*100/150
     ICON=🔈
-    if [ $VOL_PERCENT -gt 65 ]; then
+    if [ "$VOL_PERCENT" -gt 65 ]; then
         ICON=🔊
-    elif [ $VOL_PERCENT -gt 25 ]; then
+    elif [ "$VOL_PERCENT" -gt 25 ]; then
         ICON=🔉
     fi
     echo -n "$ICON[$VOL_PERCENT%]"
@@ -42,14 +42,14 @@ up () {
 }
 
 music () {
-    progress=`mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}'`
-    track=`mpc current -f '%title% - %artist%'`
-    if [ "$track" == ' - ' ]; then
+    progress=$(mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}')
+    track=$(mpc current -f '%title% - %artist%')
+    if [ "$track" = ' - ' ]; then
         msg="$progress"
     else
         msg="$progress - $track"
     fi
-    [[ -z $progress && -z $track ]] || echo -n "$msg :: "
+    [ -z "$progress" ] && [ -z "$track" ] || echo -n "$msg :: "
 }
 
 echo -n " $(music)$(cpu) :: $(up) :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"

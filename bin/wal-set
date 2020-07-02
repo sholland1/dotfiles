@@ -1,5 +1,5 @@
 #!/bin/sh
-echo $1 > ~/.cache/.bg
+echo "$1" > ~/.cache/.bg
 # nvim
 ~/.config/nvim/reload_neovim.py &
 # dwm

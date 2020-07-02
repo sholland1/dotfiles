@@ -1,9 +1,9 @@
 #!/bin/sh
-RESULT=`fzf -d';' --with-nth=1 < ~/.local/share/emoji.txt | sed 's/ .*//'`
+RESULT=$(fzf -d';' --with-nth=1 < ~/.local/share/emoji.txt | sed 's/ .*//')
 
-if [ -z $RESULT ]; then
+if [ -z "$RESULT" ]; then
     xsel -c
     exit
 fi
 
-echo -n $RESULT | xsel
+echo -n "$RESULT" | xsel

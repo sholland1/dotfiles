@@ -2,7 +2,7 @@
 lock () {
     i3lock-fancy-rapid 5 3
 }
-RESULT=`echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | fzf`
+RESULT=$(echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | fzf)
 set -m
 case $RESULT in
     sleep) lock; sleep 0.5; systemctl suspend ;;
