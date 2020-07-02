@@ -1,10 +1,10 @@
 #!/bin/sh
-RESULT=`pacman -Q |
+RESULT=$(pacman -Q |
     fzf --multi --preview 'pacman -Si {1} || yay -Si {1}' \
-        --preview-window=:75%`
+        --preview-window=:75%)
 
 if [ $? -eq 0 ]; then
-    echo $RESULT | cut -d' ' -f1 | xargs -ro sudo pacman -Rns
+    echo "$RESULT" | cut -d' ' -f1 | xargs -ro sudo pacman -Rns
     echo -n 'Press <Enter> to exit...'
     read -r
 fi

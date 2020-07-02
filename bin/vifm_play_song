@@ -4,7 +4,7 @@ mpc -q clear
 rm $DIR/*
 cp "$@" $DIR
 mpc -q update
-ls $DIR | while read x; do
+ls $DIR | while read -r x; do
     mpc -q add "tmp/$x"
 done
 mpc -q single off

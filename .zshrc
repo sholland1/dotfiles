@@ -1,3 +1,4 @@
+#!/bin/sh
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh/
 
@@ -74,9 +75,9 @@ export ARCHFLAGS="-arch x86_64"
 source ~/.cache/wal/colors.sh
 
 vproj () {
-    pushd $1 > /dev/null
+    pushd "$1" > /dev/null || exit
     $EDITOR -S Session.vim
-    popd > /dev/null 2>&1
+    popd > /dev/null 2>&1 || exit
 }
 
 alias v='$EDITOR'
@@ -99,8 +100,8 @@ WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/P
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
 alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
 
-gh-clone () {
-    git clone "https://{$2:-github.com}/$1"
+ghclone () {
+    git clone "https://${2:-github.com}/$1"
 }
 
 swap () {
@@ -125,22 +126,22 @@ FZF-EOF"
 }
 
 fproj () {
-    RESULT=`ls ~/Projects | fzf --preview 'ls -a ~/Projects/{}'`
-    [ $RESULT ] && vproj ~/Projects/$RESULT
+    RESULT=$(ls ~/Projects | fzf --preview 'tree ~/Projects/{}')
+    [ "$RESULT" ] && vproj ~/Projects/"$RESULT"
 }
 
 fhist () {
-    print -z $(
-        ([ $ZSH_NAME ] && fc -ln 1 || history) |
+    print -z "$(
+        ([ "$ZSH_NAME" ] && fc -ln 1 || history) |
             fzf +s --tac |
-            sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')
+            sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')"
 }
 
 frepl () {
-    RESULT=`echo "REPL - $1 {}" | fzf --print-query --phony \
+    RESULT=$(echo "REPL - $1 {}" | fzf --print-query --phony \
         --bind 'alt-h:backward-char,alt-l:forward-char' \
-        --preview "$1 {q}" --preview-window=down:99% | head -1`
-    if [ $RESULT ]; then
+        --preview "$1 {q}" --preview-window=down:99% | head -1)
+    if [ "$RESULT" ]; then
         echo -n "$1 '$RESULT'" | xsel
         echo "Copied '$1 '$RESULT'' to clipboard."
     fi
@@ -149,8 +150,8 @@ frepl () {
 export HISTCONTROL=ignoreboth:erasedups
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+if [ ! -d "$ZSH_CACHE_DIR" ]; then
+    mkdir "$ZSH_CACHE_DIR"
 fi
 
 source $ZSH/oh-my-zsh.sh
