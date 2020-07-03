@@ -1,0 +1,6 @@
+#!/bin/sh
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+URL='https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on'
+curl -s "$URL" |
+    sed -e 's/^#Server/Server/;/^#/d' |
+    rankmirrors -n 6 - > /etc/pacman.d/mirrorlist
