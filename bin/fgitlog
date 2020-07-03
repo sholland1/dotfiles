@@ -1,0 +1,14 @@
+#!/bin/sh
+STATS='git --no-pager diff --shortstat'
+git log --graph --color=always \
+    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort \
+    --preview "(grep -o '[a-f0-9]\{7\}' | xargs -I% sh -c '$STATS % HEAD;$STATS %^ %') << 'FZF-EOF'
+        {}
+FZF-EOF" \
+    --preview-window=up:2 \
+    --bind "enter:execute:
+              (grep -o '[a-f0-9]\{7\}' |
+              xargs -I% sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+              {}
+FZF-EOF"
