@@ -74,12 +74,6 @@ export ARCHFLAGS="-arch x86_64"
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors.sh
 
-vproj () {
-    pushd "$1" > /dev/null || exit
-    $EDITOR -S Session.vim
-    popd > /dev/null 2>&1 || exit
-}
-
 alias v='$EDITOR'
 alias vifm='$FILE'
 alias tig='tig status'
@@ -100,51 +94,11 @@ WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/P
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
 alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
 
-ghclone () {
-    git clone "https://${2:-github.com}/$1"
-}
-
-swap () {
-    local TMPFILE=tmp.$$
-    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
-}
-
-fgitlog () {
-    STATS='git --no-pager diff --shortstat'
-    git log --graph --color=always \
-        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort \
-        --preview "(grep -o '[a-f0-9]\{7\}' | xargs -I% sh -c '$STATS % HEAD;$STATS %^ %') << 'FZF-EOF'
-            {}
-FZF-EOF" \
-        --preview-window=up:2 \
-        --bind "enter:execute:
-                  (grep -o '[a-f0-9]\{7\}' |
-                  xargs -I% sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                  {}
-FZF-EOF"
-}
-
-fproj () {
-    RESULT=$(ls ~/Projects | fzf --preview 'tree ~/Projects/{}')
-    [ "$RESULT" ] && vproj ~/Projects/"$RESULT"
-}
-
 fhist () {
     print -z "$(
         ([ "$ZSH_NAME" ] && fc -ln 1 || history) |
             fzf +s --tac |
             sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')"
-}
-
-frepl () {
-    RESULT=$(echo "REPL - $1 {}" | fzf --print-query --phony \
-        --bind 'alt-h:backward-char,alt-l:forward-char' \
-        --preview "$1 {q}" --preview-window=down:99% | head -1)
-    if [ "$RESULT" ]; then
-        echo -n "$1 '$RESULT'" | xsel
-        echo "Copied '$1 '$RESULT'' to clipboard."
-    fi
 }
 
 export HISTCONTROL=ignoreboth:erasedups
