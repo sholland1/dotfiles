@@ -1,0 +1,3 @@
+#!/bin/sh
+RESULT=$(ls ~/Projects | fzf --preview 'tree -h ~/Projects/{}')
+[ "$RESULT" ] && vproj ~/Projects/"$RESULT"
