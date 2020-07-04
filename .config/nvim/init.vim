@@ -49,6 +49,7 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
+"autocmd! BufEnter,VimEnter * ColorHighlight
 
 "NERDcommenter
 nmap <C-c> <nop>
@@ -168,7 +169,7 @@ function! LSP_maps()
         augroup END
     endif
 endfunction
-autocmd FileType * call LSP_maps()
+"autocmd FileType * call LSP_maps()
 
 " Plugins
 let g:plugautoload=expand('~/AppData/Local/nvim/autoload/plug.vim')
@@ -185,6 +186,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
+Plug 'konfekt/vim-alias'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'kshenoy/vim-signature'
@@ -197,10 +199,10 @@ Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sprockmonty/wal.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'dense-analysis/ale'
 Plug 'OmniSharp/omnisharp-vim'
@@ -292,6 +294,9 @@ set noerrorbells novisualbell t_vb= tm=500
 
 " Add a bit extra margin to the left
 set foldcolumn=1
+
+" Set cursor blink
+set guicursor=a:blinkon200-blinkoff100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
