@@ -102,7 +102,7 @@ nnoremap \l :Lines<cr>
 nnoremap \c :Commands<cr>
 nnoremap \r :Rg<cr>
 
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 
@@ -183,6 +183,7 @@ set clipboard=unnamedplus
 
 set guicursor=n-v-c:block-blinkon100-Cursor/Cursor
 set guicursor+=i:ver100-blinkon100-Cursor/Cursor
+set cursorline cursorcolumn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
