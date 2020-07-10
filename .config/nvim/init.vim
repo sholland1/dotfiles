@@ -12,6 +12,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
 nnoremap <leader>v :Vifm<cr>
+nnoremap <leader><space> :call ToggleCheckbox()<cr>
 nmap <C-q> :wq<cr>
 imap <C-q> <Esc>:wq<cr>
 
@@ -339,6 +340,19 @@ function! AutoRestoreWinView()
         endif
         unlet w:SavedBufView[buf]
     endif
+endfunction
+
+function! ToggleCheckbox()
+    let line = getline('.')
+
+    let ck = '✅'
+    if(match(line, '\[.\]') != -1)
+        let line = substitute(line, '\[.\]', ck, '')
+    elseif(match(line, ck) != -1)
+        let line = substitute(line, ck, '[ ]', '')
+    endif
+
+    call setline('.', line)
 endfunction
 
 source ~/.config/nvim/colors.vim
