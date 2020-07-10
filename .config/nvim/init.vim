@@ -49,7 +49,6 @@ if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()
 endif
-"autocmd! BufEnter,VimEnter * ColorHighlight
 
 "NERDcommenter
 nmap <C-c> <nop>
@@ -106,70 +105,13 @@ nnoremap \r :Rg<cr>
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
 
-"c#
-let g:ale_linters={
-    \ 'cs': ['OmniSharp']
-    \}
-let g:ale_sign_error = '❗'
-let g:ale_sign_warning = '⚠️'
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_selector_ui = 'fzf'
-let g:omnicomplete_fetch_full_documentation = 1
-sign define OmniSharpCodeActions text=💡
-
-augroup OSCountCodeActions
-  autocmd!
-  autocmd FileType cs set signcolumn=yes
-  autocmd CursorHold *.cs call OSCountCodeActions()
-augroup END
-
-augroup omnisharp_commands
+"ale
+augroup ALECommands
     autocmd!
-
-    " Show type information automatically when the cursor stops moving
-
-    " The following commands are contextual, based on the cursor position.
-    autocmd FileType cs nnoremap <buffer> <F12> :OmniSharpGotoDefinition<cr>
-    "uses quickfix window: https://stackoverflow.com/a/1747286
-    autocmd FileType cs nnoremap <buffer> <S-F12> :OmniSharpFindUsages<cr>
-    autocmd FileType cs nnoremap <buffer> <leader>t :OmniSharpTypeLookup<cr>
+    autocmd FileType * nnoremap <buffer> [e :ALEPreviousWrap<cr>
+    autocmd FileType * nnoremap <buffer> ]e :ALENextWrap<cr>
 augroup END
-
-autocmd! FileType c,cs nnoremap <buffer> [e :ALEPreviousWrap<cr>
-autocmd! FileType c,cs nnoremap <buffer> ]e :ALENextWrap<cr>
-
-" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <leader>. :OmniSharpGetCodeActions<cr>
-" Run code actions with text selected in visual mode to extract method
-xnoremap <leader>. :call OmniSharp#GetCodeActions('visual')<cr>
-
-nnoremap <F2> :OmniSharpRename<cr>
-
-"haskell
-let g:haskell_enable_quantification=1
-let g:haskell_enable_pattern_synonyms=1
-let g:haskell_indent_disable=1
-
-set completefunc=LanguageClient#complete
-set splitbelow
-"lsp
-function! LSP_maps()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-        nnoremap <F12> :call LanguageClient#textDocument_definition()<cr>
-        nnoremap <F9> :call LanguageClient#textDocument_references()<cr>
-        nnoremap <leader>r :call LanguageClient#textDocument_rename()<cr>
-        nnoremap <leader>. :call LanguageClient_contextMenu()<cr>
-
-        augroup lsp_commands
-            autocmd!
-            autocmd CursorHold *
-                \ call LanguageClient#textDocument_hover()
-                \ | call LanguageClient#textDocument_documentHighlight()
-            "autocmd CursorHoldI * call LanguageClient#textDocument_completion()
-        augroup END
-    endif
-endfunction
-"autocmd FileType * call LSP_maps()
+let g:ale_sign_error = '🞩'
 
 " Plugins
 let g:plugautoload=expand('~/AppData/Local/nvim/autoload/plug.vim')
@@ -199,15 +141,17 @@ Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sprockmonty/wal.vim'
+
+Plug 'dense-analysis/ale'
+Plug 'neovimhaskell/haskell-vim'
+"Plug 'vmchale/dhall-vim'
+"Plug 'OmniSharp/omnisharp-vim'
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': 'bash install.sh',
 "    \ }
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'dense-analysis/ale'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'vmchale/dhall-vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'puremourning/vimspector', {'do': './install_gadget.py --force-enable-csharp'}
 
 call plug#end()
 
@@ -374,24 +318,6 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/=l:pattern
     let @"=l:saved_reg
-endfunction
-
-function! OSCountCodeActions() abort
-  if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
-  if !OmniSharp#IsServerRunning() | return | endif
-  let opts = {
-  \ 'CallbackCount': function('s:CBReturnCount'),
-  \ 'CallbackCleanup': {-> execute('sign unplace 99')}
-  \}
-  call OmniSharp#CountCodeActions(opts)
-endfunction
-
-function! s:CBReturnCount(count) abort
-  if a:count
-    let l = getpos('.')[1]
-    let f = expand('%:p')
-    execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
-  endif
 endfunction
 
 " Save current view settings on a per-window, per-buffer basis.
