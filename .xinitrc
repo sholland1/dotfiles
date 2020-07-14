@@ -13,6 +13,8 @@ export FZF_DEFAULT_OPTS='--reverse --cycle
 export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard --exclude .git || find -type f'
 #export FZF_COMPLETION_TRIGGER='##'
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 xargs redshift -t 6500:3000 -l < ~/.cache/.location &
 setxkbmap -option caps:swapescape &
 ~/.local/bin/wal -R -o wal-set-last &
