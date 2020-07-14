@@ -175,12 +175,12 @@ set number
 set shortmess=atI
 set listchars=tab:▸\ ,eol:¬
 set list
-"set autochdir "might break plugins?
 set completeopt=longest,menuone,preview
 set updatetime=200
 set diffopt+=vertical
 set clipboard=unnamedplus
 
+" Set cursor blink
 set guicursor=n-v-c:block-blinkon100-Cursor/Cursor
 set guicursor+=i:ver100-blinkon100-Cursor/Cursor
 set cursorline cursorcolumn
@@ -240,9 +240,6 @@ set noerrorbells novisualbell t_vb= tm=500
 
 " Add a bit extra margin to the left
 set foldcolumn=1
-
-" Set cursor blink
-set guicursor=a:blinkon200-blinkoff100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
