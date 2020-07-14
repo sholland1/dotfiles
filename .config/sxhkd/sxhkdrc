@@ -21,7 +21,7 @@ super + {grave,c,d,p,shift + p,r,shift + x,XF86AudioPlay,shift + XF86AudioPlay}
         fuzzy_win {system,fcolors,programs,fpacin,fyain,fpacrem,fkill,fsongs,fplaylists}
 
 super + {f,u}
-        $TERM -e {$FILE,update}
+        $TERM -e "{$FILE,update}"
 
 super + i
         $BROWSER
