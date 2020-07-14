@@ -71,8 +71,6 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors.sh
 
 alias v='$EDITOR'
 alias vifm='$FILE'

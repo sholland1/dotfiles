@@ -12,4 +12,6 @@ xdotool key Super+Shift+Alt+Control+F12 &
 # neomutt
 # htop
 # mgba
+# alacritty
+set_alacritty_colors &
 

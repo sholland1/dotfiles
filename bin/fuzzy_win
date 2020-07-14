@@ -3,4 +3,5 @@ TITLE=$(basename "$1" | cut -d' ' -f1)
 CMD=$(which "$1")
 xdotool search --onlyvisible --classname MyFuzzy windowunmap \
   || xdotool search --classname MyFuzzy windowmap \
-  || termite --class=MyFuzzy -t "fzf: $TITLE" -e "$CMD"
+  || $TERM --class=MyFuzzy -t "fzf: $TITLE" -e \
+  zsh -c "(cat ~/.cache/wal/sequences &);source ~/.cache/wal/colors.sh;$CMD"
