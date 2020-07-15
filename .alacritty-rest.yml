@@ -647,24 +647,3 @@ colors:
   #  magenta: '#75617b'
   #  cyan:    '#5b7d78'
   #  white:   '#828482'
-  # Default colors
-  primary:
-    background: '#110f13'
-    foreground: '#c9bfc9'
-
-  # Cursor colors
-  cursor:
-  #  text: '#c5c8c6'
-    cursor: '#c9bfc9'
-
-  # Normal colors
-  normal:
-    black:   '#c9bfc9'
-    red:     '#6D4D52'
-    green:   '#6A5A6C'
-    yellow:  '#A43E3F'
-    blue:    '#965C62'
-    magenta: '#847285'
-    cyan:    '#95778B'
-    white:   '#110f13'
-

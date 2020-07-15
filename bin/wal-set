@@ -13,5 +13,5 @@ xdotool key Super+Shift+Alt+Control+F12 &
 # htop
 # mgba
 # alacritty
-set_alacritty_colors &
+cat ~/.alacritty-rest.yml ~/.cache/wal/colors-alacritty.yml > ~/.alacritty.yml &
 
