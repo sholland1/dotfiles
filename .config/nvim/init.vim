@@ -16,9 +16,6 @@ nnoremap <leader><space> :call ToggleCheckbox()<cr>
 nmap <C-q> :wq<cr>
 imap <C-q> <Esc>:wq<cr>
 
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
@@ -36,6 +33,9 @@ map <leader>pp :setlocal paste!<cr>
 command! SudoEdit e suda://%
 command! SudoWrite w suda://%
 
+" Switch CWD to the directory of the open buffer
+command! ChangeDirCurrent :cd %:p:h<cr>:pwd<cr>
+
 noremap! <M-h> <left>
 noremap! <M-j> <down>
 noremap! <M-k> <up>
@@ -52,10 +52,11 @@ if v:version >= 700
 endif
 
 "NERDcommenter
+let g:NERDCreateDefaultMappings=0
 nmap <C-c> <nop>
-nmap <C-k><C-c> yy<leader>cl
-vmap <C-k><C-c> ygv<leader>cl
-map <C-k><C-u> <leader>cu
+nmap <C-k><C-c> yy<plug>NERDCommenterAlignLeft
+vmap <C-k><C-c> ygv<plug>NERDCommenterAlignLeft
+map <C-k><C-u> <plug>NERDCommenterUncomment
 
 "clipboard
 inoremap <S-Ins> <C-o>"*p
