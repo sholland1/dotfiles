@@ -1,3 +1,0 @@
-#!/bin/sh
-echo "$(head -n-21 < ~/.alacritty.yml)" > ~/.alacritty.yml
-cat ~/.cache/wal/colors-alacritty.yml >> ~/.alacritty.yml
