@@ -34,7 +34,7 @@ command! SudoEdit e suda://%
 command! SudoWrite w suda://%
 
 " Switch CWD to the directory of the open buffer
-command! ChangeDirCurrent :cd %:p:h<cr>:pwd<cr>
+command! ChangeDirCurrent cd %:p:h | pwd
 
 noremap! <M-h> <left>
 noremap! <M-j> <down>
