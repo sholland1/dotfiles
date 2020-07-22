@@ -4,4 +4,4 @@ CMD=$(which "$1")
 xdotool search --onlyvisible --classname MyFuzzy windowunmap \
   || xdotool search --classname MyFuzzy windowmap \
   || $TERM --class=MyFuzzy -t "fzf: $TITLE" -e \
-  zsh -c "(cat ~/.cache/wal/sequences &);source ~/.cache/wal/colors.sh;$CMD"
+  zsh -c "(cat ~/.cache/wal/sequences &);$CMD"
