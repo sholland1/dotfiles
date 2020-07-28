@@ -73,7 +73,7 @@ export ARCHFLAGS="-arch x86_64"
 
 
 alias v='$EDITOR'
-alias vifm='$FILE'
+alias f='$FILE'
 alias tig='tig status'
 alias cloc='tokei'
 
