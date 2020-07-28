@@ -122,12 +122,13 @@ set confirm-=delete
 " :mark mark /full/directory/path [filename]
 
 mark b ~/bin
-mark h ~/
-mark p ~/Projects
-mark n ~/OneDrive/Documents/Notes
+mark h ~
 mark i ~/images
 mark m ~/Music
+mark n ~/OneDrive/Documents/Notes
+mark p ~/Projects
 mark r /
+mark t ~/.local/share/vifm/Trash
 mark w /mnt/windows/Users/sholland
 
 " ------------------------------------------------------------------------------
