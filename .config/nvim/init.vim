@@ -3,7 +3,8 @@ let mapleader=" "
 nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
-nnoremap <tab> <C-w><C-w>
+nnoremap <S-tab> <C-w>W
+nnoremap <tab> <C-w>w
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
@@ -12,7 +13,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
 nnoremap <leader>v :Vifm<cr>
-nnoremap <leader><space> :call ToggleCheckbox()<cr>
+nnoremap <silent> <leader><space> :call ToggleCheckbox()<cr>
 nmap <C-q> :wq<cr>
 imap <C-q> <Esc>:wq<cr>
 
