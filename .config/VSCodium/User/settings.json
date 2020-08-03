@@ -2,7 +2,7 @@
     "keyboard.dispatch": "keyCode",
     "vim.leader": "<space>",
     "vim.foldfix": true,
-    "vim.normalModeKeyBindings": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["<leader>", "w"],
             "commands": [":w"]
