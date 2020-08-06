@@ -59,6 +59,10 @@ nmap <C-k><C-c> yy<plug>NERDCommenterAlignLeft
 vmap <C-k><C-c> ygv<plug>NERDCommenterAlignLeft
 map <C-k><C-u> <plug>NERDCommenterUncomment
 
+"vim-peekaboo
+let g:peekaboo_delay=200
+let g:peekaboo_window='vert bo 35new'
+
 "clipboard
 inoremap <S-Ins> <C-o>"*p
 nnoremap <S-Ins> "*p
@@ -139,6 +143,7 @@ Plug 'danro/rename.vim'
 Plug 'vifm/vifm.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'
