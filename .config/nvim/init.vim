@@ -3,7 +3,8 @@ let mapleader=" "
 nnoremap Y y$
 vnoremap P "0p
 nnoremap <cr> o<Esc>
-nnoremap <tab> <C-w><C-w>
+nnoremap <S-tab> <C-w>W
+nnoremap <tab> <C-w>w
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>so :source %<cr>:nohlsearch<cr>
 nnoremap <silent> <leader>d :bd<cr>
@@ -12,7 +13,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
 nnoremap <leader>v :Vifm<cr>
-nnoremap <leader><space> :call ToggleCheckbox()<cr>
+nnoremap <silent> <leader><space> :call ToggleCheckbox()<cr>
 nmap <C-q> :wq<cr>
 imap <C-q> <Esc>:wq<cr>
 
@@ -57,6 +58,10 @@ nmap <C-c> <nop>
 nmap <C-k><C-c> yy<plug>NERDCommenterAlignLeft
 vmap <C-k><C-c> ygv<plug>NERDCommenterAlignLeft
 map <C-k><C-u> <plug>NERDCommenterUncomment
+
+"vim-peekaboo
+let g:peekaboo_delay=200
+let g:peekaboo_window='vert bo 35new'
 
 "clipboard
 inoremap <S-Ins> <C-o>"*p
@@ -138,6 +143,7 @@ Plug 'danro/rename.vim'
 Plug 'vifm/vifm.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-obsession'
 Plug '907th/vim-auto-save'
 Plug 'rakr/vim-one'

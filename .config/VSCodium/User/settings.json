@@ -47,5 +47,6 @@
     "editor.letterSpacing": -0.4,
     "editor.matchBrackets": "near",
     "editor.renderLineHighlight": "all",
-    "editor.roundedSelection": false
+    "editor.roundedSelection": false,
+    "update.mode": "none"
 }
