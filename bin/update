@@ -1,5 +1,6 @@
 #!/bin/sh
 echo 'Initiating system update...'
-yay -Syu
+yay -Syu --nocleanmenu --nodiffmenu --noeditmenu
+nvim +UpdateEverything +qa
 echo -n 'Press <Enter> to exit...'
 read -r

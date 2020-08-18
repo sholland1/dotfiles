@@ -77,6 +77,7 @@ command! DeleteCurrentFile call delete(@%)|bd!
 command! MakeExecutable !chmod +x %
 command! TrimWhitespace %s/\s\+$//e
 command! RemoveExtraWhitespace %s/ \{2,}/ /g
+command! UpdateEverything call UpdateEverything()
 
 "auto-reload
 autocmd! BufWritePost $MYVIMRC source %
@@ -358,6 +359,13 @@ function! ToggleCheckbox()
     endif
 
     call setline('.', line)
+endfunction
+
+function! UpdateEverything()
+    PlugUpgrade
+    PlugUpdate
+    CocUpdateSync
+    call confirm("Update complete.")
 endfunction
 
 source ~/.config/nvim/colors.vim
