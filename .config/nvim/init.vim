@@ -12,7 +12,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>o :only<cr>
 nnoremap <leader>c :e $MYVIMRC<cr>
-nnoremap <leader>v :Vifm<cr>
+nnoremap <leader>v :execute 'Vifm' fnameescape(expand('%:p:h')) fnameescape(getcwd())<cr>
 nnoremap <silent> <leader><space> :call ToggleCheckbox()<cr>
 nmap <C-q> :wq<cr>
 imap <C-q> <Esc>:wq<cr>

@@ -155,6 +155,8 @@ command! mkcd :mkdir %a | cd %a
 command! vgrep $EDITOR "+grep %a"
 command! reload :write | restart
 
+autocmd DirEnter ~/Downloads setlocal sort=-mtime
+
 " ------------------------------------------------------------------------------
 
 " The file type is for the default programs to be used with
