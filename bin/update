@@ -1,6 +1,11 @@
 #!/bin/sh
 echo 'Initiating system update...'
-yay -Syu --nocleanmenu --nodiffmenu --noeditmenu
+yay -Syu --nocleanmenu --nodiffmenu --noeditmenu --removemake
+
+xset s off -dpms &
+xset r rate 250 80 &
+setxkbmap -option caps:swapescape &
+
 nvim --headless '+Lazy! sync' +qa
 echo -n 'Press <Enter> to exit...'
 read -r

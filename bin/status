@@ -52,4 +52,12 @@ music () {
     [ -z "$progress" ] && [ -z "$track" ] || echo -n "$msg :: "
 }
 
-echo -n " $(music)$(cpu) :: $(up) :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
+lastUpdate () {
+    grep -F "[PACMAN] starting full system" /var/log/pacman.log |
+        tail -n 1 |
+        cut -d "[" -f2 |
+        cut -d "]" -f1 |
+        xargs date +'🔄 %m/%d/%Y' -d
+}
+
+echo -n " $(music)$(lastUpdate) :: $(up) :: $(cpu) :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"

@@ -1,5 +1,5 @@
 #!/bin/sh
-RESULT=$(pacman -Q |
+RESULT=$(pacman -Qe |
     fzf --multi --preview 'pacman -Si {1} || yay -Si {1}' \
         --preview-window=:75%)
 

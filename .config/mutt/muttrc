@@ -1,36 +1,38 @@
 # vim: filetype=neomuttrc
-source personal.conf
-
 set date_format="%m/%d/%Y %I:%M%p"
 set editor=/usr/bin/nvim
 
-bind generic,pager <Esc>/ noop
-bind generic,index <Esc><T noop
-bind index,pager <Esc>C noop
-bind index,pager <Esc>P noop
-bind index <Esc>V noop
-bind index,editor <Esc>b noop
-bind index,pager,editor <Esc>c noop
-bind index,pager,editor <Esc>d noop
-bind index,pager <Esc>e noop
-bind editor <Esc>f noop
-bind attach g noop
-bind index,pager <Esc>k noop
-bind index,editor <Esc>l noop
-bind index,pager <Esc>n noop
-bind index,pager <Esc>p noop
-bind index,pager <Esc>r noop
-bind index,pager <Esc>s noop
-bind index <Esc>t noop
-bind index,pager,editor <Esc>u noop
-bind index <Esc>v noop
+bind editor,generic,index,pager,browser,query <Esc> noop
+bind generic,index,pager,browser,query <Esc> exit
+macro editor <Esc> "<enter><shell-escape>xdotool key control+g &<enter>"
+#bind generic,pager <Esc>/ noop
+#bind generic,index <Esc><T noop
+#bind index,pager <Esc>C noop
+#bind index,pager <Esc>P noop
+#bind index <Esc>V noop
+#bind index,editor <Esc>b noop
+#bind index,pager,editor <Esc>c noop
+#bind index,pager,editor <Esc>d noop
+#bind index,pager <Esc>e noop
+#bind editor <Esc>f noop
+#bind index,generic,pager,attach g noop
+#bind index,pager <Esc>k noop
+#bind index,editor <Esc>l noop
+#bind index,pager <Esc>n noop
+#bind index,pager <Esc>p noop
+#bind index,pager <Esc>r noop
+#bind index,pager <Esc>s noop
+#bind index <Esc>t noop
+#bind index,pager,editor <Esc>u noop
+#bind index <Esc>v noop
 
 bind index,pager,browser \Cd half-down
 bind index,pager,browser \Cu half-up
-bind index,attach gg first-entry
-bind index,attach G last-entry
-bind generic,pager gg top
-bind generic,pager G bottom
+bind attach g noop
+bind attach gg first-entry
+bind attach G last-entry
+bind generic gg top-page
+bind pager G bottom
 bind index,pager N search-opposite
 bind index \Cn mail
 bind index,pager \CR group-reply
@@ -40,24 +42,12 @@ bind index,pager \Cf forward-message
 bind index,pager f noop
 bind index,pager , sidebar-prev
 bind index,pager m sidebar-next
-bind index,pager L sidebar-open
+bind index,pager <Tab> sidebar-open
 
-bind generic,index,pager,browser <Space> noop
-macro generic,index,pager,browser <Space>r ":source ~/.config/mutt/muttrc\n" "reload config"
-bind generic,index,pager,browser <Esc> noop
-bind generic,pager,browser <Esc> exit
-macro editor <Esc> "<enter><shell-escape>xdotool key control+g &<enter>"
+bind editor,generic,index,pager,browser,query <space> noop
+macro generic,index,pager,browser <space>r ":source ~/.config/mutt/muttrc\n" "reload config"
+macro generic,index,pager,browser <space>c ":e ~/.config/mutt/muttrc\n" "edit config"
+bind index \Cr read-thread
+bind index <space> noop
 
-# New mail is boldened:
-color index brightyellow default "~N"
-color index_author brightred default "~N"
-color index_subject brightcyan default "~N"
-
-color index_flags magenta default '.*'
-
-# Other colors and aesthetic settings:
-color sidebar_divider color15 brightgreen
-color sidebar_flagged color15 red
-color sidebar_new color15 green
-color status color15 brightgreen
-
+source personal.conf
