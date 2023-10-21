@@ -31,8 +31,8 @@ settings:
       insert:
         <Alt+j>: fake-key <Down>
         <Alt+k>: fake-key <Up>
-        <Escape>: leave-mode ;; jseval -q document.activeElement.blur()
-        <Return>: fake-key <Return> ;; leave-mode
+        <Escape>: mode-leave ;; jseval -q document.activeElement.blur()
+        <Return>: fake-key <Return> ;; click-element id search-icon-legacy
       normal:
         $: tab-focus -1
         ',': tab-prev
@@ -49,11 +49,12 @@ settings:
         <Shift+Backspace>: forward
         <Space>c: open -t qute://settings/
         <Space>m: open -t qute://log/?level=info
+        <Space>nl: set-cmd-text --space :spawn --userscript new_login
         <Space>r: spawn --userscript readability-js
         <Space>up: spawn --userscript password_fill
         <Space>w: quickmark-save
         M: tab-move +
-        b: set-cmd-text --space :buffer
+        b: set-cmd-text --space :tab-select
         i: hint inputs --first
         m: tab-next
   bindings.key_mappings:
@@ -66,6 +67,8 @@ settings:
       <Enter>: <Return>
       <Shift+Enter>: <Return>
       <Shift+Return>: <Return>
+  changelog_after_upgrade:
+    global: minor
   colors.completion.category.bg:
     global: 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
   colors.completion.category.border.bottom:
@@ -263,8 +266,8 @@ settings:
     global: 0
   colors.webpage.darkmode.threshold.text:
     global: 256
-  colors.webpage.prefers_color_scheme_dark:
-    global: false
+  colors.webpage.preferred_color_scheme:
+    global: auto
   completion.cmd_history_max_items:
     global: 100
   completion.delay:
@@ -287,6 +290,16 @@ settings:
     global: 12
   completion.show:
     global: always
+  content.blocking.adblock.lists:
+    global:
+    - https://easylist.to/easylist/easylist.txt
+    - https://easylist.to/easylist/easyprivacy.txt
+  content.blocking.enabled:
+    global: true
+  content.blocking.method:
+    global: adblock
+  content.blocking.whitelist:
+    global: null
   content.cache.size:
     global: null
   content.canvas_reading:
@@ -295,7 +308,7 @@ settings:
     global: 3000
   content.fullscreen.window:
     global: false
-  content.notifications:
+  content.notifications.enabled:
     https://www.reddit.com: false
   content.user_stylesheets:
     global: ~/.cache/wal/colors.css

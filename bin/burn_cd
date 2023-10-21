@@ -1,27 +1,26 @@
 #!/bin/sh
-ANY_WAV=$(find ./*.wav | wc -l)
-if [ "$ANY_WAV" -gt 0 ]; then
+ANY_WAV=`find *.wav | wc -l`
+if [ $ANY_WAV -gt 0 ]; then
     echo 'Remove any .wav files before burning.'
     exit
 fi
 
-CD_TYPE=$(cdrecord -minfo dev=/dev/sr0 2>&1 | awk -F: '/^M.*ty/{print $2}' | tr -d ' ')
+CD_TYPE=`cdrecord -minfo dev=/dev/sr0 2>&1 | awk -F: '/^M.*ty/{print $2}' | tr -d ' '`
 case $CD_TYPE in
     CD-R)
         shopt -s lastpipe
         FILE_LIST=''
-        fzf -m | while read -r f; do
+        fzf -m | while read f; do
             filename=$(basename -- "$f")
             filename="${filename%.*}.wav"
             sox "$f" -c 2 "$filename"
 
             FILE_LIST+=" '$filename'"
         done
-        [ "$FILE_LIST" ] && sh -c "cdrecord -v dev=/dev/sr0 gracetime=5 speed=1 -raw96r -pad -audio $FILE_LIST"
-        rm ./*.wav
+        [[ $FILE_LIST ]] && sh -c "cdrecord -v dev=/dev/sr0 gracetime=5 speed=1 -raw96r -pad -audio $FILE_LIST"
+        rm *.wav
         ;;
     CD-ROM) echo 'Non-writable disc!';;
     '') echo 'No disc found!';;
     *) echo 'Unknown disc type!';;
 esac
-
