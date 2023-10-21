@@ -1,0 +1,122 @@
+{
+    "keyboard.dispatch": "keyCode",
+    "vim.leader": "<space>",
+    "vim.foldfix": true,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d",
+                "p"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [ ":w" ]
+        },
+        {
+            "before": [ "Y" ],
+            "after": [
+                "y",
+                "$"
+            ]
+        },
+        {
+            "before": [ "<cr>" ],
+            "after": [
+                "o",
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "commands": [ ":q" ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "commands": [
+                ":e ~/.config/Code/User/settings.json"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "e"
+            ],
+            "commands": [
+                "editor.action.marker.prevInFiles"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "e"
+            ],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ]
+        },
+        {
+            "before": [ "u" ],
+            "commands": [ "undo" ]
+        },
+        {
+            "before": [ "ctrl+r" ],
+            "commands": [ "redo" ]
+        }
+    ],
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "window.menuBarVisibility": "toggle",
+    "workbench.iconTheme": "vscode-icons",
+    "vim.handleKeys": {
+        "<C-k>": false,
+        "<C-d>": true,
+        "<C-p>": false,
+    },
+    "debug.onTaskErrors": "showErrors",
+    "editor.lineHeight": 13,
+    "editor.letterSpacing": -0.4,
+    "editor.matchBrackets": "near",
+    "editor.renderLineHighlight": "all",
+    "editor.roundedSelection": false,
+    "update.mode": "none",
+    "explorer.confirmDelete": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "explorer.sortOrderLexicographicOptions": "lower",
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnType": true,
+    "telemetry.telemetryLevel": "off",
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false,
+        "zig": true
+    },
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    "zig.zls.path": "/home/sholland/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
+    "workbench.editorAssociations": {
+        "*.eep": "hexEditor.hexedit",
+        "*.sra": "hexEditor.hexedit",
+        "*.fla": "hexEditor.hexedit"
+    },
+    "omnisharp.useEditorFormattingSettings": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+}

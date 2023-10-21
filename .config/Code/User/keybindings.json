@@ -52,5 +52,9 @@
         "key": "escape",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "!editorTextFocus"
+    },
+    {
+        "key": "f6",
+        "command": "workbench.action.tasks.runTask"
     }
 ]
