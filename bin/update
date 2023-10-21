@@ -1,6 +1,6 @@
 #!/bin/sh
 echo 'Initiating system update...'
 yay -Syu --nocleanmenu --nodiffmenu --noeditmenu
-nvim +UpdateEverything +qa
+nvim --headless '+Lazy! sync' +qa
 echo -n 'Press <Enter> to exit...'
 read -r
