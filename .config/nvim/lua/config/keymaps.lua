@@ -8,12 +8,9 @@ local function toggleCheckbox()
   local line_content = vim.fn.getline(current_line)
 
   -- Toggle the checkbox indicator by adding or removing "x"
-  local updated_line
-  if line_content:match("%[x%]") then
-    updated_line = line_content:gsub("%[x%]", "[ ]")
-  else
-    updated_line = line_content:gsub("%[ %]", "[x]")
-  end
+  local updated_line = line_content:gsub("%[.-%]", function(match)
+    return match == "[x]" and "[ ]" or "[x]"
+  end)
 
   -- Update the line with the modified content
   vim.fn.setline(current_line, updated_line)
