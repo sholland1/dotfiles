@@ -6,6 +6,16 @@
         {
             "before": [
                 "<leader>",
+                ";"
+            ],
+            "after": [
+                "g",
+                "c"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
                 "p"
             ],
             "after": [
@@ -22,17 +32,23 @@
                 "<leader>",
                 "w"
             ],
-            "commands": [ ":w" ]
+            "commands": [
+                ":w"
+            ]
         },
         {
-            "before": [ "Y" ],
+            "before": [
+                "Y"
+            ],
             "after": [
                 "y",
                 "$"
             ]
         },
         {
-            "before": [ "<cr>" ],
+            "before": [
+                "<cr>"
+            ],
             "after": [
                 "o",
                 "<Esc>"
@@ -43,7 +59,9 @@
                 "<leader>",
                 "d"
             ],
-            "commands": [ ":q" ]
+            "commands": [
+                ":q"
+            ]
         },
         {
             "before": [
@@ -73,12 +91,42 @@
             ]
         },
         {
-            "before": [ "u" ],
-            "commands": [ "undo" ]
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
         },
         {
-            "before": [ "ctrl+r" ],
-            "commands": [ "redo" ]
+            "before": [
+                "<C-r>"
+            ],
+            "commands": [
+                "redo"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                ";"
+            ],
+            "after": [
+                "g",
+                "c"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                ";",
+                ";"
+            ],
+            "after": [
+                "g",
+                "c",
+                "c"
+            ]
         }
     ],
     "workbench.colorTheme": "Ayu Mirage Bordered",
