@@ -127,6 +127,14 @@
                 "c",
                 "c"
             ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
         }
     ],
     "workbench.colorTheme": "Ayu Mirage Bordered",
