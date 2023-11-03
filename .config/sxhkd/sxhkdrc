@@ -11,10 +11,7 @@ XF86Audio{Next,Prev,Stop,Play}
 super + XF86AudioStop
         eject_disc
 alt + XF86AudioMute
-        pacmd list-sinks | \
-            sed -r '/state/!d; s/.*: [^R].*/0/; s/.*: R.*/1/' | \
-            head -n 1 | \
-            xargs pacmd set-default-sink
+        change_audio_output
 
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
