@@ -82,6 +82,6 @@ return {
   },
   { "folke/flash.nvim", enabled = false },
   { "vifm/vifm.vim" },
-  { "danro/rename.vim" },
   { "tpope/vim-obsession" },
+  { "chrisgrieser/nvim-genghis" },
 }

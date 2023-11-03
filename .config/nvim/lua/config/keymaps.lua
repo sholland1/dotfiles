@@ -45,7 +45,5 @@ keymap({ "i", "n", "v" }, "<C-l>", "<cmd>bnext<cr>")
 keymap({ "i", "n", "v" }, "<C-PageUp>", "<cmd>bprev<cr>")
 keymap({ "i", "n", "v" }, "<C-PageDown>", "<cmd>bnext<cr>")
 
-command("DeleteCurrentFile", "call delete(@%)|bd!", {})
-command("MakeExecutable", "!chmod +x %", {})
 command("TrimWhitespace", "%s/\\s\\+$//e", {})
 command("RemoveExtraWhitespace", "%s/ \\{2,}/ /g", {})
