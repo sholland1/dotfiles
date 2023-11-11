@@ -3,5 +3,4 @@
 -- Add any additional options here
 vim.opt.relativenumber = false
 vim.opt.cursorcolumn = true
--- vim.opt.expandtab = true
--- vim.opt.smarttab = false
+vim.opt.mousescroll = "ver:8,hor:6"
