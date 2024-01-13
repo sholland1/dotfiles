@@ -6,4 +6,6 @@ if [ -z "$RESULT" ]; then
     exit
 fi
 
-echo -n "$RESULT" | xsel
+echo -n "$RESULT" | xsel -p
+echo -n "$RESULT" | xsel -s
+echo -n "$RESULT" | xsel -b
