@@ -76,6 +76,7 @@ alias v='$EDITOR'
 alias f='$FILE'
 alias tig='tig status'
 alias cloc='tokei'
+alias insomnia='insomnium'
 
 alias cdn='cd ~/OneDrive/Documents/Notes'
 
@@ -83,6 +84,10 @@ GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
 alias config="$GIT_ENV /usr/bin/git"
 alias contig="$GIT_ENV /usr/bin/tig status"
 alias fconfiglog="$GIT_ENV fgitlog"
+
+alias gc='git commit'
+alias gap='git add -p'
+alias gs='git status'
 
 alias notes='vproj ~/OneDrive/Documents/Notes'
 alias dotfiles='vproj ~'
