@@ -495,6 +495,7 @@ nnoremap <space>w :w<cr>
 nnoremap <space>r :restart<cr>
 nnoremap <space>lp :!~/.local/bin/wal -l -i %f -o wal-set-light &<cr>
 nnoremap <space>dp :!~/.local/bin/wal -i %f -o wal-set-dark &<cr>
+nnoremap <space>pp :!feh --bg-fill %f &<cr>
 "nnoremap <space>cs :!wal_schemefile %f &<cr>
 nnoremap <space>c :e $MYVIFMRC<cr>
 nnoremap <space>ll :!ln -s %d/%f %D/%c<cr>
