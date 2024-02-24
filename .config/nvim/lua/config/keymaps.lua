@@ -45,5 +45,5 @@ keymap({ "i", "n", "v" }, "<C-l>", "<cmd>bnext<cr>")
 keymap({ "i", "n", "v" }, "<C-PageUp>", "<cmd>bprev<cr>")
 keymap({ "i", "n", "v" }, "<C-PageDown>", "<cmd>bnext<cr>")
 
-command("TrimWhitespace", "%s/\\s\\+$//e", {})
-command("RemoveExtraWhitespace", "%s/ \\{2,}/ /g", {})
+command("TrimWhitespace", "<cmd>%s/\\s\\+$//e", {})
+command("RemoveExtraWhitespace", "<cmd>%s/ \\{2,}/ /g", {})

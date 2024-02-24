@@ -4,7 +4,7 @@ RESULT=($(pacman -Slq |
         --preview-window=:75%))
 
 if [ $? -eq 0 ]; then
-    sudo pacman -S "$RESULT"
+    sudo pacman -S "${RESULT[@]}"
     if [ $? -eq 0 ]; then
         echo -n 'Press <Enter> to exit...'
         read -r
