@@ -31,6 +31,9 @@ super + i
 super + n
         feh --recursive --randomize --bg-fill ~/images/wallpaper
 
+super + shift + z
+        fuzzy_win pizza-now
+
 {_,shift + }button{8,9}
         xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}
 
