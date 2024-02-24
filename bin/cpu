@@ -1,0 +1,2 @@
+#!/bin/sh
+awk '/^cpu / {print $5,($2+$3+$4+$5)}' /proc/stat
