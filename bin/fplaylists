@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RESULT=$(mpc lsplaylist |
     fzf --preview 'mpc playlist -f "%title% - %artist%" {}' \
         --preview-window=:80%)

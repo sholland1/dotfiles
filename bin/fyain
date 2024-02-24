@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 yay -Slq |
     fzf --multi --preview 'yay -Si {}' \
         --preview-window=:75% |

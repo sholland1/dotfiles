@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 pacmd list-sinks | \
   sed -r '/index/!d; /\*/d; s/\s*index: //' | \
   xargs pacmd set-default-sink

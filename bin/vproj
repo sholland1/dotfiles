@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 pushd "$1" >/dev/null || exit
 if [ "$2" ]; then
 	$EDITOR -c "set title" -c "set titlestring=$2" -S Session.vim

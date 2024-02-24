@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RESULT=$(mpc playlist -f '%position%. %time% - %title% - %artist% - %album%' |
     fzf | cut -d'.' -f1)
 

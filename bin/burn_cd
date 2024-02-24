@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ANY_WAV=`find *.wav | wc -l`
 if [ $ANY_WAV -gt 0 ]; then
     echo 'Remove any .wav files before burning.'
