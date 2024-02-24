@@ -21,7 +21,7 @@ export GPG_AGENT_INFO
 
 xargs redshift -t 6500:3000 -l <~/.cache/.location &
 setxkbmap -option caps:swapescape &
-~/.local/bin/wal -R -o wal-set-last &
+~/.fehbg &
 ([ "$(xset q | awk '/Num /{print $8}')" = "off" ] && xdotool key Num_Lock) &
 xset s off -dpms &
 xset r rate 250 80 &
