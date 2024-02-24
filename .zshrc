@@ -1,6 +1,6 @@
 #!/bin/sh
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh/
+export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -96,13 +96,6 @@ alias scripts='vproj ~/bin'
 WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
 alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
-
-fhist () {
-    print -z "$(
-        ([ "$ZSH_NAME" ] && fc -ln 1 || history) |
-            fzf +s --tac |
-            sed -r 's/ *[0-9]*\*? *//;s/\\/\\\\/g')"
-}
 
 export HISTCONTROL=ignoreboth:erasedups
 
