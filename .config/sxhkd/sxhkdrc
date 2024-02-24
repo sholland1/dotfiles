@@ -16,7 +16,7 @@ alt + XF86AudioMute
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
         setsid $TERM -t "fzf: $NAME" -e \
-          zsh -c "(cat ~/.cache/wal/sequences &);source ~/.cache/wal/colors.sh;$NAME";\
+          zsh -c "$NAME";\
         xdotool key Shift+Insert
 
 super + {grave,c,d,p,shift + p,r,shift + x,XF86AudioPlay,shift + XF86AudioPlay}

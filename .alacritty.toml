@@ -1,0 +1,14 @@
+live_config_reload = true
+
+import = [
+  "~/.config/alacritty/themes/tokyonight_day.toml"
+]
+
+[font]
+size = 11.0
+
+[font.glyph_offset]
+y = -1
+
+[font.offset]
+y = -2
