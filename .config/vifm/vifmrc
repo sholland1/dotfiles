@@ -564,6 +564,8 @@ nnoremap ,w :set wrap!<cr>
 " Use ag (the silver searcher) instead of grep
 "
 " set grepprg='ag --line-numbers %i %a %s'
+set findprg='rg --files -u %s | rg %p'
+set grepprg='rg --vimgrep %p'
 
 " Add additional place to look for executables
 "
