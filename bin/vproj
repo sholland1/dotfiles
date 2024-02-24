@@ -1,4 +1,8 @@
 #!/bin/sh
-pushd "$1" > /dev/null || exit
-$EDITOR -S Session.vim
-popd > /dev/null 2>&1 || exit
+pushd "$1" >/dev/null || exit
+if [ "$2" ]; then
+	$EDITOR -c "set title" -c "set titlestring=$2" -S Session.vim
+else
+	$EDITOR -S Session.vim
+fi
+popd >/dev/null 2>&1 || exit
