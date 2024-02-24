@@ -19,11 +19,11 @@ super + {shift, alt} + e
           zsh -c "$NAME";\
         xdotool key Shift+Insert
 
-super + {grave,c,d,p,shift + p,r,shift + x,XF86AudioPlay,shift + XF86AudioPlay}
-        fuzzy_win {system,fcolors,programs,fpacin,fyain,fpacrem,fkill,fsongs,fplaylists}
+super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,w,XF86AudioPlay,shift + XF86AudioPlay}
+        fuzzy_win {system,system,recent-projects,programs,fpacin,fyain,fpacrem,fkill,window-switcher,fsongs,fplaylists}
 
-super + {f,u}
-        $TERM -e "{$FILE,update}"
+super + {f,s,u}
+        $TERM -e "{$FILE,sysz,update}"
 
 super + i
         $BROWSER

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+FILE='/home/sholland/.config/Code/User/globalStorage/storage.json'
+RESULT=$(jq -r '
+  .lastKnownMenubarData.menus.File.items.[]
+  | select(.id | endswith("RecentMenu"))
+  | .submenu.items.[]
+  | select(.id == "openRecentFolder")
+  | .uri.path' $FILE | fzf)
+
+if [ -z "$RESULT" ]; then
+	exit
+fi
+
+cd "$RESULT" || exit
+set -m
+code . &
+disown
