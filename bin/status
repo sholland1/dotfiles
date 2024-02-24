@@ -1,63 +1,72 @@
 #!/bin/sh
-getdate () {
-    date +'📆 %m/%d/%Y 🕒%_I:%M %p'
+cpu() {
+  # get the difference between the current and previous idle and total CPU time
+  idle_diff=$(($3 - $1))
+  total_diff=$(($4 - $2))
+
+  if [ "$total_diff" -eq 0 ]; then
+    echo -n "⏳0%"
+    exit
+  fi
+
+  # calculate the percentage
+  PERC=$(awk "BEGIN { print (100 * ($total_diff - $idle_diff) / $total_diff) }")
+
+  # print the percentage
+  echo -n "⏳$(printf "%.0f%%" "$PERC")"
 }
 
-volume () {
-    if [ "$(pulsemixer --get-mute)" = 1 ]; then
-        echo -n '🔇[M]'
-        exit
-    fi
-
-    VOL=$(pulsemixer --get-volume | cut -d' ' -f1)
-    let VOL_PERCENT=$VOL*100/150
-    ICON=🔈
-    if [ "$VOL_PERCENT" -gt 65 ]; then
-        ICON=🔊
-    elif [ "$VOL_PERCENT" -gt 25 ]; then
-        ICON=🔉
-    fi
-    echo -n "$ICON[$VOL_PERCENT%]"
+getdate() {
+  date +'%m/%d/%Y %I:%M %p'
 }
 
-mem () {
-    free | awk '/^Mem/{printf "💾 %.2fG/%.1fG", ($3+$5)/1024/1024, $2/1024/1024}'
+volume() {
+  if [ "$(pulsemixer --get-mute)" = 1 ]; then
+    echo -n '🔇[M]'
+    exit
+  fi
+
+  VOL=$(pulsemixer --get-volume | cut -d' ' -f1)
+  let VOL_PERCENT=$VOL*100/150
+  ICON=🔈
+  if [ "$VOL_PERCENT" -gt 65 ]; then
+    ICON=🔊
+  elif [ "$VOL_PERCENT" -gt 25 ]; then
+    ICON=🔉
+  fi
+  echo -n "$ICON[$VOL_PERCENT%]"
 }
 
-disk () {
-    df | awk '/\/$/{printf "💽 %.2fG/%.0fG", $3/1024/1024, $2/1024/1024}'
+mem() {
+  free | awk '/^Mem/{printf "🧮 %.2fG/%.1fG", ($3+$5)/1024/1024, $2/1024/1024}'
 }
 
-cpu () {
-    #conky
-    top -bn 2 -d 0.01 |
-        grep '^%Cpu' |
-        tail -n 1 |
-        awk '{printf "⏳%.0f%%", $2+$4+$6}'
+disk() {
+  df | awk '/\/$/{printf "💽 %.2fG/%.0fG", $3/1024/1024, $2/1024/1024}'
 }
 
-up () {
-    uptime -p |
-        sed -r 's/ ([a-z])[a-z]*,?/\1/g;s/^up/⬆/'
+up() {
+  uptime -p |
+    sed -r 's/ ([a-z])[a-z]*,?/\1/g;s/^up/⬆/'
 }
 
-music () {
-    progress=$(mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}')
-    track=$(mpc current -f '%title% - %artist%')
-    if [ "$track" = ' - ' ]; then
-        msg="$progress"
-    else
-        msg="$progress - $track"
-    fi
-    [ -z "$progress" ] && [ -z "$track" ] || echo -n "$msg :: "
+music() {
+  progress=$(mpc | awk '/^\[/{print($1~/\[pa.*\]/?" ":" ")$3}')
+  track=$(mpc current -f '%title% - %artist%')
+  if [ "$track" = ' - ' ]; then
+    msg="$progress"
+  else
+    msg="$progress - $track"
+  fi
+  [ -z "$progress" ] && [ -z "$track" ] || echo -n "$msg :: "
 }
 
-lastUpdate () {
-    grep -F "[PACMAN] starting full system" /var/log/pacman.log |
-        tail -n 1 |
-        cut -d "[" -f2 |
-        cut -d "]" -f1 |
-        xargs date +'🔄 %m/%d/%Y' -d
+lastUpdate() {
+  grep -F "[PACMAN] starting full system" /var/log/pacman.log |
+    tail -n 1 |
+    cut -d "[" -f2 |
+    cut -d "]" -f1 |
+    xargs date +'🔄 %m/%d/%Y' -d
 }
 
-echo -n " $(music)$(lastUpdate) :: $(up) :: $(cpu) :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
+echo -n " $(music)$(lastUpdate) :: $(up) :: $(cpu "$1" "$2" "$3" "$4") :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
