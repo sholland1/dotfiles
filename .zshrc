@@ -97,7 +97,8 @@ WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/P
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
 alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
 
-export HISTCONTROL=ignoreboth:erasedups
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [ ! -d "$ZSH_CACHE_DIR" ]; then

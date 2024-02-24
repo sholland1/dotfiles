@@ -161,10 +161,13 @@
     "editor.inlineSuggest.enabled": true,
     "github.copilot.enable": {
         "*": true,
-        "yaml": false,
         "plaintext": true,
-        "markdown": false,
-        "zig": true
+        "markdown": true,
+        "scminput": false,
+        "yaml": false,
+        "zig": true,
+        "rust": true,
+        "hare": false
     },
     "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
     "zig.zls.path": "/home/sholland/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
@@ -175,4 +178,6 @@
     },
     "omnisharp.useEditorFormattingSettings": false,
     "diffEditor.ignoreTrimWhitespace": false,
+    "explorer.confirmDragAndDrop": false,
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
 }
