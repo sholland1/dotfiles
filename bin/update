@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo 'Initiating system update...'
 yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
 

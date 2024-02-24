@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cpu() {
   # get the difference between the current and previous idle and total CPU time
   idle_diff=$(($3 - $1))

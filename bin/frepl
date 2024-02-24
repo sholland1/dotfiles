@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RESULT=$(echo "REPL - $1 {}" | fzf --print-query --phony \
     --bind 'alt-h:backward-char,alt-l:forward-char' \
     --preview "$1 {q}" --preview-window=down:99% | head -1)

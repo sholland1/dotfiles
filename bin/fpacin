@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RESULT=($(pacman -Slq |
     fzf --multi --preview 'pacman -Si {}' \
         --preview-window=:75%))

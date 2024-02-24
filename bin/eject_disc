@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RESULT=$(mpc | grep -c '^cdda:')
 if [ "$RESULT" -gt 0 ]; then
     mpc -q stop

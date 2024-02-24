@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 FILE='/home/sholland/.config/Code/User/globalStorage/storage.json'
 RESULT=$(jq -r '
