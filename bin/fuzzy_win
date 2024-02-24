@@ -1,7 +1,7 @@
 #!/bin/sh
 TITLE=$(basename "$1" | cut -d' ' -f1)
 CMD=$(which "$1")
-xdotool search --onlyvisible --classname MyFuzzy windowunmap \
-  || xdotool search --classname MyFuzzy windowmap \
-  || $TERM --class=MyFuzzy -t "fzf: $TITLE" -e \
-  zsh -c "(cat ~/.cache/wal/sequences &);$CMD"
+xdotool search --onlyvisible --classname launcher windowunmap ||
+  xdotool search --classname launcher windowmap ||
+  $TERM --class=launcher -t "fzf: $TITLE" -e \
+    zsh -c "$CMD"
