@@ -5,7 +5,7 @@
 # language, and uses a python script to get a changed command
 # from Open AI.
 
-create_actual_completion() {
+create_completion() {
     MSGS_FILE="~/bin/CmdLinePrompt.jsonl"
     FILENAME="/tmp/PROMPT_MSG"
     text=${BUFFER}
@@ -19,5 +19,5 @@ create_actual_completion() {
     CURSOR=${#BUFFER}
 }
 
-zle -N create_actual_completion
-bindkey '^X' create_actual_completion
+zle -N create_completion
+bindkey '^X' create_completion
