@@ -11,5 +11,4 @@ setxkbmap -option caps:swapescape &
 
 nvim --headless '+Lazy! sync' +qa
 
-echo -n 'Press <Enter> to exit...'
-read -r
+read -n 1 -s -r -p 'Press any key to exit...'
