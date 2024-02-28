@@ -3,6 +3,5 @@ yay -Slq |
     fzf --multi --preview 'yay -Si {}' \
         --preview-window=:75% |
     xargs -ro yay -S
-echo -n 'Press <Enter> to exit...'
-read -r
 
+read -n 1 -s -r -p 'Press any key to exit...'
