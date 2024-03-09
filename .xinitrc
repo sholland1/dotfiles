@@ -1,5 +1,5 @@
 #!/bin/sh
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.cargo/bin:$PATH
 export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 export TERM=/usr/bin/alacritty

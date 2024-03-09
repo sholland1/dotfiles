@@ -1,10 +1,6 @@
 #!/bin/bash
-RESULT=$(ls /usr/share/applications/ | grep -E '\.desktop$' | sed 's/\.desktop$//' | fzf)
-
-if [ -z "$RESULT" ]; then
-	exit
-fi
-
 set -m
-exec "$RESULT" &
-disown
+desktop-program-list |
+  fzf --with-nth=1 -d '\t' |
+  cut -f2 |
+  xargs -r gio launch
