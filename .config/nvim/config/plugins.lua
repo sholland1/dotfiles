@@ -22,10 +22,10 @@ require("lazy").setup({
     event = 'VeryLazy',
     opts = {
       mappings = {
-        comment = '<leader>c',
-        comment_line = '<leader>cc',
-        comment_visual = '<leader>c',
-        textobject = '<leader>c',
+        comment = '<leader>;',
+        comment_line = '<leader>;;',
+        comment_visual = '<leader>;',
+        textobject = '<leader>;',
       },
     },
   },
