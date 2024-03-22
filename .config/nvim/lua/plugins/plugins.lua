@@ -1,4 +1,4 @@
-require("lazy").setup({
+return {
   {
     'folke/tokyonight.nvim',
     priority = 1000,
@@ -11,7 +11,9 @@ require("lazy").setup({
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
-    config = true,
+    config = function()
+      vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope theme=ivy<cr>', { desc = '[S]earch [T]odos' })
+    end,
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -49,7 +51,7 @@ require("lazy").setup({
         diagnostics = "nvim_lsp",
         always_show_bufferline = true,
         diagnostics_indicator = function(_, _, diag)
-          local icons = Defaults.icons.diagnostics
+          local icons = Utils.icons.diagnostics
           local ret = (diag.error and icons.Error .. diag.error .. " " or "")
             .. (diag.warning and icons.Warn .. diag.warning or "")
           return vim.trim(ret)
@@ -329,7 +331,11 @@ require("lazy").setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu
-      require('mason').setup()
+      require('mason').setup({
+        config = function()
+          vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason plugins' })
+        end,
+      })
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -449,14 +455,22 @@ require("lazy").setup({
     end,
   },
 
-  "echasnovski/mini.statusline",
+  {
+    "vifm/vifm.vim",
+    config = function()
+      vim.keymap.set('n', '<leader>v',
+        "<cmd>Vifm<cr>",-- fnameescape(expand('%:p:h')) fnameescape(getcwd())<cr>",
+        { desc = 'Open Vifm' })
+    end,
+  },
+
+  {
+    "echasnovski/mini.statusline",
+    config = true,
+  },
+
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
-  "vifm/vifm.vim",
   "tpope/vim-obsession",
   "chrisgrieser/nvim-genghis",
-})
-
-local statusline = require('mini.statusline')
-statusline.setup()
-
+}
