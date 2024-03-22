@@ -1,5 +1,3 @@
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>');
-
 -- Define a function to toggle the checkbox on the current line
 local function toggleCheckbox()
   local current_line = vim.fn.line '.'
@@ -17,17 +15,12 @@ end
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>t', toggleCheckbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
-vim.keymap.set('n', '<leader>v', "<cmd>Vifm fnameescape(expand('%:p:h')) fnameescape(getcwd())<cr>", { desc = 'Open Vifm' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
 vim.keymap.set('n', '-', '<cmd>split<cr>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 
-vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
-vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason plugins' })
-
--- vim.keymap.set({ 'n', 'v' }, '<leader>c', 'gc', { remap = true })
--- vim.keymap.set('n', '<leader>cc', 'gcc', { remap = true })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>');
 
 vim.keymap.set('n', '<cr>', 'o<esc>')
 vim.keymap.set('n', '<S-tab>', '<C-w>W')
@@ -44,4 +37,5 @@ vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror window' })
 --vim.keymap.set('n', '<C-.>', vim.diagnostic.setloclist, { desc = 'Quickfix' })
 
-vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope theme=ivy<cr>', { desc = '[S]earch [T]odos' })
+vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
+

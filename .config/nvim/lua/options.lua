@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 vim.opt.laststatus = 2
 vim.opt.number = true
 vim.opt.cursorline = true
