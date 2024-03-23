@@ -69,31 +69,6 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias v='$EDITOR'
-alias f='$FILE'
-alias cloc='tokei'
-alias insomnia='insomnium'
-
-alias cdn='cd ~/OneDrive/Documents/Notes'
-
-GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
-alias config='/usr/bin/git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
-alias lazyconfig='/usr/bin/lazygit --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
-alias fconfiglog="$GIT_ENV fgitlog"
-
-alias gc='git commit'
-alias gap='git add -p'
-alias gs='git status'
-
-alias notes='vproj ~/OneDrive/Documents/Notes notes'
-alias dotfiles='vproj ~ dotfiles'
-alias scripts='vproj ~/bin scripts'
-alias nvimconfig='vproj ~/.config/nvim nvimconfig'
-
-WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
-alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
-alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
-
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
@@ -105,3 +80,26 @@ fi
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/bin/cmd_gpt.plugin.zsh
+
+unalias -a
+
+alias v='$EDITOR'
+alias f='$FILE'
+alias ls='eza --icons=always --group-directories-first -l'
+alias tree='eza --icons=always --group-directories-first --tree'
+alias cloc='tokei'
+alias insomnia='insomnium'
+
+GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
+alias config='/usr/bin/git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
+alias lazyconfig='/usr/bin/lazygit --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
+alias fconfiglog="$GIT_ENV fgitlog"
+
+alias notes='vproj ~/OneDrive/Documents/Notes notes'
+alias dotfiles='vproj ~ dotfiles'
+alias scripts='vproj ~/bin scripts'
+alias nvimconfig='vproj ~/.config/nvim nvimconfig'
+
+WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
+alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
+alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
