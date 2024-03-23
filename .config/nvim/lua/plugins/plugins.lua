@@ -456,6 +456,30 @@ return {
   },
 
   {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+      },
+    },
+    config = function(_, opts)
+      require('copilot').setup(opts)
+
+      vim.keymap.set('i', '<M-l>',
+        function()
+          require('copilot.suggestion').accept_word()
+        end)
+      vim.keymap.set('i', '<M-;>',
+        function()
+          require('copilot.suggestion').accept()
+        end)
+    end,
+  },
+
+  {
     "vifm/vifm.vim",
     config = function()
       vim.keymap.set('n', '<leader>v',
