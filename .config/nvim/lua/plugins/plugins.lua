@@ -12,7 +12,7 @@ return {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     config = function()
-      vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope theme=ivy<cr>', { desc = '[S]earch [T]odos' })
+      vim.keymap.set('n', '\\T', '<cmd>TodoTelescope theme=ivy<cr>', { desc = 'Search TODOs' })
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -117,6 +117,8 @@ return {
               ["<M-l>"] = actions.results_scrolling_right,
               ["<Left>"] = actions.results_scrolling_left,
               ["<Right>"] = actions.results_scrolling_right,
+              ["<C-d>"] = actions.results_scrolling_down,
+              ["<C-u>"] = actions.results_scrolling_up,
 
               ["<M-Down>"] = actions.preview_scrolling_down,
               ["<M-Up>"] = actions.preview_scrolling_up,
@@ -124,11 +126,6 @@ return {
               ["<M-Right>"] = actions.preview_scrolling_right,
               ["<esc>"] = actions.close,
             },
-          },
-        },
-        pickers = {
-          find_files = {
-            hidden = true,
           },
         },
         extensions = {
@@ -142,48 +139,70 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      local function ivy_wrapper(telescope_command)
+      local function ivy_wrapper(telescope_command, opts)
         return function()
-          telescope_command(require("telescope.themes").get_ivy())
+          telescope_command(require("telescope.themes").get_ivy(opts))
         end
       end
 
-      -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', ivy_wrapper(builtin.help_tags), { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', ivy_wrapper(builtin.keymaps), { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', ivy_wrapper(builtin.find_files), { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', ivy_wrapper(builtin.builtin), { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', ivy_wrapper(builtin.grep_string), { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', ivy_wrapper(builtin.live_grep), { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', ivy_wrapper(builtin.diagnostics), { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', ivy_wrapper(builtin.resume), { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', ivy_wrapper(builtin.oldfiles), { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', ivy_wrapper(builtin.buffers), { desc = '[ ] Find existing buffers' })
+      local is_inside_work_tree = {} --cacheing the results of "git rev-parse"
 
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_ivy {
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+      local function my_find_files(opts)
+        local cwd = vim.fn.getcwd()
+        if cwd == vim.fn.expand '$HOME' then
+          print('Searching dotfiles')
+          local extra_opts = {
+            find_command = {
+              "git",
+              '--git-dir=' .. vim.fn.expand '$HOME/dotfiles.git',
+              '--work-tree=' .. vim.fn.expand '$HOME',
+              "ls-files",
+            },
+            prompt_title = 'Search Dotfiles',
+          }
+          for k, v in pairs(extra_opts) do
+            opts[k] = v
+          end
+          builtin.find_files(opts)
+        else
+          print('Searching current directory')
+          if is_inside_work_tree[cwd] == nil then
+            vim.fn.system("git rev-parse --is-inside-work-tree")
+            is_inside_work_tree[cwd] = vim.v.shell_error == 0
+          end
 
-      -- Also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep(require('telescope.themes').get_ivy {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        })
-      end, { desc = '[S]earch [/] in Open Files' })
+          if is_inside_work_tree[cwd] then
+            builtin.git_files(opts)
+          else
+            builtin.find_files(opts)
+          end
+        end
+      end
 
-      -- Shortcut for searching your neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files(require('telescope.themes').get_ivy {
-          { cwd = vim.fn.stdpath 'config' }
-        })
-      end, { desc = '[S]earch [N]eovim files' })
+      vim.keymap.set('n', '\\h', ivy_wrapper(builtin.help_tags), { desc = 'Search Help' })
+      vim.keymap.set('n', '\\k', ivy_wrapper(builtin.keymaps), { desc = 'Search Keymaps' })
+      vim.keymap.set('n', '\\f', ivy_wrapper(my_find_files), { desc = 'Search Files' })
+      vim.keymap.set('n', '\\t', ivy_wrapper(builtin.builtin), { desc = 'Search Telescope Builtins' })
+      vim.keymap.set('n', '\\w', ivy_wrapper(builtin.grep_string), { desc = 'Search Current Word' })
+      vim.keymap.set('n', '\\g', ivy_wrapper(builtin.live_grep), { desc = 'Grep Current Directory' })
+      vim.keymap.set('n', '\\d', ivy_wrapper(builtin.diagnostics), { desc = 'Search Diagnostics' })
+      vim.keymap.set('n', '\\\\', ivy_wrapper(builtin.resume), { desc = 'Resume Previous Search' })
+      vim.keymap.set('n', '\\r', ivy_wrapper(builtin.oldfiles), { desc = 'Search Recent Files' })
+      vim.keymap.set('n', '\\b', ivy_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
+
+      vim.keymap.set('n', '\\/',
+        ivy_wrapper(builtin.current_buffer_fuzzy_find, { previewer = false }),
+        { desc = 'Search Current Buffer' })
+
+      vim.keymap.set('n', '\\o',
+        ivy_wrapper(builtin.live_grep,
+          { grep_open_files = true, prompt_title = 'Grep Open Files' }),
+        { desc = 'Grep Open Files' })
+
+      vim.keymap.set('n', '\\c',
+        ivy_wrapper(builtin.find_files, { cwd = vim.fn.stdpath 'config' }),
+        { desc = 'Search Neovim Config Files' })
     end,
   },
 
@@ -242,9 +261,9 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          local function ivy_wrapper(telescope_command)
+          local function ivy_wrapper(telescope_command, opts)
             return function()
-              telescope_command(require("telescope.themes").get_ivy())
+              telescope_command(require("telescope.themes").get_ivy(opts))
             end
           end
 
