@@ -38,6 +38,9 @@ vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z')
 vim.keymap.set('v', '<M-j>', ":m'>+<cr>`<my`>mzgv`yo`z")
 vim.keymap.set('v', '<M-k>', ":m'<-2<cr>`>my`<mzgv`yo`z")
 
+vim.keymap.set('c', '<M-j>', '<C-n>')
+vim.keymap.set('c', '<M-k>', '<C-p>')
+
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, { desc = 'Go to previous [E]rror' })
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror window' })
