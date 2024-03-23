@@ -333,7 +333,7 @@ return {
       --  You can press `g?` for help in this menu
       require('mason').setup({
         config = function()
-          vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason plugins' })
+          vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
         end,
       })
 
@@ -471,11 +471,11 @@ return {
       vim.keymap.set('i', '<M-l>',
         function()
           require('copilot.suggestion').accept_word()
-        end)
+        end, { desc = 'Accept word' })
       vim.keymap.set('i', '<M-;>',
         function()
           require('copilot.suggestion').accept()
-        end)
+        end, { desc = 'Accept suggestion' })
     end,
   },
 

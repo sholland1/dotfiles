@@ -20,26 +20,25 @@ vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
 vim.keymap.set('n', '-', '<cmd>split<cr>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>');
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search' })
 
-vim.keymap.set('n', '<cr>', 'o<esc>')
-vim.keymap.set('n', '<S-tab>', '<C-w>W')
-vim.keymap.set('n', '<tab>', '<C-w>w')
-vim.keymap.set('i', '<C-Backspace>', '<C-w>')
+vim.keymap.set('n', '<cr>', 'o<esc>', { desc = 'Insert new line below' })
+vim.keymap.set('n', '<S-tab>', '<C-w>W', { desc = 'Previous window' })
+vim.keymap.set('n', '<tab>', '<C-w>w', { desc = 'Next window' })
+vim.keymap.set('i', '<C-Backspace>', '<C-w>', { desc = 'Delete previous word' })
 
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-h>', '<cmd>bprev<cr>')
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-l>', '<cmd>bnext<cr>')
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageUp>', '<cmd>bprev<cr>')
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>')
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-h>', '<cmd>bprev<cr>', { desc = 'Previous buffer' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageUp>', '<cmd>bprev<cr>', { desc = 'Previous buffer' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 
--- Move a line of text using ALT+[jk] or Command+[jk] on mac
-vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z')
-vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z')
-vim.keymap.set('v', '<M-j>', ":m'>+<cr>`<my`>mzgv`yo`z")
-vim.keymap.set('v', '<M-k>', ":m'<-2<cr>`>my`<mzgv`yo`z")
+vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z', { desc = 'Move line down' })
+vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z', { desc = 'Move line up' })
+vim.keymap.set('v', '<M-j>', ":m'>+<cr>`<my`>mzgv`yo`z", { desc = 'Move line down' })
+vim.keymap.set('v', '<M-k>', ":m'<-2<cr>`>my`<mzgv`yo`z", { desc = 'Move line up' })
 
-vim.keymap.set('c', '<M-j>', '<C-n>')
-vim.keymap.set('c', '<M-k>', '<C-p>')
+vim.keymap.set('c', '<M-j>', '<C-n>', { desc = 'Next completion' })
+vim.keymap.set('c', '<M-k>', '<C-p>', { desc = 'Previous completion' })
 
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, { desc = 'Go to previous [E]rror' })
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror' })
