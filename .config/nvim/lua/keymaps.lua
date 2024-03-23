@@ -32,6 +32,12 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-l>', '<cmd>bnext<cr>')
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageUp>', '<cmd>bprev<cr>')
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>')
 
+-- Move a line of text using ALT+[jk] or Command+[jk] on mac
+vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z')
+vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z')
+vim.keymap.set('v', '<M-j>', ":m'>+<cr>`<my`>mzgv`yo`z")
+vim.keymap.set('v', '<M-k>', ":m'<-2<cr>`>my`<mzgv`yo`z")
+
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, { desc = 'Go to previous [E]rror' })
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror window' })
