@@ -464,10 +464,8 @@ return {
     end,
   },
 
-  {
-    "echasnovski/mini.statusline",
-    config = true,
-  },
+  { "echasnovski/mini.statusline", config = true, },
+  { "lewis6991/gitsigns.nvim", opts = {} },
 
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
