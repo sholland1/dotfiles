@@ -10,5 +10,10 @@ require("keymaps")
 require("autocmds")
 require("utils")
 
-require("lazy").setup("plugins")
+local lazy_opts = {
+  change_detection = {
+    notify = false,
+  },
+}
+require("lazy").setup("plugins", lazy_opts)
 
