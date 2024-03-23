@@ -71,7 +71,6 @@ export ARCHFLAGS="-arch x86_64"
 
 alias v='$EDITOR'
 alias f='$FILE'
-alias tig='tig status'
 alias cloc='tokei'
 alias insomnia='insomnium'
 
@@ -79,7 +78,7 @@ alias cdn='cd ~/OneDrive/Documents/Notes'
 
 GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
 alias config="$GIT_ENV /usr/bin/git"
-alias contig="$GIT_ENV /usr/bin/tig status"
+alias lazyconfig="/usr/bin/lazygit -g $HOME/dotfiles.git -w $HOME"
 alias fconfiglog="$GIT_ENV fgitlog"
 
 alias gc='git commit'
