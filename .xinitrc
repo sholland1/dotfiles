@@ -10,7 +10,7 @@ export FILE=~/.config/vifm/scripts/vifmrun
 
 export FZF_DEFAULT_OPTS='--reverse --cycle --color=16
     --bind=alt-j:down,alt-k:up,ctrl-d:half-page-down,ctrl-u:half-page-up,alt-down:preview-down,alt-up:preview-up'
-export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude-standard --exclude .git || find -type f'
+export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude .git || find -type f'
 #export FZF_COMPLETION_TRIGGER='##'
 
 export _JAVA_AWT_WM_NONREPARENTING=1
