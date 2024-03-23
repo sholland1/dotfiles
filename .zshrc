@@ -77,8 +77,8 @@ alias insomnia='insomnium'
 alias cdn='cd ~/OneDrive/Documents/Notes'
 
 GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
-alias config="$GIT_ENV /usr/bin/git"
-alias lazyconfig="/usr/bin/lazygit -g $HOME/dotfiles.git -w $HOME"
+alias config='/usr/bin/git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
+alias lazyconfig='/usr/bin/lazygit --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
 alias fconfiglog="$GIT_ENV fgitlog"
 
 alias gc='git commit'
@@ -88,6 +88,7 @@ alias gs='git status'
 alias notes='vproj ~/OneDrive/Documents/Notes notes'
 alias dotfiles='vproj ~ dotfiles'
 alias scripts='vproj ~/bin scripts'
+alias nvimconfig='vproj ~/.config/nvim nvimconfig'
 
 WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
