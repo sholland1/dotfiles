@@ -32,14 +32,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufReadPost', {
-  desc = 'Open all folds when opening a file',
-  group = vim.api.nvim_create_augroup('postBufExec', { clear = true }),
-  callback = function()
-    vim.cmd('silent! :%foldopen!')
-  end,
-})
-
 -- Reload the file if it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = vim.api.nvim_create_augroup("reload", { clear = true }),
