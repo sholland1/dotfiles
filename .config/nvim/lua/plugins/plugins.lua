@@ -24,10 +24,10 @@ return {
     event = 'VeryLazy',
     opts = {
       mappings = {
-        comment = '<leader>;',
-        comment_line = '<leader>;;',
-        comment_visual = '<leader>;',
-        textobject = '<leader>;',
+        comment = '<leader>c',
+        comment_line = '<leader>cc',
+        comment_visual = '<leader>c',
+        textobject = '<leader>c',
       },
     },
   },
