@@ -151,7 +151,6 @@ return {
       local function my_find_files(opts)
         local cwd = vim.fn.getcwd()
         if cwd == vim.fn.expand '$HOME' then
-          print('Searching dotfiles')
           local extra_opts = {
             find_command = {
               "git",
@@ -166,7 +165,6 @@ return {
           end
           builtin.find_files(opts)
         else
-          print('Searching current directory')
           if is_inside_work_tree[cwd] == nil then
             vim.fn.system("git rev-parse --is-inside-work-tree")
             is_inside_work_tree[cwd] = vim.v.shell_error == 0
@@ -506,9 +504,27 @@ return {
   {
     "vifm/vifm.vim",
     config = function()
-      vim.keymap.set('n', '<leader>v',
-        "<cmd>Vifm<cr>",-- fnameescape(expand('%:p:h')) fnameescape(getcwd())<cr>",
-        { desc = 'Open Vifm' })
+      local function vifm_command()
+        -- open vifm on the current file on the left
+        local left_pane = vim.fn.expand('%:p:h')
+        -- TODO: open vifm on the current file on the left
+        -- local left_pane = vim.fn.expand('%:p')
+
+        -- if in a git repo, open the repo root
+        -- otherwise, open the home directory
+        vim.fn.system("git rev-parse --is-inside-work-tree")
+        local is_inside_work_tree = vim.v.shell_error == 0
+
+        local right_pane
+        if is_inside_work_tree then
+          right_pane = vim.fn.system('git rev-parse --show-toplevel')
+        else
+          right_pane = vim.fn.expand('$HOME')
+        end
+
+        vim.cmd('Vifm ' .. left_pane .. ' ' .. right_pane)
+      end
+      vim.keymap.set('n', '<leader>v', vifm_command, { desc = 'Open Vifm' })
     end,
   },
 
