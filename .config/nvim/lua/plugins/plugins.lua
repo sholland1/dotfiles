@@ -497,14 +497,9 @@ return {
     config = function(_, opts)
       require('copilot').setup(opts)
 
-      vim.keymap.set('i', '<M-l>',
-        function()
-          require('copilot.suggestion').accept_word()
-        end, { desc = 'Accept word' })
-      vim.keymap.set('i', '<M-;>',
-        function()
-          require('copilot.suggestion').accept()
-        end, { desc = 'Accept suggestion' })
+      local copilot = require('copilot.suggestion')
+      vim.keymap.set('i', '<M-l>', copilot.accept_word, { desc = 'Accept word' })
+      vim.keymap.set('i', '<M-;>', copilot.accept, { desc = 'Accept suggestion' })
     end,
   },
 
