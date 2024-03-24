@@ -13,6 +13,7 @@ return {
     event = 'VimEnter',
     config = function()
       vim.keymap.set('n', '\\T', '<cmd>TodoTelescope theme=ivy<cr>', { desc = 'Search TODOs' })
+      require('todo-comments').setup()
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
