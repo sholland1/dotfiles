@@ -189,6 +189,7 @@ return {
       vim.keymap.set('n', '\\\\', ivy_wrapper(builtin.resume), { desc = 'Resume Previous Search' })
       vim.keymap.set('n', '\\r', ivy_wrapper(builtin.oldfiles), { desc = 'Search Recent Files' })
       vim.keymap.set('n', '\\b', ivy_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
+      vim.keymap.set('n', '\\C', ivy_wrapper(builtin.commands), { desc = 'Search Neovim Commands' })
 
       vim.keymap.set('n', '\\/',
         ivy_wrapper(builtin.current_buffer_fuzzy_find, { previewer = false }),
