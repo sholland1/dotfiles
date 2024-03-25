@@ -530,7 +530,12 @@ return {
     end,
   },
 
-  { "echasnovski/mini.statusline", config = true, },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = true,
+  },
+  -- { "echasnovski/mini.statusline", config = true, },
   { "lewis6991/gitsigns.nvim", opts = {} },
 
   "tpope/vim-sleuth",
