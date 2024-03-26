@@ -10,6 +10,8 @@ local function toggleCheckbox()
 
   -- Update the line with the modified content
   vim.fn.setline(current_line, updated_line)
+  -- Write the changes to the file
+  vim.cmd 'write'
 end
 
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
