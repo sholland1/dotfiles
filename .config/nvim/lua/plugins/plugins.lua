@@ -140,14 +140,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      local function ivy_wrapper(telescope_command, opts)
-        return function()
-          telescope_command(require("telescope.themes").get_ivy(opts))
-        end
-      end
-
       local builtin = require 'telescope.builtin'
-      local is_inside_work_tree = {} --cacheing the results of "git rev-parse"
 
       local function my_find_files(opts)
         local cwd = vim.fn.getcwd()
@@ -166,12 +159,7 @@ return {
           end
           builtin.find_files(opts)
         else
-          if is_inside_work_tree[cwd] == nil then
-            vim.fn.system("git rev-parse --is-inside-work-tree")
-            is_inside_work_tree[cwd] = vim.v.shell_error == 0
-          end
-
-          if is_inside_work_tree[cwd] then
+          if Utils.is_inside_work_tree() then
             builtin.git_files(opts)
           else
             builtin.find_files(opts)
@@ -179,29 +167,29 @@ return {
         end
       end
 
-      vim.keymap.set('n', '\\h', ivy_wrapper(builtin.help_tags), { desc = 'Search Help' })
-      vim.keymap.set('n', '\\k', ivy_wrapper(builtin.keymaps), { desc = 'Search Keymaps' })
-      vim.keymap.set('n', '\\f', ivy_wrapper(my_find_files), { desc = 'Search Files' })
-      vim.keymap.set('n', '\\t', ivy_wrapper(builtin.builtin), { desc = 'Search Telescope Builtins' })
-      vim.keymap.set('n', '\\w', ivy_wrapper(builtin.grep_string), { desc = 'Search Current Word' })
-      vim.keymap.set('n', '\\g', ivy_wrapper(builtin.live_grep), { desc = 'Grep Current Directory' })
-      vim.keymap.set('n', '\\d', ivy_wrapper(builtin.diagnostics), { desc = 'Search Diagnostics' })
-      vim.keymap.set('n', '\\\\', ivy_wrapper(builtin.resume), { desc = 'Resume Previous Search' })
-      vim.keymap.set('n', '\\r', ivy_wrapper(builtin.oldfiles), { desc = 'Search Recent Files' })
-      vim.keymap.set('n', '\\b', ivy_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
-      vim.keymap.set('n', '\\C', ivy_wrapper(builtin.commands), { desc = 'Search Neovim Commands' })
+      vim.keymap.set('n', '\\h', Utils.telescope_wrapper(builtin.help_tags), { desc = 'Search Help' })
+      vim.keymap.set('n', '\\k', Utils.telescope_wrapper(builtin.keymaps), { desc = 'Search Keymaps' })
+      vim.keymap.set('n', '\\f', Utils.telescope_wrapper(my_find_files), { desc = 'Search Files' })
+      vim.keymap.set('n', '\\t', Utils.telescope_wrapper(builtin.builtin), { desc = 'Search Telescope Builtins' })
+      vim.keymap.set('n', '\\w', Utils.telescope_wrapper(builtin.grep_string), { desc = 'Search Current Word' })
+      vim.keymap.set('n', '\\g', Utils.telescope_wrapper(builtin.live_grep), { desc = 'Grep Current Directory' })
+      vim.keymap.set('n', '\\d', Utils.telescope_wrapper(builtin.diagnostics), { desc = 'Search Diagnostics' })
+      vim.keymap.set('n', '\\\\', Utils.telescope_wrapper(builtin.resume), { desc = 'Resume Previous Search' })
+      vim.keymap.set('n', '\\r', Utils.telescope_wrapper(builtin.oldfiles), { desc = 'Search Recent Files' })
+      vim.keymap.set('n', '\\b', Utils.telescope_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
+      vim.keymap.set('n', '\\C', Utils.telescope_wrapper(builtin.commands), { desc = 'Search Neovim Commands' })
 
       vim.keymap.set('n', '\\/',
-        ivy_wrapper(builtin.current_buffer_fuzzy_find, { previewer = false }),
+        Utils.telescope_wrapper(builtin.current_buffer_fuzzy_find, { previewer = false }),
         { desc = 'Search Current Buffer' })
 
       vim.keymap.set('n', '\\o',
-        ivy_wrapper(builtin.live_grep,
+        Utils.telescope_wrapper(builtin.live_grep,
           { grep_open_files = true, prompt_title = 'Grep Open Files' }),
         { desc = 'Grep Open Files' })
 
       vim.keymap.set('n', '\\c',
-        ivy_wrapper(builtin.find_files, { cwd = vim.fn.stdpath 'config' }),
+        Utils.telescope_wrapper(builtin.find_files, { cwd = vim.fn.stdpath 'config' }),
         { desc = 'Search Neovim Config Files' })
     end,
   },
@@ -266,19 +254,13 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          local function ivy_wrapper(telescope_command, opts)
-            return function()
-              telescope_command(require("telescope.themes").get_ivy(opts))
-            end
-          end
-
           local builtin = require 'telescope.builtin'
-          map('<F12>', ivy_wrapper(builtin.lsp_definitions), 'Go to Definition')
-          map('<S-F12>', ivy_wrapper(builtin.lsp_references), 'Go to References')
-          map('gI', ivy_wrapper(builtin.lsp_implementations), '[G]o to [I]mplementation')
-          map('<leader>D', ivy_wrapper(builtin.lsp_type_definitions), 'Type [D]efinition')
-          map('<leader>fs', ivy_wrapper(builtin.lsp_document_symbols), '[F]ile [S]ymbols')
-          map('<leader>ps', ivy_wrapper(builtin.lsp_dynamic_workspace_symbols), '[P]roject [S]ymbols')
+          map('<F12>', Utils.telescope_wrapper(builtin.lsp_definitions), 'Go to Definition')
+          map('<S-12>', Utils.telescope_wrapper(builtin.lsp_references), 'Go to References')
+          map('gI', Utils.telescope_wrapper(builtin.lsp_implementations), '[G]o to [I]mplementation')
+          map('<leader>D', Utils.telescope_wrapper(builtin.lsp_type_definitions), 'Type [D]efinition')
+          map('<leader>fs', Utils.telescope_wrapper(builtin.lsp_document_symbols), '[F]ile [S]ymbols')
+          map('<leader>ps', Utils.telescope_wrapper(builtin.lsp_dynamic_workspace_symbols), '[P]roject [S]ymbols')
           map('<F2>', vim.lsp.buf.rename, 'Rename')
           map('<C-.>', vim.lsp.buf.code_action, 'Code Action')
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -514,11 +496,8 @@ return {
 
         -- if in a git repo, open the repo root
         -- otherwise, open the home directory
-        vim.fn.system("git rev-parse --is-inside-work-tree")
-        local is_inside_work_tree = vim.v.shell_error == 0
-
         local right_pane
-        if is_inside_work_tree then
+        if Utils.is_inside_work_tree() then
           right_pane = vim.fn.system('git rev-parse --show-toplevel')
         else
           right_pane = vim.fn.expand('$HOME')
