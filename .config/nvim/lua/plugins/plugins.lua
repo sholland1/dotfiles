@@ -256,7 +256,7 @@ return {
 
           local builtin = require 'telescope.builtin'
           map('<F12>', Utils.telescope_wrapper(builtin.lsp_definitions), 'Go to Definition')
-          map('<S-12>', Utils.telescope_wrapper(builtin.lsp_references), 'Go to References')
+          map('<F24>' --[[equivalent to <S-F12>]], Utils.telescope_wrapper(builtin.lsp_references), 'Go to References')
           map('gI', Utils.telescope_wrapper(builtin.lsp_implementations), '[G]o to [I]mplementation')
           map('<leader>D', Utils.telescope_wrapper(builtin.lsp_type_definitions), 'Type [D]efinition')
           map('<leader>fs', Utils.telescope_wrapper(builtin.lsp_document_symbols), '[F]ile [S]ymbols')
