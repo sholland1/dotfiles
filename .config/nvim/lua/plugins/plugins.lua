@@ -532,6 +532,7 @@ return {
   -- { "echasnovski/mini.statusline", config = true, },
   { "lewis6991/gitsigns.nvim", opts = {} },
 
+  "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
   "tpope/vim-obsession",
