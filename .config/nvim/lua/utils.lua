@@ -103,3 +103,9 @@ Utils = {
   },
 }
 
+
+function Utils.is_config_file(filename)
+  local git_cmd = 'git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
+  vim.fn.system(git_cmd .. ' ls-files --error-unmatch ' .. filename)
+  return vim.v.shell_error == 0
+end

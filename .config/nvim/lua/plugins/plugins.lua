@@ -531,6 +531,21 @@ return {
   },
 
   {
+    'sholland1/lazygit.nvim',
+    config = function()
+      local function lazygit_command()
+        local lazygit = require('lazygit')
+        if Utils.is_config_file(vim.fn.expand('%:p')) then
+          lazygit.lazygitdotfiles()
+        else
+          lazygit.lazygitcurrentfile()
+        end
+      end
+      vim.keymap.set('n', '<leader>g', lazygit_command, { desc = 'Open LazyGit' })
+    end,
+  },
+
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = true,
