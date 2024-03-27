@@ -14,7 +14,7 @@ local function toggleCheckbox()
   vim.cmd 'write'
 end
 
-vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>d', '<cmd>bp|bd #<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>t', toggleCheckbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
