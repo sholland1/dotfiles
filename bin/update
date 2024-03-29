@@ -1,14 +1,28 @@
 #!/bin/bash
 echo 'Initiating system update...'
-yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
 
+# Updating mirrors
+export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && ua-drop-caches
+
+# Cleaning caches
 paccache -rk1
 paccache -ruk0
+yay -Sc --aur --noconfirm
 
+# System update
+yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
+
+# Reset keyboard settings
 xset s off -dpms &
 xset r rate 250 80 &
 setxkbmap -option caps:swapescape &
 
+# Updating Neovim
 nvim --headless '+Lazy! sync' +qa
 
 read -n 1 -s -r -p 'Press any key to exit...'
