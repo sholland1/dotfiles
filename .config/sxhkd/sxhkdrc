@@ -19,8 +19,8 @@ super + {shift, alt} + e
           zsh -c "$NAME";\
         xdotool key Shift+Insert
 
-super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,w,XF86AudioPlay,shift + XF86AudioPlay}
-        fuzzy_win {system,system,recent-projects,programs,fpacin,fyain,fpacrem,fkill,window-switcher,fsongs,fplaylists}
+super + {BackSpace,grave,c,shift + c,d,p,shift + p,r,shift + x,w,XF86AudioPlay,shift + XF86AudioPlay}
+        fuzzy_win {system,system,recent-projects-nvim,recent-projects-code,programs,fpacin,fyain,fpacrem,fkill,window-switcher,fsongs,fplaylists}
 
 super + {f,s,u}
         $TERM -e "{$FILE,sysz,update}"
