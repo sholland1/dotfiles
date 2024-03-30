@@ -1,6 +1,7 @@
+local group = vim.api.nvim_create_augroup("execOnWrite", { clear = true })
 local function createAutocmd(pattern, command)
   vim.api.nvim_create_autocmd("BufWritePost", {
-    group = vim.api.nvim_create_augroup("execOnWrite", { clear = true }),
+    group = group,
     pattern = pattern,
     command = command,
   })
@@ -11,7 +12,7 @@ createAutocmd(".compton.conf", "!pkill picom;picom &")
 createAutocmd("sxhkdrc", "!pkill sxhkd;sxhkd &")
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = vim.api.nvim_create_augroup("execOnWrite", { clear = true }),
+  group = group,
   pattern = "*.lua",
   callback = function()
     local file_path = vim.fn.expand("%:p")
