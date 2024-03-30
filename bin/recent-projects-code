@@ -6,10 +6,12 @@ RESULT=$(jq -r '
   | select(.id | endswith("RecentMenu"))
   | .submenu.items.[]
   | select(.id == "openRecentFolder")
-  | .uri.path' $FILE | fzf)
+  | .uri.path' $FILE |
+  fzf --preview 'eza --color=always --icons=always --group-directories-first --tree --git-ignore {}' \
+      --preview-window='right,50%,<40(down,80%)')
 
 if [ -z "$RESULT" ]; then
-	exit
+    exit
 fi
 
 cd "$RESULT" || exit

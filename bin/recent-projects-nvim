@@ -1,0 +1,15 @@
+#!/bin/bash
+
+RESULT=$(find ~/Projects/*/Session.vim |
+  xargs dirname |
+  fzf --preview 'eza --color=always --icons=always --group-directories-first --tree --git-ignore {}' \
+      --preview-window='right,50%,<40(down,80%)')
+
+if [ -z "$RESULT" ]; then
+    exit
+fi
+
+cd "$RESULT" || exit
+set -m
+$TERM -e $EDITOR -S Session.vim &
+disown
