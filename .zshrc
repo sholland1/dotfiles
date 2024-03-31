@@ -96,9 +96,9 @@ alias lazyconfig='/usr/bin/lazygit --git-dir="$HOME/dotfiles.git" --work-tree="$
 alias fconfiglog="$GIT_ENV fgitlog"
 
 alias notes='vproj ~/OneDrive/Documents/Notes notes'
-alias dotfiles='vproj ~ dotfiles'
-alias scripts='vproj ~/bin scripts'
-alias nvimconfig='vproj ~/.config/nvim nvimconfig'
+alias dotfiles='vdotfiles ~ dotfiles'
+alias scripts='vdotfiles ~/bin scripts'
+alias nvimconfig='vdotfiles ~/.config/nvim nvimconfig'
 
 WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
 alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"

@@ -114,12 +114,6 @@ function Utils.is_inside_work_tree()
   return is_inside_work_tree[cwd]
 end
 
-function Utils.is_config_file(filename)
-  local git_cmd = 'git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
-  vim.fn.system(git_cmd .. ' ls-files --error-unmatch ' .. filename)
-  return vim.v.shell_error == 0
-end
-
 function Utils.telescope_wrapper(telescope_command, opts)
   return function()
     telescope_command(require("telescope.themes").get_ivy(opts))
