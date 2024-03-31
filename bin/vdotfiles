@@ -1,0 +1,4 @@
+#!/bin/bash
+pushd "$1" >/dev/null || exit
+GIT_DIR="$HOME/dotfiles.git" GIT_WORK_TREE="$HOME" $EDITOR -c "set title" -c "set titlestring=$2" -S Session.vim
+popd >/dev/null 2>&1 || exit

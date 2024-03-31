@@ -143,28 +143,21 @@ return {
       local builtin = require 'telescope.builtin'
 
       local function my_find_files(opts)
-        local cwd = vim.fn.getcwd()
-        if cwd == vim.fn.expand '$HOME' then
-          local extra_opts = {
-            find_command = {
-              "git",
-              '--git-dir=' .. vim.fn.expand '$HOME/dotfiles.git',
-              '--work-tree=' .. vim.fn.expand '$HOME',
-              "ls-files",
-            },
+        local extra_opts = {}
+        if vim.fn.getcwd() == vim.fn.expand '$HOME' then
+          extra_opts = {
+            find_command = { "git", "ls-files" },
             prompt_title = 'Search Dotfiles',
           }
-          for k, v in pairs(extra_opts) do
-            opts[k] = v
-          end
-          builtin.find_files(opts)
-        else
-          if Utils.is_inside_work_tree() then
-            builtin.git_files(opts)
-          else
-            builtin.find_files(opts)
-          end
+        elseif Utils.is_inside_work_tree() then
+          extra_opts = {
+            find_command = { 'rg', '--files', '--sort=path', '--hidden' },
+          }
         end
+        for k, v in pairs(extra_opts) do
+          opts[k] = v
+        end
+        builtin.find_files(opts)
       end
 
       vim.keymap.set('n', '\\h', Utils.telescope_wrapper(builtin.help_tags), { desc = 'Search Help' })
@@ -510,17 +503,9 @@ return {
   },
 
   {
-    'sholland1/lazygit.nvim',
+    'kdheepak/lazygit.nvim',
     config = function()
-      local function lazygit_command()
-        local lazygit = require('lazygit')
-        if Utils.is_config_file(vim.fn.expand('%:p')) then
-          lazygit.lazygitdotfiles()
-        else
-          lazygit.lazygitcurrentfile()
-        end
-      end
-      vim.keymap.set('n', '<leader>g', lazygit_command, { desc = 'Open LazyGit' })
+      vim.keymap.set('n', '<leader>g', require('lazygit').lazygit, { desc = 'Open LazyGit' })
     end,
   },
 
