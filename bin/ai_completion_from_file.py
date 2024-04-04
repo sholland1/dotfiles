@@ -2,7 +2,6 @@
 
 import json, os, sys
 from openai import OpenAI
-from dotenv import load_dotenv
 
 def do_completion(client: OpenAI, messages: list[str]) -> str:
     result = client.chat.completions.create(
@@ -15,8 +14,7 @@ def do_completion(client: OpenAI, messages: list[str]) -> str:
     return result.choices[0].message.content
 
 def main():
-    load_dotenv()
-    client = OpenAI() # gets api key from .env file
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     system_messages_file = os.path.expanduser(sys.argv[1])
     prompt_file = sys.argv[2]
