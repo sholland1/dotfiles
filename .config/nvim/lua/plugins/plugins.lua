@@ -522,4 +522,7 @@ return {
   "nvim-tree/nvim-web-devicons",
   "tpope/vim-obsession",
   "chrisgrieser/nvim-genghis",
+  "tridactyl/vim-tridactyl",
+  "kyoh86/vim-jsonl",
+  "baskerville/vim-sxhkdrc",
 }
