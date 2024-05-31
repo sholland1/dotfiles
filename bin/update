@@ -9,13 +9,13 @@ export TMPFILE="$(mktemp)"; \
       && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
       && ua-drop-caches
 
+# System update
+yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
+
 # Cleaning caches
 paccache -rk1
 paccache -ruk0
 yay -Sc --aur --noconfirm
-
-# System update
-yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
 
 # Reset keyboard settings
 xset s off -dpms &
@@ -24,5 +24,8 @@ setxkbmap -option caps:swapescape &
 
 # Updating Neovim
 nvim --headless '+Lazy! sync' +qa
+
+# Updating VS Code extensions
+code --update-extensions
 
 read -n 1 -s -r -p 'Press any key to exit...'
