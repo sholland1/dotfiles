@@ -77,7 +77,7 @@ if [ ! -d "$ZSH_CACHE_DIR" ]; then
     mkdir "$ZSH_CACHE_DIR"
 fi
 
-set -a; source .env; set +a
+set -a; source ~/.env; set +a
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/bin/cmd_gpt.plugin.zsh
