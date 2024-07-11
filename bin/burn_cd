@@ -9,14 +9,20 @@ CD_TYPE=`cdrecord -minfo dev=/dev/sr0 2>&1 | awk -F: '/^M.*ty/{print $2}' | tr -
 case $CD_TYPE in
     CD-R)
         shopt -s lastpipe
+
+        BURN_FILE="/tmp/BURN_LIST"
+        ls -d -1 ./* > $BURN_FILE
+        nvim $BURN_FILE
+
         FILE_LIST=''
-        fzf -m | while read f; do
+        while read f; do
             filename=$(basename -- "$f")
             filename="${filename%.*}.wav"
             sox "$f" -c 2 "$filename"
 
             FILE_LIST+=" '$filename'"
-        done
+        done < $BURN_FILE
+
         [[ $FILE_LIST ]] && sh -c "cdrecord -v dev=/dev/sr0 gracetime=5 speed=1 -raw96r -pad -audio $FILE_LIST"
         rm *.wav
         ;;
