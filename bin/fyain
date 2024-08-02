@@ -4,4 +4,4 @@ yay -Slq |
         --preview-window=:75% |
     xargs -ro yay -S
 
-read -n 1 -s -r -p 'Press any key to exit...'
+read -n1 -sp 'Press any key to exit...'

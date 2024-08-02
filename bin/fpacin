@@ -6,6 +6,6 @@ RESULT=($(pacman -Slq |
 if [ $? -eq 0 ]; then
     sudo pacman -S "${RESULT[@]}"
     if [ $? -eq 0 ]; then
-        read -n 1 -s -r -p 'Press any key to exit...'
+        read -n1 -sp 'Press any key to exit...'
     fi
 fi
