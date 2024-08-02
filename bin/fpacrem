@@ -5,5 +5,5 @@ RESULT=$(pacman -Qe |
 
 if [ $? -eq 0 ]; then
     echo "$RESULT" | cut -d' ' -f1 | xargs -ro sudo pacman -Rns
-    read -n 1 -s -r -p 'Press any key to exit...'
+    read -n1 -sp 'Press any key to exit...'
 fi

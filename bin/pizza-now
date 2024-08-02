@@ -1,4 +1,4 @@
 #!/bin/bash
 pizza-time --default-order --track
 
-read -n 1 -s -r -p 'Press any key to exit...'
+read -n1 -sp 'Press any key to exit...'
