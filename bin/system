@@ -2,12 +2,13 @@
 lock () {
     i3lock-fancy-rapid 5 3
 }
+
 RESULT=$(echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | fzf)
 set -m
 case $RESULT in
-    sleep) lock; sleep 0.5; systemctl suspend ;;
-    lock) lock ;;
-    logout) setxkbmap -option; who | cut -d' ' -f1 | xargs pkill -Kill -u ;;
-    reboot) shutdown -r now ;;
-    shutdown) shutdown now ;;
+    sleep) manual-onedrive-sync; lock; sleep 0.5; systemctl suspend ;;
+    lock) manual-onedrive-sync; lock ;;
+    logout) manual-onedrive-sync; setxkbmap -option; who | cut -d' ' -f1 | xargs pkill -Kill -u ;;
+    reboot) manual-onedrive-sync; shutdown -r now ;;
+    shutdown) manual-onedrive-sync; shutdown now ;;
 esac
