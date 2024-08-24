@@ -517,11 +517,20 @@ return {
   -- { "echasnovski/mini.statusline", config = true, },
   { "lewis6991/gitsigns.nvim", opts = {} },
 
+  {
+    "chrisgrieser/nvim-genghis",
+    config = function()
+      -- maybe use tpope/vim-eunuch instead
+      local genghis = require("genghis")
+
+      vim.api.nvim_create_user_command("Rename", function() genghis.renameFile() end, {})
+      vim.api.nvim_create_user_command("Trash", function() genghis.trashFile() end, {})
+    end,
+  },
   "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
   "tpope/vim-obsession",
-  "chrisgrieser/nvim-genghis",
   "tridactyl/vim-tridactyl",
   "kyoh86/vim-jsonl",
   "baskerville/vim-sxhkdrc",
