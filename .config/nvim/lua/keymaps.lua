@@ -53,4 +53,4 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror wi
 --vim.keymap.set('n', '<C-.>', vim.diagnostic.setloclist, { desc = 'Quickfix' })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
-
+vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
