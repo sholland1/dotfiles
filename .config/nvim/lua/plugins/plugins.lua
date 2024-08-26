@@ -105,6 +105,29 @@ return {
     },
     config = function()
       local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
+
+      local function multiopen(prompt_bufnr)
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local multi = picker:get_multi_selection()
+
+          if vim.tbl_isempty(multi) then
+              actions.select_default(prompt_bufnr)
+              return
+          end
+
+          actions.close(prompt_bufnr)
+          for _, entry in pairs(multi) do
+              local filename = entry.filename or entry.value
+              local lnum = entry.lnum or 1
+              local lcol = entry.col or 1
+              if filename then
+                  vim.cmd(string.format("edit %s", filename))
+                  vim.cmd(string.format("normal! %dG%d|", lnum, lcol))
+              end
+          end
+      end
+
       require('telescope').setup {
         defaults = {
           layout_config = { prompt_position = "top" },
@@ -126,6 +149,11 @@ return {
               ["<M-Left>"] = actions.preview_scrolling_left,
               ["<M-Right>"] = actions.preview_scrolling_right,
               ["<esc>"] = actions.close,
+
+              ["<CR>"] = multiopen,
+            },
+            n = {
+              ["<CR>"] = multiopen,
             },
           },
         },
