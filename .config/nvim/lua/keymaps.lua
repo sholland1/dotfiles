@@ -15,7 +15,7 @@ local function toggleCheckbox()
 end
 
 vim.keymap.set('n', '<leader>d', '<cmd>bp|bd #<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>t', toggleCheckbox, { desc = 'Toggle checkbox', silent = true })
+vim.keymap.set('n', '<leader>x', toggleCheckbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
@@ -54,3 +54,4 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror wi
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
 vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
+vim.keymap.set('n', '<leader>ts', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter' })
