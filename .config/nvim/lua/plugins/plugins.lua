@@ -327,6 +327,15 @@ return {
         -- tsserver = {},
         --
 
+        omnisharp = {
+          capabilities = capabilities,
+          enable_roslyn_analyzers = true,
+          enable_import_completion = true,
+          organize_imports_on_format = true,
+          enable_decompilation_support = true,
+          filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' },
+        },
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
@@ -538,6 +547,14 @@ return {
       vim.api.nvim_create_user_command("Trash", function() genghis.trashFile() end, {})
     end,
   },
+
+  {
+    "MoaidHathot/dotnet.nvim",
+    config = function()
+      require("dotnet").setup({})
+    end
+  },
+
   "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
