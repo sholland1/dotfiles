@@ -50,7 +50,9 @@ vim.keymap.set('c', '<M-k>', '<C-p>', { desc = 'Previous completion' })
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, { desc = 'Go to previous [E]rror' })
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror window' })
---vim.keymap.set('n', '<C-.>', vim.diagnostic.setloclist, { desc = 'Quickfix' })
+
+vim.keymap.set({'n','v'}, '<leader>c', 'gc', { remap = true })
+vim.keymap.set('n', '<leader>ku', 'gcgc', { remap = true })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
 vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })

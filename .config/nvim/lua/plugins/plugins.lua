@@ -21,19 +21,6 @@ return {
   },
 
   {
-    'echasnovski/mini.comment',
-    event = 'VeryLazy',
-    opts = {
-      mappings = {
-        comment = '<leader>c',
-        comment_line = '<leader>cc',
-        comment_visual = '<leader>c',
-        textobject = '<leader>c',
-      },
-    },
-  },
-
-  {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',
     dependencies = 'echasnovski/mini.bufremove',
