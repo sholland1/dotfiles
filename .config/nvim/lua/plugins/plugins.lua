@@ -327,6 +327,24 @@ return {
         -- tsserver = {},
         --
 
+        --INFO: add an omnisharp.json file to the sln for additional features
+        -- {
+        -- /* display additional analysis */
+        --  "RoslynExtensionsOptions": {
+        --    "enableAnalyzersSupport": true
+        --  },
+        -- /* ability to use .editorconfig file */
+        --  "FormattingOptions": {
+        --    "enableEditorConfigSupport": true
+        --  },
+        -- /* rename in more places */
+        --  "RenameOptions": {
+        --    "RenameInComments": true,
+        --    "RenameOverloads": true,
+        --    "RenameInStrings": true
+        --  }
+        --}
+
         omnisharp = {
           capabilities = capabilities,
           enable_roslyn_analyzers = true,
