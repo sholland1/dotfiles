@@ -270,7 +270,7 @@ return {
           map('<leader>fs', Utils.telescope_wrapper(builtin.lsp_document_symbols), '[F]ile [S]ymbols')
           map('<leader>ps', Utils.telescope_wrapper(builtin.lsp_dynamic_workspace_symbols), '[P]roject [S]ymbols')
           map('<F2>', vim.lsp.buf.rename, 'Rename')
-          map('<C-.>', vim.lsp.buf.code_action, 'Code Action')
+          -- map('<C-.>', vim.lsp.buf.code_action, 'Code Action') -- defined below (actions-preview)
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
@@ -553,6 +553,29 @@ return {
     config = function()
       require("dotnet").setup({})
     end
+  },
+
+  {
+    "aznhe21/actions-preview.nvim",
+    config = function()
+      local ap = require("actions-preview")
+      vim.keymap.set({'v', 'n'}, "<C-.>", ap.code_actions, { desc = 'Code Action' })
+      ap.setup({
+        telescope = {
+          sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.8,
+            height = 0.9,
+            prompt_position = "top",
+            preview_cutoff = 20,
+            preview_height = function(_, _, max_lines)
+              return max_lines - 15
+            end,
+          },
+        },
+      })
+    end,
   },
 
   "lambdalisue/suda.vim",
