@@ -21,11 +21,9 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
 vim.keymap.set('n', '-', '<cmd>split<cr>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
-if vim.fn.has('win32') == 1 then
-  vim.keymap.set({ 'i', 'n', 'v' }, '<C-Enter>', '<cmd>silent !wt -d .<cr>', { desc = 'Open terminal in new window' })
-else
-  vim.keymap.set({ 'i', 'n', 'v' }, '<C-Enter>', '<cmd>silent !$TERM &<cr>', { desc = 'Open terminal in new window' })
-end
+
+local term_cmd = vim.fn.has('win32') == 1 and 'wt -d .' or '$TERM &'
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-Enter>', '<cmd>silent !' .. term_cmd ..'<cr>', { desc = 'Open terminal in new window' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search' })
 
