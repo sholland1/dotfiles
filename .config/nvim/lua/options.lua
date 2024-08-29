@@ -21,3 +21,9 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.hlsearch = true
 vim.opt.swapfile = false
 vim.opt.lazyredraw = true
+
+-- set diagnostic icons
+for type, icon in pairs(Utils.icons.diagnostics) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end

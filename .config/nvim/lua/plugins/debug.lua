@@ -53,19 +53,9 @@ return {
         -- Set icons to characters that are more likely to work in every terminal.
         --    Feel free to remove or use ones that you like more! :)
         --    Don't feel like these are good choices.
-        icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+        icons = Utils.icons.dap.list,
         controls = {
-          icons = {
-            pause = '⏸',
-            play = '▶',
-            step_into = '⏎',
-            step_over = '⏭',
-            step_out = '⏮',
-            step_back = 'b',
-            run_last = '▶▶',
-            terminate = '⏹',
-            disconnect = '⏏',
-          },
+          icons = Utils.icons.dap.controls,
         },
         adapters = {
           lldb = {
@@ -83,6 +73,18 @@ return {
       dap.listeners.after.event_initialized['dapui_config'] = dapui.open
       dap.listeners.before.event_terminated['dapui_config'] = dapui.close
       dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+      vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939'})
+      vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#587539'})
+      vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#92744a'})
+      vim.api.nvim_set_hl(0, 'DapHighlightLine', { ctermbg = 0, bg = '#c4c8da' })
+
+      local icons = Utils.icons.dap.signs
+      vim.fn.sign_define('DapBreakpoint', { text=icons.Breakpoint, texthl='DapBreakpoint', linehl='DapHighlightLine', numhl='DapBreakpoint' })
+      vim.fn.sign_define('DapBreakpointCondition', { text=icons.BreakpointCondition, texthl='DapBreakpoint', linehl='DapHighlightLine', numhl='DapBreakpoint' })
+      vim.fn.sign_define('DapBreakpointRejected', { text=icons.BreakpointRejected, texthl='DapBreakpoint', linehl='DapHighlightLine', numhl= 'DapBreakpoint' })
+      vim.fn.sign_define('DapLogPoint', { text=icons.LogPoint, texthl='DapLogPoint', linehl='DapHighlightLine', numhl= 'DapLogPoint' })
+      vim.fn.sign_define('DapStopped', { text=icons.Stopped, texthl='DapStopped', linehl='DapHighlightLine', numhl= 'DapStopped' })
     end,
   },
 
