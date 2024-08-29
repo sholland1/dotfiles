@@ -22,6 +22,12 @@ vim.opt.hlsearch = true
 vim.opt.swapfile = false
 vim.opt.lazyredraw = true
 
+vim.diagnostic.config({
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN },
+    },
+})
+
 -- set diagnostic icons
 for type, icon in pairs(Utils.icons.diagnostics) do
     local hl = "DiagnosticSign" .. type
