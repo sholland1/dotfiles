@@ -5,10 +5,10 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+require("utils")
 require("options")
 require("keymaps")
 require("autocmds")
-require("utils")
 
 local lazy_opts = {
   change_detection = {
