@@ -11,5 +11,5 @@ fi
 
 cd "$RESULT" || exit
 set -m
-$TERM -e $EDITOR -S Session.vim &
+$TERM -t $RESULT -e $EDITOR -S Session.vim &
 disown
