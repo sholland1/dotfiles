@@ -606,6 +606,15 @@ return {
     end,
   },
 
+  {
+    "stevearc/overseer.nvim",
+    config = function()
+      require("overseer").setup()
+      vim.keymap.set('n', '<F6>', "<cmd>OverseerRun<cr>", { desc = 'Tasks' })
+      vim.keymap.set('n', '<F18>' --[[<S-F6>]], "<cmd>OverseerToggle<cr>", { desc = 'Toggle Tasks' })
+    end
+  },
+
   "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
