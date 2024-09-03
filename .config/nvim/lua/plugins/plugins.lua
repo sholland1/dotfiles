@@ -570,7 +570,16 @@ return {
   {
     "MoaidHathot/dotnet.nvim",
     config = function()
-      require("dotnet").setup({})
+      local dotnet = require("dotnet")
+      dotnet.setup({})
+
+      local opts = dotnet.opts
+      local ui = require("dotnet.ui.ui")
+      vim.api.nvim_create_user_command("DotnetNewProject", function () ui.open_project_creation_window(opts) end, {})
+      vim.api.nvim_create_user_command("DotnetAddNugetPackage", function () ui.open_add_package_window(opts) end, {})
+      vim.api.nvim_create_user_command("DotnetRemoveNugetPackage", function () ui.open_remove_package_window(opts) end, {})
+      vim.api.nvim_create_user_command("DotnetAddReference", function () ui.open_add_project_reference_window(opts) end, {})
+      vim.api.nvim_create_user_command("DotnetRemoveReference",  function () ui.open_remove_project_reference_window(opts) end, {})
     end
   },
 
