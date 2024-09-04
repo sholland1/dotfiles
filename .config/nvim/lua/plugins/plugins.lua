@@ -264,7 +264,7 @@ return {
 
           local builtin = require 'telescope.builtin'
           map('<F12>', Utils.telescope_wrapper(builtin.lsp_definitions), 'Go to Definition')
-          map('<F24>' --[[equivalent to <S-F12>]], Utils.telescope_wrapper(builtin.lsp_references), 'Go to References')
+          map(Utils.keys.SF12, Utils.telescope_wrapper(builtin.lsp_references), 'Go to References')
           map('gI', Utils.telescope_wrapper(builtin.lsp_implementations), '[G]o to [I]mplementation')
           map('<leader>D', Utils.telescope_wrapper(builtin.lsp_type_definitions), 'Type [D]efinition')
           map('<leader>fs', Utils.telescope_wrapper(builtin.lsp_document_symbols), '[F]ile [S]ymbols')
@@ -611,7 +611,7 @@ return {
     config = function()
       require("overseer").setup()
       vim.keymap.set('n', '<F6>', "<cmd>OverseerRun<cr>", { desc = 'Tasks' })
-      vim.keymap.set('n', '<F18>' --[[<S-F6>]], "<cmd>OverseerToggle<cr>", { desc = 'Toggle Tasks' })
+      vim.keymap.set('n', Utils.keys.SF6, "<cmd>OverseerToggle<cr>", { desc = 'Toggle Tasks' })
     end
   },
 

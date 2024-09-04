@@ -1,3 +1,14 @@
+local function fkey_map()
+  local key_map = {}
+  local shift_prefix = vim.fn.has('win32') == 1 and '<S-F' or '<F'
+  local index_offset = vim.fn.has('win32') == 1 and 0 or 12
+
+  for i = 1, 12 do
+    key_map['SF' .. i] = shift_prefix .. (index_offset + i) .. '>'
+  end
+  return key_map
+end
+
 Utils = {
   -- icons used by other plugins
   -- stylua: ignore
@@ -119,6 +130,7 @@ Utils = {
       "Trait",
     },
   },
+  keys = fkey_map(),
 }
 
 local is_inside_work_tree = {} --cacheing the results of "git rev-parse"
