@@ -109,7 +109,7 @@ return {
               local lnum = entry.lnum or 1
               local lcol = entry.col or 1
               if filename then
-                  vim.cmd(string.format("edit %s", filename))
+                  vim.cmd("edit " .. filename)
                   vim.cmd(string.format("normal! %dG%d|", lnum, lcol))
               end
           end
@@ -223,6 +223,7 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
 
+      vim.keymap.set('n', '<leader>ts', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter' })
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
@@ -378,6 +379,7 @@ return {
       --
       --  You can press `g?` for help in this menu
       require('mason').setup()
+      vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -525,6 +527,10 @@ return {
         local left_pane = vim.fn.expand('%:p:h')
         -- TODO: open vifm on the current file on the left
         -- local left_pane = vim.fn.expand('%:p')
+        if vim.fn.has('win32') == 1 then
+          vim.cmd('Vifm ' .. left_pane)
+          return
+        end
 
         -- if in a git repo, open the repo root
         -- otherwise, open the home directory

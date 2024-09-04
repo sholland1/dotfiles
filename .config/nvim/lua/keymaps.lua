@@ -53,5 +53,3 @@ vim.keymap.set({'n','v'}, '<leader>c', 'gc', { remap = true })
 vim.keymap.set('n', '<leader>ku', 'gcgc', { remap = true })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
-vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
-vim.keymap.set('n', '<leader>ts', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter' })
