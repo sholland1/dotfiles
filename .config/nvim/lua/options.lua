@@ -21,6 +21,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.hlsearch = true
 vim.opt.swapfile = false
 vim.opt.lazyredraw = true
+vim.opt.shortmess = vim.opt.shortmess + 'I'
 
 vim.diagnostic.config({
     virtual_text = {
