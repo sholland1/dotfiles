@@ -80,7 +80,7 @@ fi
 set -a; source ~/.env; set +a
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/bin/cmd_gpt.plugin.zsh
+source ~/bin/cmd-assistant.plugin.zsh
 source ~/bin/frepl.plugin.zsh
 
 unalias -a
