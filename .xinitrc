@@ -19,6 +19,11 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 export GPG_AGENT_INFO
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+fcitx -dr &
+
 xargs redshift -t 6500:3000 -l <~/.cache/.location &
 setxkbmap -option caps:swapescape &
 ~/.fehbg &
