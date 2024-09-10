@@ -649,4 +649,5 @@ return {
   "tridactyl/vim-tridactyl",
   "kyoh86/vim-jsonl",
   "baskerville/vim-sxhkdrc",
+  "h-hg/fcitx.nvim",
 }
