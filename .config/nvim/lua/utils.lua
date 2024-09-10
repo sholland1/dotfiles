@@ -150,6 +150,22 @@ function Utils.telescope_wrapper(telescope_command, opts)
   end
 end
 
+-- Function to toggle the checkbox on the current line
+function Utils.toggle_checkbox()
+  local current_line = vim.fn.line '.'
+  local line_content = vim.fn.getline(current_line)
+
+  -- Toggle the checkbox indicator by adding or removing "x"
+  local updated_line = line_content:gsub('%[.-%]', function(match)
+    return match == '[x]' and '[ ]' or '[x]'
+  end)
+
+  -- Update the line with the modified content
+  vim.fn.setline(current_line, updated_line)
+  -- Write the changes to the file
+  vim.cmd 'write'
+end
+
 -- Function to remove trailing whitespace
 function Utils.trim_whitespace()
   local save = vim.fn.winsaveview()
