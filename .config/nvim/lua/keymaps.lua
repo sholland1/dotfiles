@@ -1,21 +1,5 @@
--- Define a function to toggle the checkbox on the current line
-local function toggleCheckbox()
-  local current_line = vim.fn.line '.'
-  local line_content = vim.fn.getline(current_line)
-
-  -- Toggle the checkbox indicator by adding or removing "x"
-  local updated_line = line_content:gsub('%[.-%]', function(match)
-    return match == '[x]' and '[ ]' or '[x]'
-  end)
-
-  -- Update the line with the modified content
-  vim.fn.setline(current_line, updated_line)
-  -- Write the changes to the file
-  vim.cmd 'write'
-end
-
 vim.keymap.set('n', '<leader>d', '<cmd>bp|bd #<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>x', toggleCheckbox, { desc = 'Toggle checkbox', silent = true })
+vim.keymap.set('n', '<leader>x', Utils.toggle_checkbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
