@@ -150,3 +150,10 @@ function Utils.telescope_wrapper(telescope_command, opts)
   end
 end
 
+-- Function to remove trailing whitespace
+function Utils.trim_whitespace()
+  local save = vim.fn.winsaveview()
+  vim.cmd[[%s/\s\+$//e]]
+  vim.fn.winrestview(save)
+end
+
