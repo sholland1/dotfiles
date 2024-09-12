@@ -169,7 +169,7 @@ return {
           }
         elseif Utils.is_inside_work_tree() then
           extra_opts = {
-            find_command = { 'rg', '--files', '--sort=path', '--hidden' },
+            find_command = { "git", "ls-files", "--cached", "--others", "--exclude-standard" },
           }
         end
         for k, v in pairs(extra_opts) do
