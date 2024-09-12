@@ -17,9 +17,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     local file_path = vim.fn.expand("%:p")
     local dir_name = vim.fn.fnamemodify(file_path, ":p:h:t")
+    local parent_dir = vim.fn.fnamemodify(file_path, ":p:h:h:t")
 
-    -- only source if not a plugin file
-    if dir_name ~= "plugins" then
+    -- only source if not a plugin file and in nvim folder
+    if dir_name ~= "plugins" and parent_dir == "nvim" then
       vim.cmd('luafile %')
     end
   end
