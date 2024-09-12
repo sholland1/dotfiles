@@ -137,6 +137,9 @@ return {
               ["<M-Right>"] = actions.preview_scrolling_right,
               ["<esc>"] = actions.close,
 
+              ["<C-a>"] = actions.select_all,
+              ["<C-z>"] = actions.drop_all,
+
               ["<CR>"] = multiopen,
             },
             n = {
