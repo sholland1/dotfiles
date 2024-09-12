@@ -531,23 +531,19 @@ return {
     "vifm/vifm.vim",
     config = function()
       local function vifm_command()
-        -- open vifm on the current file on the left
-        local left_pane = vim.fn.expand('%:p:h')
-        -- TODO: open vifm on the current file on the left
-        -- local left_pane = vim.fn.expand('%:p')
         if vim.fn.has('win32') == 1 then
-          vim.cmd('Vifm ' .. left_pane)
+          vim.cmd('Vifm')
           return
         end
 
+        -- open current file on the left
+        local left_pane = vim.fn.expand('%:p:h')
+
         -- if in a git repo, open the repo root
         -- otherwise, open the home directory
-        local right_pane
-        if Utils.is_inside_work_tree() then
-          right_pane = vim.fn.system('git rev-parse --show-toplevel')
-        else
-          right_pane = vim.fn.expand('$HOME')
-        end
+        local right_pane = Utils.is_inside_work_tree()
+          and vim.fn.system('git rev-parse --show-toplevel')
+          or vim.fn.expand('$HOME')
 
         vim.cmd('Vifm ' .. left_pane .. ' ' .. right_pane)
       end
