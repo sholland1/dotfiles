@@ -18,6 +18,7 @@ vim.opt.hlsearch = true
 vim.opt.swapfile = false
 vim.opt.lazyredraw = true
 vim.opt.shortmess = vim.opt.shortmess + 'I'
+vim.opt.updatetime = 1000
 
 vim.diagnostic.config({
     virtual_text = {
