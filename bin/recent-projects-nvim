@@ -1,6 +1,8 @@
 #!/bin/bash
 
-RESULT=$(find ~/Projects/*/Session.vim |
+RESULT=$(find ~/Projects/*/Session.vim -type f -printf '%T@ %p\n' |
+  sort -rn |
+  cut -d' ' -f2- |
   xargs dirname |
   fzf --preview 'eza --color=always --icons=always --group-directories-first --tree --git-ignore {}' \
       --preview-window='right,50%,<40(down,80%)')
