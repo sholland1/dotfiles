@@ -92,28 +92,6 @@ return {
     },
     config = function()
       local actions = require("telescope.actions")
-      local action_state = require("telescope.actions.state")
-
-      local function multiopen(prompt_bufnr)
-          local picker = action_state.get_current_picker(prompt_bufnr)
-          local multi = picker:get_multi_selection()
-
-          if vim.tbl_isempty(multi) then
-              actions.select_default(prompt_bufnr)
-              return
-          end
-
-          actions.close(prompt_bufnr)
-          for _, entry in pairs(multi) do
-              local filename = entry.filename or entry.value
-              local lnum = entry.lnum or 1
-              local lcol = entry.col or 1
-              if filename then
-                  vim.cmd("edit " .. filename)
-                  vim.cmd(string.format("normal! %dG%d|", lnum, lcol))
-              end
-          end
-      end
 
       require('telescope').setup {
         defaults = {
@@ -139,11 +117,6 @@ return {
 
               ["<C-a>"] = actions.select_all,
               ["<C-z>"] = actions.drop_all,
-
-              ["<CR>"] = multiopen,
-            },
-            n = {
-              ["<CR>"] = multiopen,
             },
           },
         },
@@ -178,30 +151,60 @@ return {
         builtin.find_files(opts)
       end
 
+      local action_set = require("telescope.actions.set")
+      local action_state = require("telescope.actions.state")
+
+      local function file_multi_open(prompt_bufnr, _)
+        actions.select_default:replace(function ()
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local selections = picker:get_multi_selection()
+
+          if vim.tbl_isempty(selections) then
+              action_set.select(prompt_bufnr, "default")
+              return
+          end
+
+          actions.close(prompt_bufnr)
+          for _, entry in pairs(selections) do
+              local filename = entry.filename or entry.value
+              local lnum = entry.lnum or 1
+              local lcol = entry.col or 1
+              if filename then
+                  vim.cmd("edit " .. filename)
+                  vim.cmd(string.format("normal! %dG%d|", lnum, lcol))
+              end
+          end
+        end)
+        return true
+      end
+
+      vim.keymap.set('n', '\\\\', builtin.resume, { desc = 'Resume Previous Search' })
+
+      vim.keymap.set('n', '\\f', Utils.telescope_wrapper(my_find_files, { attach_mappings = file_multi_open }), { desc = 'Search Files' })
+      vim.keymap.set('n', '\\r', Utils.telescope_wrapper(builtin.oldfiles, { attach_mappings = file_multi_open }), { desc = 'Search Recent Files' })
+      vim.keymap.set('n', '\\c',
+        Utils.telescope_wrapper(builtin.find_files, {
+          cwd = vim.fn.stdpath 'config',
+          attach_mappings = file_multi_open,
+        }), { desc = 'Search Neovim Config Files' })
+
+      vim.keymap.set('n', '\\b', Utils.telescope_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
+      vim.keymap.set('n', '\\d', Utils.telescope_wrapper(builtin.diagnostics), { desc = 'Search Diagnostics' })
       vim.keymap.set('n', '\\h', Utils.telescope_wrapper(builtin.help_tags), { desc = 'Search Help' })
       vim.keymap.set('n', '\\k', Utils.telescope_wrapper(builtin.keymaps), { desc = 'Search Keymaps' })
-      vim.keymap.set('n', '\\f', Utils.telescope_wrapper(my_find_files), { desc = 'Search Files' })
-      vim.keymap.set('n', '\\t', Utils.telescope_wrapper(builtin.builtin), { desc = 'Search Telescope Builtins' })
-      vim.keymap.set('n', '\\w', Utils.telescope_wrapper(builtin.grep_string), { desc = 'Search Current Word' })
-      vim.keymap.set('n', '\\g', Utils.telescope_wrapper(builtin.live_grep), { desc = 'Grep Current Directory' })
-      vim.keymap.set('n', '\\d', Utils.telescope_wrapper(builtin.diagnostics), { desc = 'Search Diagnostics' })
-      vim.keymap.set('n', '\\\\', Utils.telescope_wrapper(builtin.resume), { desc = 'Resume Previous Search' })
-      vim.keymap.set('n', '\\r', Utils.telescope_wrapper(builtin.oldfiles), { desc = 'Search Recent Files' })
-      vim.keymap.set('n', '\\b', Utils.telescope_wrapper(builtin.buffers), { desc = 'Search Open Buffers' })
       vim.keymap.set('n', '\\C', Utils.telescope_wrapper(builtin.commands), { desc = 'Search Neovim Commands' })
+      vim.keymap.set('n', '\\t', Utils.telescope_wrapper(builtin.builtin), { desc = 'Search Telescope Builtins' })
+      vim.keymap.set('n', '\\w', Utils.telescope_wrapper(builtin.grep_string), { desc = 'Grep For Current Word' })
+      vim.keymap.set('n', '\\g', Utils.telescope_wrapper(builtin.live_grep), { desc = 'Grep Current Directory' })
 
       vim.keymap.set('n', '\\/',
         Utils.telescope_wrapper(builtin.current_buffer_fuzzy_find, { previewer = false }),
-        { desc = 'Search Current Buffer' })
+        { desc = 'Grep Current Buffer' })
 
       vim.keymap.set('n', '\\o',
         Utils.telescope_wrapper(builtin.live_grep,
           { grep_open_files = true, prompt_title = 'Grep Open Files' }),
         { desc = 'Grep Open Files' })
-
-      vim.keymap.set('n', '\\c',
-        Utils.telescope_wrapper(builtin.find_files, { cwd = vim.fn.stdpath 'config' }),
-        { desc = 'Search Neovim Config Files' })
     end,
   },
 
