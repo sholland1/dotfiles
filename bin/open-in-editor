@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -a; source ~/.env; set +a
+$EDITOR -S Session.vim

@@ -641,7 +641,7 @@ return {
 
     config = function()
       require("avante").setup({
-        provider = "openai",
+        provider = "claude",
       })
     end,
   },
