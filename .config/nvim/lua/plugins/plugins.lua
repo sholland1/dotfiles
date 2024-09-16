@@ -512,25 +512,6 @@ return {
   },
 
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    event = "InsertEnter",
-    opts = {
-      suggestion = {
-        auto_trigger = true,
-      },
-    },
-    config = function(_, opts)
-      require('copilot').setup(opts)
-
-      local copilot = require('copilot.suggestion')
-      vim.keymap.set('i', '<M-l>', copilot.accept_word, { desc = 'Accept word' })
-      vim.keymap.set('i', '<M-;>', copilot.accept, { desc = 'Accept suggestion' })
-    end,
-  },
-
-  {
     "vifm/vifm.vim",
     config = function()
       local function vifm_command()
@@ -566,7 +547,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = true,
   },
-  -- { "echasnovski/mini.statusline", config = true, },
+
   { "lewis6991/gitsigns.nvim", opts = {} },
 
   {
