@@ -562,22 +562,6 @@ return {
   },
 
   {
-    "MoaidHathot/dotnet.nvim",
-    config = function()
-      local dotnet = require("dotnet")
-      dotnet.setup({})
-
-      local opts = dotnet.opts
-      local ui = require("dotnet.ui.ui")
-      vim.api.nvim_create_user_command("DotnetNewProject", function () ui.open_project_creation_window(opts) end, {})
-      vim.api.nvim_create_user_command("DotnetAddNugetPackage", function () ui.open_add_package_window(opts) end, {})
-      vim.api.nvim_create_user_command("DotnetRemoveNugetPackage", function () ui.open_remove_package_window(opts) end, {})
-      vim.api.nvim_create_user_command("DotnetAddReference", function () ui.open_add_project_reference_window(opts) end, {})
-      vim.api.nvim_create_user_command("DotnetRemoveReference",  function () ui.open_remove_project_reference_window(opts) end, {})
-    end
-  },
-
-  {
     "aznhe21/actions-preview.nvim",
     config = function()
       local ap = require("actions-preview")
@@ -628,6 +612,23 @@ return {
         provider = "claude",
       })
     end,
+  },
+
+  {
+    "sholland1/dotnet-plugin",
+    dir = [[C:\Users\sholland\Source\Repos\dotnet-plugin]],
+    config = function()
+      local dotnet = require("dotnet-plugin")
+      require('telescope').load_extension("dotnet-plugin")
+      vim.api.nvim_create_user_command(
+        "DotnetCommandList", Utils.telescope_wrapper(dotnet.plugin_command_list), {})
+
+      vim.keymap.set('n', '<leader>.', '<cmd>DotnetCommandList<cr>', { desc = '.NET Command List' })
+    end,
+
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
   },
 
   "lambdalisue/suda.vim",
