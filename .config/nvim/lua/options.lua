@@ -21,6 +21,15 @@ vim.opt.shortmess = vim.opt.shortmess + 'I'
 vim.opt.updatetime = 1000
 vim.opt.wildignorecase = true
 
+if vim.fn.has('win32') == 1 then
+    vim.opt.shell = 'powershell'
+    vim.opt.shellcmdflag = [[-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';]]
+    vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    vim.opt.shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+    vim.opt.shellquote = ''
+    vim.opt.shellxquote = ''
+end
+
 vim.diagnostic.config({
     virtual_text = {
         severity = { min = vim.diagnostic.severity.WARN },
