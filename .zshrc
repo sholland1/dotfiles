@@ -96,6 +96,8 @@ GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
 alias config='/usr/bin/git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
 alias lazyconfig='/usr/bin/lazygit --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
 alias fconfiglog="$GIT_ENV fgitlog"
+alias git-spp='/usr/bin/git stash && /usr/bin/git pull && /usr/bin/git stash pop'
+alias config-spp='config stash && config pull && config stash pop'
 
 alias notes='vproj ~/OneDrive/Documents/Notes notes'
 alias dotfiles='vdotfiles ~ dotfiles'
