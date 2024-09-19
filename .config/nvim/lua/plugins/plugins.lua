@@ -11,10 +11,10 @@ return {
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
-    config = function()
-      vim.keymap.set('n', '\\T', '<cmd>TodoTelescope theme=ivy<cr>', { desc = 'Search TODOs' })
-      require('todo-comments').setup()
-    end,
+    opts = {},
+    keys = {
+      {'\\T', '<cmd>TodoTelescope theme=ivy<cr>', { desc = 'Search TODOs' }},
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -588,11 +588,11 @@ return {
 
   {
     "stevearc/overseer.nvim",
-    config = function()
-      require("overseer").setup()
-      vim.keymap.set('n', '<F6>', "<cmd>OverseerRun<cr>", { desc = 'Tasks' })
-      vim.keymap.set('n', Utils.keys.SF6, "<cmd>OverseerToggle<cr>", { desc = 'Toggle Tasks' })
-    end
+    keys = {
+      {'<F6>', "<cmd>OverseerRun<cr>", { desc = 'Tasks' }},
+      {Utils.keys.SF6, "<cmd>OverseerToggle<cr>", { desc = 'Toggle Tasks' }},
+    },
+    opts = {},
   },
 
   {
@@ -609,23 +609,25 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
 
-    config = function()
-      require("avante").setup({
-        provider = "claude",
-      })
-    end,
+    opts = {
+      provider = "claude",
+    },
   },
 
   {
     "sholland1/dotnet-plugin",
     dir = [[C:\Users\sholland\Source\Repos\dotnet-plugin]],
-    config = function()
-      local dotnet = require("dotnet-plugin")
-      require('telescope').load_extension("dotnet-plugin")
-      vim.api.nvim_create_user_command(
-        "DotnetCommandList", Utils.telescope_wrapper(dotnet.plugin_command_list), {})
+    dev = true,
 
-      vim.keymap.set('n', '<leader>.', '<cmd>DotnetCommandList<cr>', { desc = '.NET Command List' })
+    keys = {
+      {'<leader>.', '<cmd>DotnetCommandList<cr>', { desc = '.NET Command List' }}
+    },
+
+    config = function()
+      require('telescope').load_extension("dotnet-plugin")
+
+      vim.api.nvim_create_user_command(
+        "DotnetCommandList", Utils.telescope_wrapper(require("dotnet-plugin").plugin_command_list), {})
     end,
 
     dependencies = {
