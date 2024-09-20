@@ -1,7 +1,7 @@
 #!/bin/bash
 pushd "$1" >/dev/null || exit
 if [ "$2" ]; then
-	$EDITOR -c "set title set titlestring=$2" -S Session.vim
+	$EDITOR -c "set title titlestring=$2" -S Session.vim
 else
 	$EDITOR -S Session.vim
 fi
