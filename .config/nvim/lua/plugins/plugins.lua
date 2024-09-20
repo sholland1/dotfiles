@@ -617,22 +617,13 @@ return {
 
   {
     "sholland1/dotnet-plugin",
-    dir = [[C:\Users\sholland\Source\Repos\dotnet-plugin]],
-    dev = true,
+    dependencies = "nvim-telescope/telescope.nvim",
 
-    keys = {
-      {'<leader>.', '<cmd>DotnetCommandList<cr>', { desc = '.NET Command List' }}
+    opts = {
+      shell = vim.fn.has('win32') == 1 and "powershell" or "sh",
     },
-
-    config = function()
-      require('telescope').load_extension("dotnet-plugin")
-
-      vim.api.nvim_create_user_command(
-        "DotnetCommandList", Utils.telescope_wrapper(require("dotnet-plugin").plugin_command_list), {})
-    end,
-
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
+    keys = {
+      {'<leader>.', '<cmd>Telescope dotnet-plugin theme=ivy<cr>', { desc = '.NET Command List' }},
     },
   },
 
