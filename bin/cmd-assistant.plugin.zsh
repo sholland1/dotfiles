@@ -5,7 +5,7 @@
 # language, and sends the request to an LLM to get a changed
 # command
 
-function do_completion() {
+function do_completion_openai() {
     local messages=$1
     local result=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
         -H "Authorization: Bearer ${OPENAI_API_KEY:?}" \
@@ -17,6 +17,21 @@ function do_completion() {
             "messages": '"$messages"'
         }')
     echo "$result" | jq -r '.choices[0].message.content'
+}
+
+function do_completion_claude() {
+    local messages=$1
+    local result=$(curl -s -X POST https://api.anthropic.com/v1/messages \
+        -H "x-api-key: ${ANTHROPIC_API_KEY:?}" \
+        -H "anthropic-version: 2023-06-01" \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "claude-3-sonnet-20240229",
+            "max_tokens": 200,
+            "system": '"$(echo "$messages" | jq ".[0].content")"',
+            "messages": '"$(echo "$messages" | jq ".[1:]")"'
+        }')
+    echo "$result" | jq -r '.content[0].text'
 }
 
 function create_completion() {
@@ -33,7 +48,7 @@ function create_completion() {
         jq -s . $system_messages_file |
         jq --arg content "$content" '. + [{"role": "user", "content": $content}]')
 
-    local completion=$(do_completion "$messages")
+    local completion=$(do_completion_claude "$messages")
 
     rm -f "$prompt_file"
 
