@@ -28,4 +28,7 @@ nvim --headless '+Lazy! sync' +MasonToolsUpdateSync +qa
 # Updating VS Code extensions
 code --update-extensions
 
+# Update database for plocate
+sudo updatedb
+
 read -n1 -sp 'Press any key to exit...'
