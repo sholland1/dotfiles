@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>d', '<cmd>bp|bd #<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>x', Utils.toggle_checkbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
@@ -25,7 +25,7 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>', { desc = 'Ne
 vim.keymap.set('n', '<C-i>', '<C-i>', { remap = false })
 
 vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns preview_hunk_inline<cr>', { remap = false })
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-m>', '<cmd>messages<cr>', { remap = false })
+vim.keymap.set('n', '<C-m>', '<cmd>messages<cr>', { desc = 'Display Messages', remap = false })
 vim.keymap.set('i', '<C-s>', '<cmd>wq<cr>', { remap = false })
 
 vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z', { desc = 'Move line down' })
@@ -39,6 +39,9 @@ vim.keymap.set('c', '<M-k>', '<C-p>', { desc = 'Previous completion' })
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, { desc = 'Go to previous [E]rror' })
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next, { desc = 'Go to next [E]rror' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]rror window' })
+
+vim.keymap.set('n', '[g', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'Go to previous [G]it hunk' })
+vim.keymap.set('n', ']g', '<cmd>Gitsigns next_hunk<cr>', { desc = 'Go to next [G]it hunk' })
 
 vim.keymap.set({'n','v'}, '<leader>c', 'gc', { remap = true })
 vim.keymap.set('n', '<leader>ku', 'gcgc', { remap = true })
