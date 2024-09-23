@@ -21,6 +21,13 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-l>', '<cmd>bnext<cr>', { desc = 'Next buff
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageUp>', '<cmd>bprev<cr>', { desc = 'Previous buffer' })
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 
+-- fix <C-i>
+vim.keymap.set('n', '<C-i>', '<C-i>', { remap = false })
+
+vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns preview_hunk_inline<cr>', { remap = false })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-m>', '<cmd>messages<cr>', { remap = false })
+vim.keymap.set('i', '<C-s>', '<cmd>wq<cr>', { remap = false })
+
 vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z', { desc = 'Move line up' })
 vim.keymap.set('v', '<M-j>', ":m'>+<cr>`<my`>mzgv`yo`z", { desc = 'Move line down' })
