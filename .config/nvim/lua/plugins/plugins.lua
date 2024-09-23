@@ -633,6 +633,15 @@ return {
     },
   },
 
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require('colorizer').setup(
+        { 'css', 'html' },
+        { names = false })
+    end,
+  },
+
   "lambdalisue/suda.vim",
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
