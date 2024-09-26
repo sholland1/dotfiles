@@ -7,7 +7,7 @@ vim.keymap.set('n', '-', '<cmd>split<cr>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 
 local term_cmd = vim.fn.has('win32') == 1 and 'wt -d .' or '$TERM &'
-vim.keymap.set({ 'i', 'n', 'v' }, '<C-Enter>', '<cmd>silent !' .. term_cmd ..'<cr>', { desc = 'Open terminal in new window' })
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-cr>', '<cmd>silent !' .. term_cmd ..'<cr>', { desc = 'Open terminal in new window' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search' })
 
@@ -25,7 +25,7 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>', { desc = 'Ne
 vim.keymap.set('n', '<C-i>', '<C-i>', { remap = false })
 
 vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns preview_hunk_inline<cr>', { remap = false })
-vim.keymap.set('n', '<C-m>', '<cmd>messages<cr>', { desc = 'Display Messages', remap = false })
+vim.keymap.set('n', '<M-m>', '<cmd>messages<cr>', { desc = 'Display Messages', remap = false })
 vim.keymap.set('i', '<C-s>', '<cmd>wq<cr>', { remap = false })
 
 vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z', { desc = 'Move line down' })
