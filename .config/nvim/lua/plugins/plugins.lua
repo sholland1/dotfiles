@@ -216,7 +216,8 @@ return {
         'html', 'markdown', 'toml', 'xml',
         'vim', 'vimdoc',
         'bash',
-        'c', 'c_sharp', 'lua', 'python', 'rust'
+        'c', 'c_sharp', 'lua', 'python', 'rust',
+        'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
