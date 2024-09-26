@@ -213,7 +213,7 @@ return {
     build = ':TSUpdate',
     opts = {
       ensure_installed = {
-        'html', 'markdown', 'toml', 'xml',
+        'html', 'css', 'markdown', 'toml', 'xml',
         'vim', 'vimdoc',
         'bash',
         'c', 'c_sharp', 'lua', 'python', 'rust',
