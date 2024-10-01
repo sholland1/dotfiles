@@ -24,6 +24,7 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-PageDown>', '<cmd>bnext<cr>', { desc = 'Ne
 -- fix <C-i>
 vim.keymap.set('n', '<C-i>', '<C-i>', { remap = false })
 
+vim.keymap.set('n', '<C-j>', 'mzyyp`zj', { desc = 'Duplicate line' })
 vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns preview_hunk_inline<cr>', { remap = false })
 vim.keymap.set('n', '<M-m>', '<cmd>messages<cr>', { desc = 'Display Messages', remap = false })
 vim.keymap.set('i', '<C-s>', '<cmd>wq<cr>', { remap = false })
