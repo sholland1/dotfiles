@@ -1,10 +1,45 @@
 #!/bin/bash
+
+TEMP_SIGNAL_FILE="/tmp/fkill_signal"
+
 if [ "$UID" != "0" ]; then
-    pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    ps_args="-u $UID"
 else
-    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    ps_args=""
 fi
 
-if [ "x$pid" != "x" ]; then
-    echo "$pid" | xargs kill -"${1:-9}"
+header="USER         PID %CPU %MEM    VSZ   RSS TTY      STAT  STARTED     TIME COMMAND"
+ps_command="ps $ps_args -eo user,pid,pcpu,pmem,vsz,rss,tname,start,stat,time,args --sort=-pid"
+
+selection=$(${ps_command} | sed 1d | fzf -m \
+    --header="$header" \
+    --preview 'echo {}' \
+    --preview-window=up:3:wrap \
+    --bind "ctrl-s:execute(echo {} > /dev/tty; \
+        kill -l | tr ' ' '\n' | nl | fzf --prompt 'Select Signal> ' | awk '{print \$1 \" \" \$2}' \
+        > $TEMP_SIGNAL_FILE)")
+
+signal_id=9
+signal_name="SIGKILL"
+
+if [ -f "$TEMP_SIGNAL_FILE" ]; then
+    read -r signal_id signal_name < "$TEMP_SIGNAL_FILE"
+    rm "$TEMP_SIGNAL_FILE"
+fi
+
+if [ -z "$selection" ]; then
+    echo "No process selected. Exiting."
+    exit 1
+fi
+
+pids=$(echo "$selection" | awk '{print $2}')
+
+if [ -n "$pids" ]; then
+    echo "Sending signal $signal_name ($signal_id) to processes:"
+    echo "$selection" | grep -v "^[A-Z]"
+    echo "$pids" | xargs kill -"$signal_id"
+    echo "Done."
+else
+    echo "No valid PIDs found. Exiting."
+    exit 1
 fi
