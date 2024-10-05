@@ -62,10 +62,8 @@ music() {
 }
 
 lastUpdate() {
-  grep -F "[PACMAN] starting full system" /var/log/pacman.log |
-    tail -n 1 |
-    cut -d "[" -f2 |
-    cut -d "]" -f1 |
+  grep -F '[PACMAN] starting full system' /var/log/pacman.log |
+    awk -F'[][]' 'END{print $2}' |
     xargs date +'🔄 %m/%d/%Y' -d
 }
 
