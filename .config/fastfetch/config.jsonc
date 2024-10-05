@@ -1,30 +1,128 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "display": {
+    "bar": {
+      "charElapsed": "=",
+      "charTotal": "-",
+      "width": 13
+    },
+    "key": {
+      "type": "icon",
+    },
+    "percent": {
+      "type": 2
+    }
+  },
   "modules": [
-    "title",
+    {
+      "type": "title",
+      "color": {
+        "user": "green",
+        "at": "red",
+        "host": "blue"
+      }
+    },
     "separator",
-    "os",
-    "host",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
+    {
+      "type": "os",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "kernel",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "uptime",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "packages",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "localip",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "locale",
+      "keyColor": "cyan"
+    },
+    "break",
+
+    {
+      "type": "host",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "cpu",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "gpu",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "memory",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "swap",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "keyColor": "magenta",
+    },
     {
       "type": "display",
       "compactType": "original-with-refresh-rate",
+      "keyColor": "magenta"
     },
-    "de",
-    "wm",
-    "terminal",
-    "cpu",
-    "gpu",
-    "memory",
-    "swap",
-    "disk",
-    "localip",
-    "battery",
-    "poweradapter",
+    {
+      "type": "battery",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "poweradapter",
+      "keyColor": "magenta"
+    },
     "break",
-    "colors"
+
+    {
+      "type": "wm",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "de",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "lm",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "shell",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "terminal",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "editor",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "command",
+      "text": "pacman -Q vifm",
+      "keyIcon": "󰉓",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "command",
+      "text": "$BROWSER --version",
+      "keyIcon": "󰇧",
+      "keyColor": "yellow",
+    },
   ]
 }
