@@ -21,20 +21,21 @@ getdate() {
 }
 
 volume() {
-  if [ "$(pulsemixer --get-mute)" = 1 ]; then
+  AMIXER_OUTPUT=$(amixer get Master)
+
+  if [[ "$AMIXER_OUTPUT" == *"[off]"* ]]; then
     echo -n '🔇[M]'
-    exit
+    return
   fi
 
-  VOL=$(pulsemixer --get-volume | cut -d' ' -f1)
-  let VOL_PERCENT=$VOL*100/150
+  VOL=$(echo "$AMIXER_OUTPUT" | grep -oE '[0-9]+%' | sed 's/%//' | tail -1)
   ICON=🔈
-  if [ "$VOL_PERCENT" -gt 65 ]; then
+  if [ "$VOL" -gt 75 ]; then
     ICON=🔊
-  elif [ "$VOL_PERCENT" -gt 25 ]; then
+  elif [ "$VOL" -gt 50 ]; then
     ICON=🔉
   fi
-  echo -n "$ICON[$VOL_PERCENT%]"
+  echo -n "$ICON[$VOL%]"
 }
 
 mem() {
