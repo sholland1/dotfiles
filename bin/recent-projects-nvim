@@ -8,7 +8,7 @@ RESULT=$(find ~/Projects/*/Session.vim -type f -printf '%T@ %p\n' |
       --preview-window='right,50%,<40(down,80%)')
 
 if [ -z "$RESULT" ]; then
-    exit
+  exit
 fi
 
 cd "$RESULT" || exit

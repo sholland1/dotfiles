@@ -1,11 +1,11 @@
 #!/bin/bash
 RESULT=($(pacman -Slq |
-    fzf --multi --preview 'pacman -Si {}' \
-        --preview-window=:75%))
+  fzf --multi --preview 'pacman -Si {}' \
+    --preview-window=:75%))
 
 if [ $? -eq 0 ]; then
-    sudo pacman -S "${RESULT[@]}"
-    if [ $? -eq 0 ]; then
-        read -n1 -sp 'Press any key to exit...'
-    fi
+  sudo pacman -S "${RESULT[@]}"
+  if [ $? -eq 0 ]; then
+    read -n1 -sp 'Press any key to exit...'
+  fi
 fi
