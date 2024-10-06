@@ -1,4 +1,4 @@
 #!/bin/sh
 systemctl --user stop onedrive.service
-onedrive --synchronize
+onedrive --sync
 systemctl --user start onedrive.service
