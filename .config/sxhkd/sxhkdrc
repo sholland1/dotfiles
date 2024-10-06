@@ -1,17 +1,15 @@
 # Don't forget to use ';\' for multiline commands
 XF86Audio{Raise,Lower}Volume
-        amixer set Master 2%{+,-};\
+        amixer set Master 1{+,-};\
         xsetroot -name "$(status)"
 XF86AudioMute
-        amixer set Master toggle -q;\
+        pulsemixer --toggle-mute;\
         xsetroot -name "$(status)"
 XF86Audio{Next,Prev,Stop,Play}
         mpc {next,prev,stop,toggle};\
         xsetroot -name "$(status)"
 super + XF86AudioStop
         eject_disc
-alt + XF86AudioMute
-        change_audio_output
 
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
