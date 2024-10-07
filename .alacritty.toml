@@ -12,3 +12,8 @@ y = -1
 
 [font.offset]
 y = -2
+
+[keyboard]
+bindings = [
+  { key = "Insert", mods = "Shift", action = "Paste" }
+]
