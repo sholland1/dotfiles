@@ -21,16 +21,19 @@ function do_completion_openai() {
 
 function do_completion_claude() {
     local messages=$1
+    local body=$(echo '{
+        "model": "claude-3-sonnet-20240229",
+        "max_tokens": 200,
+        "system": '"$(echo "$messages" | jq ".[0].content")"',
+        "messages": '"$(echo "$messages" | jq ".[1:]")"'
+    }')
+    echo "$body" > "completion_request.json"
     local result=$(curl -s -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: ${ANTHROPIC_API_KEY:?}" \
         -H "anthropic-version: 2023-06-01" \
         -H "Content-Type: application/json" \
-        -d '{
-            "model": "claude-3-sonnet-20240229",
-            "max_tokens": 200,
-            "system": '"$(echo "$messages" | jq ".[0].content")"',
-            "messages": '"$(echo "$messages" | jq ".[1:]")"'
-        }')
+        -d "$body")
+    echo "$result" | jq -r > "completion_response.json"
     echo "$result" | jq -r '.content[0].text'
 }
 
@@ -42,15 +45,13 @@ function create_completion() {
     echo -n "$text_from_cmd" > "$prompt_file"
     $EDITOR "$prompt_file" || { echo "Editor failed" >&2; return 1; }
 
-    local content=$(<"$prompt_file")
+    local content=$(<"$prompt_file" | sed ':a;N;$!ba;s/\n/\\\\n/g')
 
     local messages=$(
         jq -s . $system_messages_file |
         jq --arg content "$content" '. + [{"role": "user", "content": $content}]')
 
     local completion=$(do_completion_claude "$messages")
-
-    rm -f "$prompt_file"
 
     BUFFER=$completion
     CURSOR=${#BUFFER}
