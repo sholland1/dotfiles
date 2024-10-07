@@ -1,9 +1,16 @@
 #!/bin/bash
 
-RESULT=$(find ~/Projects/*/Session.vim -type f -printf '%T@ %p\n' |
+RESULT=$(find ~/Projects -maxdepth 1 -type d |
+  tail -n +2 |
+  while read -r dir; do
+    date=0
+    if [ -f "$dir/Session.vim" ]; then
+      date=$(stat -c "%Y" "$dir/Session.vim")
+    fi
+    echo "$date $dir"
+  done |
   sort -rn |
   cut -d' ' -f2- |
-  xargs dirname |
   fzf --preview 'eza --color=always --icons=always --group-directories-first --tree --git-ignore {}' \
       --preview-window='right,50%,<40(down,80%)')
 
@@ -13,5 +20,5 @@ fi
 
 cd "$RESULT" || exit
 set -m
-$TERM -T $RESULT -e open-in-editor &
+$TERM -T "$RESULT" -e open-in-editor &
 disown
