@@ -1,7 +1,7 @@
 #!/bin/bash
 
-RESULT=$(find ~/Projects -maxdepth 1 -type d |
-  tail -n +2 |
+cd ~/Projects
+RESULT=$(eza -D1 |
   while read -r dir; do
     date=0
     if [ -f "$dir/Session.vim" ]; then
