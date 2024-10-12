@@ -117,6 +117,8 @@ set statusline="  Hint: %z%= %2* %A %1* %10u:%-7g %2* %15s %1* %20d  "
 
 set confirm-=delete
 
+set invwrap
+
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
@@ -405,7 +407,7 @@ filetype *.n64,*.z64 mupen64plus %f &
 filetype *.blend,*.blend1 blender %f &
 
 " Text files
-fileviewer *.* bat --color=always --theme=ansi --number %c
+fileviewer *.* bat --color=always --theme=ansi --number --wrap=never %c
 
 " Web
 filetype *.html,*.htm firefox
