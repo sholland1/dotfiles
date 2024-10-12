@@ -11,7 +11,7 @@ RESULT=$(eza -D1 |
   done |
   sort -rn |
   cut -d' ' -f2- |
-  fzf --preview 'eza --color=always --icons=always --group-directories-first --tree --git-ignore {}' \
+  fzf --preview 'eza -1 --color=always --icons=always --group-directories-first --git-ignore {}' \
       --preview-window='right,50%,<40(down,80%)')
 
 if [ -z "$RESULT" ]; then
