@@ -15,5 +15,6 @@ y = -2
 
 [keyboard]
 bindings = [
-  { key = "Insert", mods = "Shift", action = "Paste" }
+  { key = "Insert", mods = "Shift", action = "Paste" },
+  { key = "F5", mods = "Control", chars = "\u001B[>15;5~" },
 ]
