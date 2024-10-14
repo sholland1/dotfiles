@@ -27,13 +27,13 @@ function do_completion_claude() {
         "system": '"$(echo "$messages" | jq ".[0].content")"',
         "messages": '"$(echo "$messages" | jq ".[1:]")"'
     }')
-    echo "$body" > "completion_request.json"
+    echo "$body" > "/tmp/completion_request.json"
     local result=$(curl -s -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: ${ANTHROPIC_API_KEY:?}" \
         -H "anthropic-version: 2023-06-01" \
         -H "Content-Type: application/json" \
         -d "$body")
-    echo "$result" | jq -r > "completion_response.json"
+    echo "$result" | jq -r > "/tmp/completion_response.json"
     echo "$result" | jq -r '.content[0].text'
 }
 
