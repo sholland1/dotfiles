@@ -11,6 +11,9 @@ XF86Audio{Next,Prev,Stop,Play}
 super + XF86AudioStop
         eject_disc
 
+{_, @}Control_R
+        sp2txt {start, stop}
+
 super + {shift, alt} + e
         NAME='{e,kao}moji';\
         setsid $TERM -t "fzf: $NAME" -e \
