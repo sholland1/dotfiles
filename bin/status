@@ -68,4 +68,10 @@ lastUpdate() {
     xargs date +'🔄 %m/%d/%Y' -d
 }
 
-echo -n " $(music)$(lastUpdate) :: $(up) :: $(cpu "$1" "$2" "$3" "$4") :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
+record_status() {
+  if [ "$(cat "$HOME/.cache/.recording")" = "1" ]; then
+    echo -n "🔴- Recording :: "
+  fi
+}
+
+echo -n " $(record_status)$(music)$(lastUpdate) :: $(up) :: $(cpu "$1" "$2" "$3" "$4") :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"

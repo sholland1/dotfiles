@@ -1,0 +1,43 @@
+#!/bin/bash
+
+RECORDING_FLAG_FILE="$HOME/.cache/.recording"
+SPEECH_FILE="/tmp/mic_input.wav"
+MODEL_FILE="$HOME/.cache/whisper/ggml-tiny.en.bin"
+
+debug() {
+  # echo "$1"
+  return
+}
+
+if [ "$1" = "stop" ]; then
+  debug "Stopping recording..."
+  echo '0' > "$RECORDING_FLAG_FILE"
+  xsetroot -name "$(status)"
+  pkill -SIGTERM pacat
+  exit 0
+fi
+
+debug "Starting speech-to-text process..."
+
+debug "Display recording status..."
+echo '1' > "$RECORDING_FLAG_FILE"
+xsetroot -name "$(status)"
+
+debug "Starting audio recording..."
+amixer set Capture cap > /dev/null # Unmute
+pacat --record --format=s16le --rate=16000 --file-format=wav > "$SPEECH_FILE"
+amixer set Capture nocap > /dev/null # Mute
+
+debug "Transcribing audio..."
+TRANSCRIPTION=$(
+  whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" | \
+    sed '/^$/d;s/^[[:space:]]*//')
+
+if [ -n "$TRANSCRIPTION" ]; then
+  debug "Outputting text: '$TRANSCRIPTION'"
+  xdotool type "$TRANSCRIPTION"
+  debug "Done."
+else
+  debug "No text to output. The transcription may have failed or produced no results."
+fi
+
