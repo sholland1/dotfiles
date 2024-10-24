@@ -31,4 +31,12 @@ code --update-extensions
 echo 'Updating database for plocate...'
 sudo updatedb
 
-read -n1 -sp 'Press any key to exit...'
+echo -e "\nDo you want to reboot now? [Y/n]"
+read -r response
+
+if [[ "$response" =~ ^[Nn]$ ]]; then
+    echo "Skipping reboot..."
+else
+    echo "Rebooting..."
+    manual-onedrive-sync -n; sudo reboot
+fi
