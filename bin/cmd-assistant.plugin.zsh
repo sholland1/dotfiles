@@ -22,7 +22,7 @@ function do_completion_openai() {
 function do_completion_claude() {
     local messages=$1
     local body=$(echo '{
-        "model": "claude-3-sonnet-20240229",
+        "model": "claude-3-5-sonnet-20241022",
         "max_tokens": 200,
         "system": '"$(echo "$messages" | jq ".[0].content")"',
         "messages": '"$(echo "$messages" | jq ".[1:]")"'
