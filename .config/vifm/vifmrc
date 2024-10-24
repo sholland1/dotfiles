@@ -228,9 +228,9 @@ filextype *.djvu
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
-        \ vifm_play_song %f &
+        "\ vifm_play_song %f &
       " \ {Play using ffplay}
-      " \ ffplay -nodisp -autoexit %c,
+       \ ffplay -nodisp -autoexit %c
       " \ {Play using MPlayer}
       " \ mplayer %f,
 fileviewer *.mp3 mp3info
