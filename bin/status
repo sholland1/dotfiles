@@ -74,4 +74,4 @@ record_status() {
   fi
 }
 
-echo -n " $(record_status)$(music)$(lastUpdate) :: $(up) :: $(cpu "$1" "$2" "$3" "$4") :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
+echo -n " $(record_status)$(lastUpdate) :: $(up) :: $(cpu "$1" "$2" "$3" "$4") :: $(disk) :: $(mem) :: $(volume) :: $(getdate)"
