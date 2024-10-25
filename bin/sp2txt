@@ -1,6 +1,5 @@
 #!/bin/bash
 
-RECORDING_FLAG_FILE="$HOME/.cache/.recording"
 SPEECH_FILE="/tmp/mic_input.wav"
 MODEL_FILE="$HOME/.cache/whisper/ggml-tiny.en.bin"
 
@@ -11,8 +10,7 @@ debug() {
 
 if [ "$1" = "stop" ]; then
   debug "Stopping recording..."
-  echo '0' > "$RECORDING_FLAG_FILE"
-  xsetroot -name "$(status)"
+  set-status --not-recording
   pkill -SIGTERM parec
   exit 0
 fi
@@ -20,8 +18,7 @@ fi
 debug "Starting speech-to-text process..."
 
 debug "Display recording status..."
-echo '1' > "$RECORDING_FLAG_FILE"
-xsetroot -name "$(status)"
+set-status --recording
 
 debug "Starting audio recording..."
 amixer set Capture cap > /dev/null # Unmute

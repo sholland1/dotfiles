@@ -1,0 +1,74 @@
+#!/bin/bash
+
+STATUS_FILE="$HOME/.cache/.status"
+
+# Function to update the status file
+update_status_file() {
+  local key="$1"
+  local value=$(printf '%s\n' "$2" | sed -e 's/[\/&]/\\&/g')
+  sed -i "s/^$key:.*/$key: $value/" "$STATUS_FILE"
+}
+
+# Function to display and update CPU, memory, and disk usage
+cpu_mem_disk() {
+  read -r idle_p total_p <<<$(awk '/^cpu:/{print $4, $5}' "$STATUS_FILE")
+  read -r idle_c total_c <<<$(awk '/^cpu / {print $5,($2+$3+$4+$5)}' /proc/stat)
+  local mem_usage=$(free | awk '/^Mem/{printf "%.2fG/%.1fG", ($3+$5)/1024/1024, $2/1024/1024}')
+  local disk_usage=$(df | awk '/\/$/{printf "%.2fG/%.0fG", $3/1024/1024, $2/1024/1024}')
+
+  update_status_file "cpu" "$idle_p $total_p $idle_c $total_c"
+  update_status_file "mem" "$mem_usage"
+  update_status_file "disk" "$disk_usage"
+}
+
+set_date() {
+  update_status_file "$1" "$(date +%s)"
+}
+
+# Function to update mute status and volume
+sound() {
+  local mixer_output=$(amixer get Master)
+  local current_mute=$(echo "$mixer_output" | grep -o '\[on\]' | head -1)
+  local sound_status
+  if [[ "$current_mute" != "[on]" ]]; then
+    sound_status="M"
+  else
+    sound_status="$(echo "$mixer_output" | grep -o '[0-9]*%' | head -1 | tr -d '%')"
+  fi
+  update_status_file "sound" "$sound_status"
+  xsetroot -name "$(print-status)"
+}
+
+# Function to set recording status
+is_recording() {
+  update_status_file "rec" "$1"
+  xsetroot -name "$(print-status)"
+}
+
+# Check if the status file exists, create it if it doesn't
+if [ ! -f "$STATUS_FILE" ]; then
+  cat > "$STATUS_FILE" << EOL
+cpu: 1 2 3 4
+mem: 0G/0G
+disk: 0G/0G
+update: $(date +%s)
+sound: 0
+rec: 0
+EOL
+fi
+
+# Check if exactly one argument is provided
+if [ $# -ne 1 ]; then
+  echo "Error: Please provide exactly one argument."
+  exit 1
+fi
+
+# Parse command line argument
+case $1 in
+  --cpu-mem-disk) cpu_mem_disk ;;
+  --system-update) set_date "update" ;;
+  --sound) sound ;;
+  --recording) is_recording 1 ;;
+  --not-recording) is_recording 0 ;;
+  *) echo "Unknown option: $1"; exit 1 ;;
+esac
