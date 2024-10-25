@@ -34,16 +34,9 @@ picom &
 sxhkd &
 mpd &
 
-IDLEP = 1
-IDLEC = 1
-TOTALP = 1
-TOTALC = 1
-
 while true; do
-  IDLEP=$IDLEC
-  TOTALP=$TOTALC
-  read -r IDLEC TOTALC <<<$(cpu)
-  xsetroot -name "$(status $IDLEP $TOTALP $IDLEC $TOTALC)"
+  set-status --cpu-mem-disk
+  xsetroot -name "$(print-status)"
   sleep 1s
 done &
 

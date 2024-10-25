@@ -11,6 +11,7 @@ export TMPFILE="$(mktemp)"; \
 
 echo 'Performing system update...'
 yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
+set-status --system-update
 
 echo 'Cleaning caches...'
 paccache -rk1

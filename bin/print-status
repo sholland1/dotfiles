@@ -1,0 +1,51 @@
+#!/bin/bash
+
+STATUS_DATA=$(awk -F': ' '
+    $1 == "cpu" {cpu=$2}
+    $1 == "mem" {mem=$2}
+    $1 == "disk" {disk=$2}
+    $1 == "update" {update=$2}
+    $1 == "sound" {sound=$2}
+    $1 == "rec" {rec=$2}
+    END {print cpu, mem, disk, update, sound, rec}
+' "$HOME/.cache/.status")
+
+read idle_prev total_prev idle_curr total_curr \
+    mem_data disk_data update_time sound_data rec_status <<< "$STATUS_DATA"
+
+# CPU usage
+idle_diff=$((idle_curr - idle_prev))
+total_diff=$((total_curr - total_prev))
+if [ "$total_diff" -eq 0 ]; then
+  cpu_status="⏳0%"
+else
+  perc=$((100 * (total_diff - idle_diff) / total_diff))
+  cpu_status="⏳${perc}%"
+fi
+
+# Last update
+last_update="$(date -d @$update_time +'🔄 %m/%d/%Y')"
+
+# Volume
+if [[ "$sound_data" = "M" ]]; then
+  volume_status='🔇[M]'
+else
+  icon=🔈
+  if [ "$sound_data" -gt 75 ]; then
+    icon=🔊
+  elif [ "$sound_data" -gt 50 ]; then
+    icon=🔉
+  fi
+  volume_status="$icon[$sound_data%]"
+fi
+
+# Record status
+record_status=$([ "$rec_status" = "1" ] && echo "🔴- Recording :: " || echo "")
+
+# Uptime
+up_status=$(uptime -p | sed -r 's/ ([a-z])[a-z]*,?/\1/g;s/^up/⬆/')
+
+# Current date and time
+current_datetime="$(date +'%m/%d/%Y %I:%M %p')"
+
+echo -n " $record_status$last_update :: $up_status :: $cpu_status :: 💽 $disk_data :: 🧮 $mem_data :: $volume_status :: $current_datetime"
