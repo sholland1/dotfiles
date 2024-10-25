@@ -25,9 +25,8 @@ export XMODIFIERS=@im=fcitx
 fcitx -dr &
 
 xargs redshift -t 6500:3000 -l <~/.cache/.location &
-setxkbmap -option caps:swapescape &
-xset s off -dpms &
-xset r rate 250 80 &
+set-keyboard-settings &
+
 ~/.fehbg &
 ([ "$(xset q | awk '/Num /{print $8}')" = "off" ] && xdotool key Num_Lock) &
 picom &
