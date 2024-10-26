@@ -162,6 +162,8 @@ function Utils.toggle_checkbox()
 
   -- Update the line with the modified content
   vim.fn.setline(current_line, updated_line)
+  -- Make the action repeatable
+  vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>ToggleCheckbox', true, true, true))
   -- Write the changes to the file
   vim.cmd 'write'
 end

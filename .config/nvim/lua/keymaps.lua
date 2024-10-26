@@ -1,5 +1,7 @@
+vim.keymap.set('n', '<Plug>ToggleCheckbox', Utils.toggle_checkbox, { silent = true })
+vim.keymap.set('n', '<leader>x', '<Plug>ToggleCheckbox', { desc = 'Toggle checkbox', silent = true })
+
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>x', Utils.toggle_checkbox, { desc = 'Toggle checkbox', silent = true })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
