@@ -36,7 +36,7 @@ mpd &
 while true; do
   set-status --cpu-mem-disk
   xsetroot -name "$(print-status)"
-  sleep 1s
+  sleep 0.5s
 done &
 
 while true; do
