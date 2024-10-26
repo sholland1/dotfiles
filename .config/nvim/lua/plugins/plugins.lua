@@ -646,6 +646,7 @@ return {
   "tpope/vim-sleuth",
   "nvim-tree/nvim-web-devicons",
   "tpope/vim-obsession",
+  "tpope/vim-repeat",
   "tridactyl/vim-tridactyl",
   "kyoh86/vim-jsonl",
   "baskerville/vim-sxhkdrc",
