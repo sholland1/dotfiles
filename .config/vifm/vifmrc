@@ -72,7 +72,7 @@ colorscheme wal
 " See man date or man strftime for details.
 
 set timefmt=%m/%d/%Y\ %H:%M
-
+set timeoutlen=99000
 " Show list of matches on tab completion in command-line mode
 
 set wildmenu
