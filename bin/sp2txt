@@ -21,9 +21,10 @@ debug "Display recording status..."
 set-status --recording
 
 debug "Starting audio recording..."
-amixer set Capture cap > /dev/null # Unmute
-parec --rate=16000 --latency-msec=20 --file-format=wav > "$SPEECH_FILE"
-amixer set Capture nocap > /dev/null # Mute
+amixer set Mic -c 2 cap > /dev/null # Unmute
+parec --rate=16000 --latency-msec=20 --file-format=wav \
+  -d alsa_input.usb-K66_K66_20190805V001-00.analog-stereo  > "$SPEECH_FILE"
+amixer set Mic -c 2 nocap > /dev/null # Mute
 
 debug "Transcribing audio..."
 TRANSCRIPTION=$(
