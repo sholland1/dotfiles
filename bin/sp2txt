@@ -30,7 +30,7 @@ TRANSCRIPTION=$(
   whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" | \
     sed '/^$/d;s/^[[:space:]]*//')
 
-if [ -n "$TRANSCRIPTION" ]; then
+if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
   debug "Outputting text: '$TRANSCRIPTION'"
   xdotool type "$TRANSCRIPTION"
   debug "Done."
