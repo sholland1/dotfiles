@@ -132,6 +132,8 @@ mark p ~/Projects
 mark r /
 mark t ~/.local/share/vifm/Trash
 mark w /mnt/windows/Users/sholland
+mark d /usr/share/applications
+mark D ~/.local/share/applications
 
 " ------------------------------------------------------------------------------
 
