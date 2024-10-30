@@ -38,9 +38,6 @@ super + shift + z
 {_,shift + }button{8,9}
         xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}
 
-{_,alt + }Print
-        scrot -z -q {80 -m,100 -u} -e 'mv $f ~/images/screenshots/'
-shift + Print
-        offset=`xdotool get_desktop | xargs expr 1920 \*`; \
-        scrot -z -q 80 -m -a $offset,0,1920,1080 -e 'mv $f ~/images/screenshots/'
+Print
+        flameshot gui
 
