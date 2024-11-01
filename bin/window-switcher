@@ -4,4 +4,4 @@ wmctrl -lx |
   awk '{$2="";$4="";print $0;}' |
   fzf -e --with-nth=2.. |
   awk '{print $1}' |
-  xargs wmctrl -ia
+  xargs -r wmctrl -ia
