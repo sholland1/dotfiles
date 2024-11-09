@@ -408,13 +408,12 @@ filetype *.n64,*.z64 mupen64plus %f &
 " Blender
 filetype *.blend,*.blend1 blender %f &
 
-" Text files
-fileviewer *.* bat --color=always --theme=ansi --number --wrap=never %c
-
 " Web
 filetype *.html,*.htm firefox
 fileviewer *.html,*.htm w3m %c
 
+" fallback
+fileviewer * preview-file-fallback %c
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide
