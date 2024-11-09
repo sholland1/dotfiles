@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if a file is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+file="$1"
+
+# Check if the file exists
+if [ ! -f "$file" ]; then
+    echo "File not found: $file"
+    exit 1
+fi
+
+# Get file type
+file_type=$(file -b "$file")
+
+# Check if it's a text file
+if [[ $file_type == *text* ]]; then
+    bat --color=always --theme=ansi --number --wrap=never --line-range :100 "$file"
+else
+    echo "$file_type"
+    if [[ $file_type == ELF* ]]; then
+        echo
+        ldd "$file" 2>/dev/null | sed 's/^[[:space:]]*//' || echo "Not a dynamic executable"
+    fi
+fi
