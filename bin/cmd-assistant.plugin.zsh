@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # This ZSH plugin reads the text from the current buffer,
 # allows the user to describe a change to command in natural
