@@ -165,7 +165,9 @@ function Utils.toggle_checkbox()
   -- Make the action repeatable
   vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>ToggleCheckbox', true, true, true))
   -- Write the changes to the file
-  vim.cmd 'write'
+  if vim.fn.expand('%') ~= '' then
+    vim.cmd 'write'
+  end
 end
 
 -- Function to remove trailing whitespace
