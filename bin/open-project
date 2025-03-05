@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Script to select and open recent projects in different editors
+
+# Directory containing your projects
+PROJECTS_DIR="$HOME/Projects"
+
+# Files to store last selected project and editor
+LAST_PROJECT_FILE="$HOME/.last_selected_project"
+LAST_EDITOR_FILE="$HOME/.last_selected_editor"
+
+# Get the last selected project
+last_project=$([ -f "$LAST_PROJECT_FILE" ] && cat "$LAST_PROJECT_FILE" || echo "")
+
+# List projects and add the last selected project to the top if it exists
+projects=$(eza -D "$PROJECTS_DIR")
+if [ -n "$last_project" ]; then
+    projects=$(echo -e "$last_project\n$projects" | uniq -u)
+fi
+
+# Use FZF to select a project with a preview of its contents
+selected_project=$(echo "$projects" | \
+    fzf --prompt="Select a project: " \
+        --preview "GIT_WORK_TREE=$PROJECTS_DIR/{} eza --color=always --icons=always --group-directories-first --tree --git-ignore $PROJECTS_DIR/{}" \
+        --preview-window='right,50%,<40(down,80%)')
+
+# Exit if no project is selected
+if [ -z "$selected_project" ]; then
+    exit
+fi
+
+# Save the selected project
+echo "$selected_project" > "$LAST_PROJECT_FILE"
+
+# Get the last selected editor
+last_editor=$([ -f "$LAST_EDITOR_FILE" ] && cat "$LAST_EDITOR_FILE" || echo "")
+
+# List of available editors
+editors="Terminal\nVS Code\nNeovim\nZed"
+
+# Add the last selected editor to the top of the list if it exists
+if [ -n "$last_editor" ]; then
+    editors=$(echo -e "$editors" | grep -v "^$last_editor$")
+    editors="$last_editor\n$editors"
+fi
+
+# Use FZF to select an editor
+selected_program=$(echo -e "$editors" | fzf --prompt="Open in: ")
+
+# Exit if no editor is selected
+if [ -z "$selected_program" ]; then
+    exit
+fi
+
+# Save the selected editor
+echo "$selected_program" > "$LAST_EDITOR_FILE"
+
+# Set the full path of the selected project
+PROJ_DIR="$PROJECTS_DIR/$selected_project"
+
+# Enable job control
+set -m
+
+# Open the project in the selected editor
+case "$selected_program" in
+    "Terminal")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM --working-directory="$PROJ_DIR" &
+        ;;
+    "VS Code")
+        cd "$PROJ_DIR" || exit
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR code . &
+        ;;
+    "Neovim")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM --working-directory="$PROJ_DIR" -T "$selected_project" -e open-in-editor &
+        ;;
+    "Zed")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR zeditor "$PROJ_DIR" &
+        ;;
+    *)
+        echo "Unknown program selected"
+        exit 1
+        ;;
+esac
+
+# Disown the background process
+disown
