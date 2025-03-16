@@ -49,12 +49,37 @@
         "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && !parameterHintsVisible"
     },
     {
-        "key": "escape",
+        "key": "shift+escape",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "!editorTextFocus"
     },
     {
         "key": "f6",
         "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-extension.vim_ctrl+i",
+        "when": "editorTextFocus && vim.active && vim.use<C-i> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "cursorPageDown",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "cursorPageUp",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-extension.vim_ctrl+d",
+        "when": "editorTextFocus && vim.active && vim.use<C-d> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-extension.vim_ctrl+u",
+        "when": "editorTextFocus && vim.active && vim.use<C-u> && !inDebugRepl"
     }
 ]

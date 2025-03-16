@@ -170,6 +170,7 @@
         "hare": false
     },
     "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, BreakBeforeBraces: Attach, IndentWidth: 4, TabWidth: 4, UseTab: Never, ColumnLimit: 0}",
     "zig.zls.path": "/home/sholland/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
     "workbench.editorAssociations": {
         "*.eep": "hexEditor.hexedit",
@@ -180,4 +181,20 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "explorer.confirmDragAndDrop": false,
     "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "zig.initialSetupDone": false,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "makefile.configureOnOpen": true,
+    "files.insertFinalNewline": true,
+    "[c]": {
+        "files.trimTrailingWhitespace": true,
+    },
+    "[csharp]": {
+        "files.trimTrailingWhitespace": true,
+    },
+    "editor.parameterHints.enabled": true,
+    "C_Cpp.enhancedColorization": "enabled",
+    "C_Cpp.intelliSenseEngine": "default",
+    "editor.inlayHints.enabled": "on",
+    "C_Cpp.inlayHints.parameterNames.enabled": true,
+    "C_Cpp.inlayHints.parameterNames.suppressWhenArgumentContainsName": true,
 }
