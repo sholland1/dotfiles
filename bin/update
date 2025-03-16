@@ -1,34 +1,64 @@
 #!/bin/bash
-echo 'Initiating system update...'
 
-echo 'Updating mirrors...'
-export TMPFILE="$(mktemp)"; \
-  sudo true; \
-  rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
-    && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
-    && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
-    && ua-drop-caches
+# Parse command-line options
+skip_mirrors=false
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -s|--skip-mirrors) skip_mirrors=true ;;
+        *) echo "Unknown parameter: $1"; exit 1 ;;
+    esac
+    shift
+done
 
-echo 'Performing system update...'
-yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake
+echo -e '\nInitiating system update...'
+
+if [ "$skip_mirrors" = false ]; then
+    echo -e '\nUpdating mirrors...'
+    export TMPFILE="$(mktemp)"
+    if ! sudo true; then
+        echo "Error: Failed to obtain sudo privileges"
+        exit 1
+    fi
+    if ! rate-mirrors --save=$TMPFILE arch --max-delay=21600; then
+        echo "Error: Failed to update mirrors"
+        rm $TMPFILE
+        exit 1
+    fi
+    sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
+    sudo mv $TMPFILE /etc/pacman.d/mirrorlist
+else
+    echo -e '\nSkipping mirror update...'
+fi
+
+echo -e '\nPerforming system update...'
+if ! yay -Syu --cleanmenu=false --diffmenu=false --editmenu=false --removemake; then
+    echo "Error: System update failed"
+    exit 1
+fi
 set-status --system-update
 
-echo 'Cleaning caches...'
+echo -e '\nCleaning caches...'
 paccache -rk1
 paccache -ruk0
 yay -Sc --aur --noconfirm
 
-echo 'Resetting keyboard settings...'
+echo -e '\nResetting keyboard settings...'
 set-keyboard-settings
 
-echo 'Updating Neovim...'
+echo -e '\nUpdating Neovim...'
 nvim --headless '+Lazy! sync' +MasonToolsUpdateSync +qa
 
-echo 'Updating VS Code extensions...'
+echo -e '\nUpdating VS Code extensions...'
 code --update-extensions
 
-echo 'Updating database for plocate...'
+echo -e '\nUpdating Steam...'
+steamcmd +login anonymous +app_update 0 validate +quit
+
+echo -e '\nUpdating database for plocate...'
 sudo updatedb
+
+echo -e '\nSyncing OneDrive...'
+manual-onedrive-sync -n
 
 echo -e "\nDo you want to reboot now? [Y/n]"
 read -r response
@@ -37,5 +67,5 @@ if [[ "$response" =~ ^[Nn]$ ]]; then
     echo "Skipping reboot..."
 else
     echo "Rebooting..."
-    manual-onedrive-sync -n; sudo reboot
+    sudo reboot
 fi
