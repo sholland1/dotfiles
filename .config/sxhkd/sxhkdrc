@@ -1,6 +1,6 @@
 # Don't forget to use ';\' for multiline commands
 XF86Audio{Raise,Lower}Volume
-        amixer set Master 1{+,-};\
+        amixer -D pulse set Master 1%{+,-};\
         set-status --sound
 XF86AudioMute
         pulsemixer --toggle-mute;\
