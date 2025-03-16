@@ -23,6 +23,9 @@ super + {shift, alt} + e
 super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,w,XF86AudioPlay,shift + XF86AudioPlay}
         fuzzy_win {system,system,open-project,programs,fpacin,fyain,fpacrem,fkill,window-switcher,fsongs,fplaylists}
 
+control + shift + {BackSpace,grave}
+        fuzzy_win system
+
 super + {f,s,u}
         $TERM -e "{$FILE,sysz,update}"
 
