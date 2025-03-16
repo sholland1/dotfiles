@@ -9,7 +9,17 @@ end
 
 createAutocmd(".zshrc", "!source %")
 createAutocmd(".compton.conf", "!pkill picom;picom &")
-createAutocmd("sxhkdrc", "!pkill sxhkd;sxhkd &")
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = group,
+  pattern = "sxhkdrc",
+  callback = function()
+    -- kill sxhkd and restart it with run-sxhkd command
+    -- if there are errors on restart, display them
+    local output = vim.fn.system("pkill sxhkd; run-sxhkd")
+    vim.print(output)
+  end,
+})
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = group,
