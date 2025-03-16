@@ -27,7 +27,7 @@ set_date() {
 
 # Function to update mute status and volume
 sound() {
-  local mixer_output=$(amixer get Master)
+  local mixer_output=$(amixer -D pulse get Master)
   local current_mute=$(echo "$mixer_output" | grep -o '\[on\]' | head -1)
   local sound_status
   if [[ "$current_mute" != "[on]" ]]; then
