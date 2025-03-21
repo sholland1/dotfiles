@@ -36,7 +36,7 @@ echo "$selected_project" > "$LAST_PROJECT_FILE"
 last_editor=$([ -f "$LAST_EDITOR_FILE" ] && cat "$LAST_EDITOR_FILE" || echo "")
 
 # List of available editors
-editors="Terminal\nVS Code\nNeovim\nZed"
+editors="Terminal\nLazygit\nVifm\nVS Code\nNeovim\nZed"
 
 # Add the last selected editor to the top of the list if it exists
 if [ -n "$last_editor" ]; then
@@ -66,9 +66,14 @@ case "$selected_program" in
     "Terminal")
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM --working-directory="$PROJ_DIR" &
         ;;
+    "Lazygit")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM -e lazygit &
+        ;;
+    "Vifm")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM -e vifm "$PROJ_DIR" &
+        ;;
     "VS Code")
-        cd "$PROJ_DIR" || exit
-        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR code . &
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR code "$PROJ_DIR" &
         ;;
     "Neovim")
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM --working-directory="$PROJ_DIR" -T "$selected_project" -e open-in-editor &
