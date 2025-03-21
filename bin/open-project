@@ -5,32 +5,23 @@
 # Directory containing your projects
 PROJECTS_DIR="$HOME/Projects"
 
-# Files to store last selected project and editor
-LAST_PROJECT_FILE="$HOME/.last_selected_project"
+# Files to store last selected editor
 LAST_EDITOR_FILE="$HOME/.last_selected_editor"
 
-# Get the last selected project
-last_project=$([ -f "$LAST_PROJECT_FILE" ] && cat "$LAST_PROJECT_FILE" || echo "")
-
-# List projects and add the last selected project to the top if it exists
-projects=$(eza -D "$PROJECTS_DIR")
-if [ -n "$last_project" ]; then
-    projects=$(echo -e "$last_project\n$projects" | uniq -u)
-fi
+# Find all directories in the projects directory, sort them by modification time, and list their basenames
+projects=$(find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d -exec stat -c "%Y %n" {} \; | sort -nr | cut -d' ' -f2- | xargs -n 1 basename)
 
 # Use FZF to select a project with a preview of its contents
 selected_project=$(echo "$projects" | \
     fzf --prompt="Select a project: " \
         --preview "GIT_WORK_TREE=$PROJECTS_DIR/{} eza --color=always --icons=always --group-directories-first --tree --git-ignore $PROJECTS_DIR/{}" \
-        --preview-window='right,50%,<40(down,80%)')
+        --preview-window='right,50%,<40(down,80%)' \
+        --no-sort)
 
 # Exit if no project is selected
 if [ -z "$selected_project" ]; then
     exit
 fi
-
-# Save the selected project
-echo "$selected_project" > "$LAST_PROJECT_FILE"
 
 # Get the last selected editor
 last_editor=$([ -f "$LAST_EDITOR_FILE" ] && cat "$LAST_EDITOR_FILE" || echo "")
