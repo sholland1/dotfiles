@@ -8,7 +8,7 @@ export GIT_EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/firefox
 export FILE=~/.config/vifm/scripts/vifmrun
 
-export FZF_DEFAULT_OPTS='--reverse --cycle --color=16
+export FZF_DEFAULT_OPTS='--exact --tiebreak=begin --reverse --cycle --color=16
     --bind=alt-j:down,alt-k:up,ctrl-a:select-all,ctrl-z:deselect-all,ctrl-d:half-page-down,ctrl-u:half-page-up,alt-down:preview-down,alt-up:preview-up'
 export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude .git || find -type f'
 #export FZF_COMPLETION_TRIGGER='##'
