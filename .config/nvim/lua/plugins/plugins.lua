@@ -347,6 +347,28 @@ return {
         shfmt = {},
         stylua = {},
 
+        -- Add Deno language server
+        denols = {
+          root_dir = require('lspconfig').util.root_pattern("deno.json", "deno.jsonc"),
+          init_options = {
+            lint = true,
+            unstable = true,
+            suggest = {
+              imports = {
+                hosts = {
+                  ["https://deno.land"] = true,
+                  ["https://cdn.nest.land"] = true,
+                  ["https://crux.land"] = true,
+                },
+              },
+            },
+          },
+          filetypes = {
+            "javascript", "javascriptreact", "javascript.jsx",
+            "typescript", "typescriptreact", "typescript.tsx",
+          },
+        },
+
         --INFO: add an omnisharp.json file to the sln for additional features
         -- {
         -- /* display additional analysis */
