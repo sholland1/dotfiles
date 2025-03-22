@@ -31,6 +31,10 @@ if vim.fn.has('win32') == 1 then
   vim.opt.shellxquote = ''
 end
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}
+
 vim.diagnostic.config({
   virtual_text = {
     severity = { min = vim.diagnostic.severity.WARN },
