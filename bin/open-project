@@ -14,8 +14,8 @@ projects=$(find "$PROJECTS_DIR" -mindepth 1 -maxdepth 1 -type d -exec stat -c "%
 # Use FZF to select a project with a preview of its contents
 selected_project=$(echo "$projects" | \
     fzf --prompt="Select a project: " \
-        --preview "GIT_WORK_TREE=$PROJECTS_DIR/{} eza --color=always --icons=always --group-directories-first --tree --git-ignore $PROJECTS_DIR/{}" \
-        --preview-window='right,50%,<40(down,80%)' \
+        --preview "GIT_WORK_TREE=$PROJECTS_DIR/{} eza -la --color=always --icons=always --group-directories-first --git-ignore $PROJECTS_DIR/{}" \
+        --preview-window='right,60%,<40(down,80%)' \
         --no-sort)
 
 # Exit if no project is selected
