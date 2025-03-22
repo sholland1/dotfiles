@@ -545,13 +545,6 @@ return {
   },
 
   {
-    'kdheepak/lazygit.nvim',
-    config = function()
-      vim.keymap.set('n', '<leader>g', require('lazygit').lazygit, { desc = 'Open LazyGit' })
-    end,
-  },
-
-  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = true,
