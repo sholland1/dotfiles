@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+SD_DIR=/dev/sdb1
+SD_UUID=UUID=F70F-2A47
+
+if mount | rg $SD_DIR > /dev/null; then
+  sudo umount $SD_DIR > /dev/null
+  sudo sed "s/^$SD_UUID/#$SD_UUID/" /etc/fstab > /dev/null
+  echo "SD Card unmounted"
+else
+  sudo sed "s/^#$SD_UUID/$SD_UUID/" /etc/fstab > /dev/null
+  sudo mount $SD_DIR > /dev/null
+  echo "SD Card mounted"
+fi

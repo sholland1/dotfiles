@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Start sxhkd in the background and redirect its output to a temporary file
+temp_file=$(mktemp)
+sxhkd > "$temp_file" 2>&1 &
+sxhkd_pid=$!
+
+# Give sxhkd a moment to potentially produce output
+sleep 0.25
+
+# Check if there is any output in the temporary file
+if [ -s "$temp_file" ]; then
+    cat "$temp_file"
+    echo "Killing sxhkd process..."
+    kill $sxhkd_pid
+    echo "Process killed."
+else
+    echo "Successfully started sxhkd!"
+fi
+
+# Clean up the temporary file
+rm "$temp_file"

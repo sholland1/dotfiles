@@ -1,0 +1,5 @@
+#!/bin/bash
+trans -list-all |
+    fzf --ansi |
+    cut -d' ' -f1 |
+    xargs -I% frepl 'echo "" | trans en:%'

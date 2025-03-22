@@ -1,0 +1,10 @@
+#!/bin/bash
+DIR=~/Music/ripped_disc
+mkdir $DIR
+pushd $DIR > /dev/null || exit
+cdparanoia -B
+find ./*.cdda.wav | while read -r t; do
+    lame -b 256 "$t"
+done
+rm ./*.cdda.wav
+popd > /dev/null 2>&1 || exit
