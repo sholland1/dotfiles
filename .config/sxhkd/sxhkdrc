@@ -5,9 +5,7 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
         pulsemixer --toggle-mute;\
         set-status --sound
-XF86Audio{Next,Prev,Stop,Play}
-        mpc {next,prev,stop,toggle};\
-        xsetroot -name "$(status)"
+
 super + XF86AudioStop
         eject_disc
 
