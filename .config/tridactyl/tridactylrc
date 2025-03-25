@@ -61,7 +61,9 @@ bind H back
 bind L forward
 bind <C-o> jumpprev
 bind <C-i> jumpnext
-bind d tabclose
+bind i js const elem = document.querySelector('input[type="text"], textarea'); elem?.focus(); elem?.select();
+unbind d
+" bind d tabclose
 bind D composite tabprev; tabclose #
 bind gx0 tabclosealltoleft
 bind gx$ tabclosealltoright
@@ -164,7 +166,8 @@ bind zI zoom 3
 bind zO zoom 0.3
 bind . repeat
 bind <AS-ArrowUp><AS-ArrowUp><AS-ArrowDown><AS-ArrowDown><AS-ArrowLeft><AS-ArrowRight><AS-ArrowLeft><AS-ArrowRight>ba open https://www.youtube.com/watch?v=M3iOROuTuMA
-bind m gobble 1 markadd
+unbind m
+" bind m gobble 1 markadd
 bind ` gobble 1 markjump
 bind / fillcmdline find
 bind n findnext
@@ -239,7 +242,7 @@ alias man help
 alias !js fillcmdline_tmp 3000 !js is deprecated. Please use js instead
 alias !jsb fillcmdline_tmp 3000 !jsb is deprecated. Please use jsb instead
 alias get_current_url js document.location.href
-alias current_url composite get_current_url | fillcmdline_notrail 
+alias current_url composite get_current_url | fillcmdline_notrail
 alias stop js window.stop()
 alias zo zoom
 alias installnative nativeinstall
