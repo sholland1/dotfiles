@@ -42,3 +42,6 @@ super + shift + z
 Print
         flameshot gui
 
+control + Print
+        flameshot gui --raw | tesseract -l eng stdin stdout | xclip -in -selection primary
+
