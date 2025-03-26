@@ -32,6 +32,7 @@ set-keyboard-settings &
 picom &
 sxhkd &
 mpd &
+flameshot &
 
 while true; do
   set-status --cpu-mem-disk
