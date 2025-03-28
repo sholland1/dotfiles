@@ -34,7 +34,7 @@ TRANSCRIPTION=$(
 
 if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
   debug "Outputting text: '$TRANSCRIPTION'"
-  xdotool type "$TRANSCRIPTION"
+  echo -n "$TRANSCRIPTION" | xclip -selection clipboard && xdotool key "shift+Insert"
   debug "Done."
 else
   debug "No text to output. The transcription may have failed or produced no results."
