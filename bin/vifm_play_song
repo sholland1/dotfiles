@@ -1,4 +1,5 @@
 #!/bin/bash
+
 DIR=~/Music/tmp
 mpc -q clear
 rm $DIR/*

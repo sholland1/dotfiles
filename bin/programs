@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -m
 desktop-program-list |
   fzf --with-nth=1 -d '\t' |

@@ -1,6 +1,8 @@
 #!/bin/bash
+
 TITLE=$(basename "$1" | cut -d' ' -f1)
 CMD=$(which "$1")
+
 xdotool search --onlyvisible --classname launcher windowunmap ||
   xdotool search --classname launcher windowmap ||
   $TERM --class=launcher -t "fzf: $TITLE" -e \

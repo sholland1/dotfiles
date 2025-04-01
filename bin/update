@@ -10,7 +10,7 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-echo -e '\nInitiating system update...'
+echo -e 'Initiating system update...'
 
 if [ "$skip_mirrors" = false ]; then
     echo -e '\nUpdating mirrors...'

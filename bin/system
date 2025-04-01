@@ -1,4 +1,5 @@
 #!/bin/bash
+
 lock () {
   i3lock-fancy-rapid 5 3
 }

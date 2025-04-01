@@ -1,4 +1,5 @@
 #!/bin/bash
+
 RESULT=$(pacman -Qe |
     fzf --multi --preview 'pacman -Si {1} 2>/dev/null || yay -Si {1}' \
         --preview-window=:75%)
