@@ -2,6 +2,6 @@
 
 set -m
 
-CM_LAUNCHER=fzf CM_OUTPUT_CLIP=1 clipmenu | xclip -selection clipboard
+CM_LAUNCHER=fzf clipmenu || exit
 
 xdotool key shift+Insert &
