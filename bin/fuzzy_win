@@ -6,4 +6,4 @@ CMD=$(which "$1")
 xdotool search --onlyvisible --classname launcher windowunmap ||
   xdotool search --classname launcher windowmap ||
   $TERM --class=launcher -t "fzf: $TITLE" -e \
-    zsh -c "$CMD"
+    bash -c "$CMD"
