@@ -1,4 +1,5 @@
 #!/bin/bash
+
 mpc | tail -1 | sed -r "s/^\S* *//g;s/(\w*): \w* */\1\n/g" | head -n-1 |
     fzf --preview='mpc | tail -1 | sed "s/^\S* *//g"' \
         --preview-window=down:1 --phony \

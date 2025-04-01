@@ -1,4 +1,5 @@
 #!/bin/bash
+
 STATS='git --no-pager diff --shortstat'
 git log --graph --color=always \
     --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |

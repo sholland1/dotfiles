@@ -1,4 +1,5 @@
 #!/bin/bash
+
 trans -list-all |
     fzf --ansi |
     cut -d' ' -f1 |

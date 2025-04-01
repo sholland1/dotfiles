@@ -1,4 +1,5 @@
 #!/bin/bash
+
 DIR=~/Music/ripped_disc
 mkdir $DIR
 pushd $DIR > /dev/null || exit
