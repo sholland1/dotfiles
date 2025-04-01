@@ -10,6 +10,6 @@ case $RESULT in
   sleep) manual-onedrive-sync; lock; sleep 0.5; systemctl suspend ;;
   lock) manual-onedrive-sync; lock ;;
   logout) manual-onedrive-sync -n; setxkbmap -option; who | cut -d' ' -f1 | xargs pkill -Kill -u ;;
-  reboot) manual-onedrive-sync -n; systemctl reboot ;;
+  reboot) systemctl reboot ;;
   shutdown) manual-onedrive-sync -n; systemctl poweroff ;;
 esac
