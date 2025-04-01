@@ -34,6 +34,9 @@ sxhkd &
 mpd &
 flameshot &
 
+systemctl --user import-environment DISPLAY
+clipmenud &
+
 while true; do
   set-status --cpu-mem-disk
   xsetroot -name "$(print-status)"

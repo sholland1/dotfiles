@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -m
+
+CM_LAUNCHER=fzf CM_OUTPUT_CLIP=1 clipmenu | xclip -selection clipboard
+
+xdotool key shift+Insert &
