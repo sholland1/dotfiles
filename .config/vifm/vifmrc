@@ -256,11 +256,11 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.avif,*.bmp,*.jpg,*.jpeg,*.png,*.xpm
-        \ {View in sxiv}
-        \ sxiv %f,
+filextype *.avif,*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
         \ {View in feh}
         \ feh %f &,
+        \ {View in sxiv}
+        \ sxiv %f,
         \ {View in gpicview}
         \ gpicview %c,
         \ {View in shotwell}
