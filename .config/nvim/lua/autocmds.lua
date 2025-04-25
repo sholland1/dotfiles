@@ -8,7 +8,7 @@ local function createAutocmd(pattern, command)
 end
 
 createAutocmd(".zshrc", "!source %")
-createAutocmd(".compton.conf", "!pkill picom;picom &")
+createAutocmd("picom.conf", "!pkill -USR1 picom")
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = group,
