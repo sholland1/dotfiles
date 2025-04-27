@@ -36,6 +36,7 @@ flameshot &
 
 systemctl --user import-environment DISPLAY
 clipmenud &
+alttab -pk Left -nk Right -vp 1920x1080+0+0 -s 1 -w 1 &
 
 while true; do
   set-status --cpu-mem-disk
