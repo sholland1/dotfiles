@@ -1,0 +1,12 @@
+#!/bin/bash
+
+output=$(nsxiv -otf images/wallpaper/*)
+[ -n "$output" ] && {
+    IFS=$'\n' read -d '' -r -a wallpapers <<< "$output"
+    if [ ${#wallpapers[@]} -eq 2 ]; then
+        feh --bg-fill "${wallpapers[0]}" "${wallpapers[1]}"
+    else
+        feh --bg-fill "$output"
+    fi
+}
+
