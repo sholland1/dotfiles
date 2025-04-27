@@ -24,8 +24,12 @@ super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,control + v}
 control + shift + {BackSpace,grave,w}
         fuzzy_win {system,system,window-switcher}
 
-super + {f,s,u}
-        $TERM -e "{$FILE,sysz,update}"
+super + f
+        $TERM -t "vifm" -e "$FILE"
+super + s
+        $TERM -t "Manage Services" -e "sysz"
+super + u
+        $TERM -t "System Update" -e "update"
 
 super + i
         $BROWSER
