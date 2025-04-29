@@ -34,11 +34,10 @@ super + u
 super + i
         $BROWSER
 
-super + w
-        select-wallpaper
-
-super + n
-        feh --recursive --randomize --bg-fill ~/images/wallpaper
+super {_,+ control} + w
+        select-wallpaper {_,random}
+super + t
+        toggle-light-dark
 
 super + shift + z
         $TERM -e pizza-now

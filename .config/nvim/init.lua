@@ -17,3 +17,11 @@ local lazy_opts = {
 }
 require("lazy").setup("plugins", lazy_opts)
 
+local original_notify = vim.notify
+vim.notify = function(msg, level, opts)
+    -- Replace 'pattern' with the message or pattern to ignore
+    if msg:match("Change detected in template file*") then
+        return
+    end
+    original_notify(msg, level, opts)
+end

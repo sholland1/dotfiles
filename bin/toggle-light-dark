@@ -1,0 +1,23 @@
+#!/bin/bash
+
+BG_FILE="$HOME/.cache/.bg"
+if [ ! -f "$BG_FILE" ]; then
+    echo "dark" > "$BG_FILE"
+fi
+
+# Read the contents of the file
+current_theme=$(cat "$BG_FILE")
+
+# Switch theme based on the current theme
+if [ "$current_theme" = "dark" ]; then
+    # Switch to light theme
+    wal -nlw --backend colorthief
+    echo "light" > "$BG_FILE"
+elif [ "$current_theme" = "light" ]; then
+    # Switch to dark theme
+    wal -nw
+    echo "dark" > "$BG_FILE"
+fi
+
+# Send signal to reload colors to dwm
+xsetroot -name "fsignal:1"

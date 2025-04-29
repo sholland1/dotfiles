@@ -1,12 +1,35 @@
 #!/bin/bash
 
-output=$(nsxiv -otf images/wallpaper/*)
-[ -n "$output" ] && {
+BG_FILE="$HOME/.cache/.bg"
+if [ ! -f "$BG_FILE" ]; then
+    echo "dark" > "$BG_FILE"
+fi
+
+if [ "$1" = "random" ]; then
+    output=$(find images/wallpaper/* | shuf -n 1)
+elif [ -f "$1" ]; then
+    output="$1"
+else
+    output=$(nsxiv -otf images/wallpaper/*)
+fi
+
+if [ -n "$output" ]; then
     IFS=$'\n' read -d '' -r -a wallpapers <<< "$output"
     if [ ${#wallpapers[@]} -eq 2 ]; then
         feh --bg-fill "${wallpapers[0]}" "${wallpapers[1]}"
     else
-        feh --bg-fill "$output"
+        # Read the contents of the file
+        current_theme=$(cat "$BG_FILE")
+
+        # select theme based on the current theme
+        if [ "$current_theme" = "dark" ]; then
+            wal -i "$output"
+        elif [ "$current_theme" = "light" ]; then
+            wal -i "$output" -l --backend colorthief
+        fi
+
+        # Send signal to reload colors to dwm
+        xsetroot -name "fsignal:1"
     fi
-}
+fi
 

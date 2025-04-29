@@ -137,7 +137,7 @@
             ]
         }
     ],
-    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.colorTheme": "Wal Bordered",
     "window.menuBarVisibility": "toggle",
     "workbench.iconTheme": "vscode-icons",
     "vim.handleKeys": {

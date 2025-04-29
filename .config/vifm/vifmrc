@@ -456,7 +456,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 nnoremap <space>q :q<cr>
 nnoremap <space>w :w<cr>
 nnoremap <space>r :restart<cr>
-nnoremap <space>pp :!feh --bg-fill %f &<cr>
+nnoremap <space>pp :!select-wallpaper %f &<cr>
 nnoremap <space>ll :!ln -s %d/%f %D/%c<cr>
 nnoremap <space> <nop>
 

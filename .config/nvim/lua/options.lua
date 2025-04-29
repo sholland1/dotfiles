@@ -21,6 +21,7 @@ vim.opt.shortmess = vim.opt.shortmess + 'I'
 vim.opt.updatetime = 1000
 vim.opt.timeoutlen = 3000
 vim.opt.wildignorecase = true
+vim.o.background = nil
 
 if vim.fn.has('win32') == 1 then
   vim.opt.shell = 'powershell'

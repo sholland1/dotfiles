@@ -1,11 +1,24 @@
 return {
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme 'tokyonight-day'
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
+  -- 'uZer/pywal16.nvim',
   {
-    'folke/tokyonight.nvim',
+    "RedsXDD/neopywal.nvim",
+    name = "neopywal",
+    lazy = false,
     priority = 1000,
-    init = function()
-      vim.cmd.colorscheme 'tokyonight-day'
-      vim.cmd.hi 'Comment gui=none'
-    end,
+    opts = {},
+    config = function ()
+      local neopywal = require("neopywal")
+      neopywal.setup()
+      vim.cmd.colorscheme("neopywal")
+    end
   },
 
   {

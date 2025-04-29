@@ -2,7 +2,7 @@
 live_config_reload = true
 
 import = [
-  "~/.config/alacritty/themes/tokyonight_day.toml"
+  "~/.cache/wal/colors-alacritty.toml"
 ]
 
 [font]
