@@ -1,14 +1,12 @@
 return {
-  -- {
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000,
-  --   init = function()
-  --     vim.cmd.colorscheme 'tokyonight-day'
-  --     vim.cmd.hi 'Comment gui=none'
-  --   end,
-  -- },
-  -- 'uZer/pywal16.nvim',
-  {
+  vim.fn.has('win32') == 1 and {
+    'folke/tokyonight.nvim',
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme 'tokyonight-day'
+      vim.cmd.hi 'Comment gui=none'
+    end,
+  } or {
     "RedsXDD/neopywal.nvim",
     name = "neopywal",
     lazy = false,

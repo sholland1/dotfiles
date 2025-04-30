@@ -11,7 +11,9 @@ vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
 local term_cmd = vim.fn.has('win32') == 1 and 'wt -d .' or '$TERM &'
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-cr>', '<cmd>silent !' .. term_cmd ..'<cr>', { desc = 'Open terminal in new window' })
 
-local term_cmd_with_arg = vim.fn.has('win32') == 1 and 'wt -d -e %s .' or '$TERM -e %s &'
+local term_cmd_with_arg = vim.fn.has('win32') == 1 and
+    'wt new-tab -d . powershell -c %s' or
+    '$TERM -e %s &'
 vim.keymap.set('n', '<leader>g',
   '<cmd>silent !' .. string.format(term_cmd_with_arg, 'lazygit') ..'<cr>',
   { desc = 'Open LazyGit' })
