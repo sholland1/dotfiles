@@ -12,9 +12,9 @@ current_theme=$(cat "$BG_FILE")
 if [ "$current_theme" = "dark" ]; then
     # Switch to light theme
     echo "light" > "$BG_FILE"
-    wal -nlw --backend colorthief -o post-pywal
+    wal --cols16 lighten -nlw --backend colorthief -o post-pywal
 elif [ "$current_theme" = "light" ]; then
     # Switch to dark theme
     echo "dark" > "$BG_FILE"
-    wal -nw -o post-pywal
+    wal --cols16 lighten -nw -o post-pywal
 fi

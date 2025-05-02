@@ -23,9 +23,9 @@ if [ -n "$output" ]; then
 
         # select theme based on the current theme
         if [ "$current_theme" = "dark" ]; then
-            wal -i "$output" -o post-pywal
+            wal --cols16 lighten -i "$output" -o post-pywal
         elif [ "$current_theme" = "light" ]; then
-            wal -i "$output" -l --backend colorthief -o post-pywal
+            wal --cols16 darken -i "$output" -l --backend colorthief -o post-pywal
         fi
     fi
 fi
