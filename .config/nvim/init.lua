@@ -17,11 +17,11 @@ local lazy_opts = {
 }
 require("lazy").setup("plugins", lazy_opts)
 
+-- disable notifications for pywal
 local original_notify = vim.notify
 vim.notify = function(msg, level, opts)
     -- Replace 'pattern' with the message or pattern to ignore
-    if msg:match("Change detected in template file*") then
-        return
+    if msg and not msg:match("Change detected in template file*") then
+        original_notify(msg, level, opts)
     end
-    original_notify(msg, level, opts)
 end

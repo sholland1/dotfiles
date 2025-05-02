@@ -11,13 +11,10 @@ current_theme=$(cat "$BG_FILE")
 # Switch theme based on the current theme
 if [ "$current_theme" = "dark" ]; then
     # Switch to light theme
-    wal -nlw --backend colorthief
     echo "light" > "$BG_FILE"
+    wal -nlw --backend colorthief -o post-pywal
 elif [ "$current_theme" = "light" ]; then
     # Switch to dark theme
-    wal -nw
     echo "dark" > "$BG_FILE"
+    wal -nw -o post-pywal
 fi
-
-# Send signal to reload colors to dwm
-xsetroot -name "fsignal:1"

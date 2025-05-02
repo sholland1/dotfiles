@@ -23,13 +23,10 @@ if [ -n "$output" ]; then
 
         # select theme based on the current theme
         if [ "$current_theme" = "dark" ]; then
-            wal -i "$output"
+            wal -i "$output" -o post-pywal
         elif [ "$current_theme" = "light" ]; then
-            wal -i "$output" -l --backend colorthief
+            wal -i "$output" -l --backend colorthief -o post-pywal
         fi
-
-        # Send signal to reload colors to dwm
-        xsetroot -name "fsignal:1"
     fi
 fi
 

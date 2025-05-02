@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BG_FILE="$HOME/.cache/.bg"
+if [ ! -f "$BG_FILE" ]; then
+    echo "dark" > "$BG_FILE"
+fi
+
+# Read the contents of the file
+current_theme=$(cat "$BG_FILE")
+
+# Set system theme
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$current_theme"
+
+# Send signal to reload colors to dwm
+xsetroot -name "fsignal:1"
