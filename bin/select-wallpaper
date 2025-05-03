@@ -6,11 +6,11 @@ if [ ! -f "$BG_FILE" ]; then
 fi
 
 if [ "$1" = "random" ]; then
-    output=$(find images/wallpaper/* | shuf -n 1)
+    output=$(find Pictures/wallpaper/* | shuf -n 1)
 elif [ -f "$1" ]; then
     output="$1"
 else
-    output=$(nsxiv -otf images/wallpaper/*)
+    output=$(nsxiv -otf Pictures/wallpaper/*)
 fi
 
 if [ -n "$output" ]; then
