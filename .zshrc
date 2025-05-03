@@ -69,6 +69,7 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
@@ -85,13 +86,13 @@ source ~/bin/frepl.plugin.zsh
 
 unalias -a
 
-alias v='$EDITOR'
-alias f='$FILE'
+alias v=$EDITOR
+alias f=$FILE
 alias ls='eza --icons=always --group-directories-first -l'
 alias tree='eza --icons=always --group-directories-first --tree'
-alias cloc='tokei'
-alias insomnia='insomnium'
-alias fetch='fastfetch'
+alias cloc=tokei
+alias insomnia=insomnium
+alias fetch=fastfetch
 
 GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
 alias config='/usr/bin/git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME"'
@@ -104,7 +105,3 @@ alias notes='vproj ~/OneDrive/Documents/Notes notes'
 alias dotfiles='vdotfiles ~ dotfiles'
 alias scripts='vdotfiles ~/bin scripts'
 alias nvimconfig='vdotfiles ~/.config/nvim nvimconfig'
-
-WINE_CMD='WINEARCH=win32 WINEPREFIX=~/wine/gbtiles wine ~/wine/gbtiles/drive_c/Program\ Files'
-alias gbtile="$WINE_CMD/gbtd/GBTD.EXE &"
-alias gbmap="$WINE_CMD/gbmb/GBMB.EXE &"
