@@ -5,6 +5,10 @@
 # language, and sends the request to an LLM to get a changed
 # command
 
+function handle_multiline_results() {
+    awk 'NR==1 {line=$0; next} {line=line "\\n" $0} END {print line}'
+}
+
 function do_completion_openai() {
     local messages=$1
     local result=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
@@ -16,11 +20,14 @@ function do_completion_openai() {
             "max_tokens": 200,
             "messages": '"$messages"'
         }')
-    echo "$result" | jq -r '.choices[0].message.content'
+    echo "$result" |
+        handle_multiline_results |
+        jq -r '.choices[0].message.content'
 }
 
 function do_completion_claude() {
     local messages=$1
+    echo "$messages" > "/tmp/messages.json"
     local body=$(echo '{
         "model": "claude-3-5-sonnet-20241022",
         "max_tokens": 200,
@@ -33,8 +40,10 @@ function do_completion_claude() {
         -H "anthropic-version: 2023-06-01" \
         -H "Content-Type: application/json" \
         -d "$body")
-    echo "$result" | jq -r > "/tmp/completion_response.json"
-    echo "$result" | jq -r '.content[0].text'
+    echo "$result" > "/tmp/completion_response.json"
+    echo "$result" |
+        handle_multiline_results |
+        jq -r '.content[0].text'
 }
 
 function create_completion() {
