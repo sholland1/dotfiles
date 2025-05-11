@@ -10,7 +10,7 @@ function handle_multiline_results() {
 }
 
 function do_completion_openai() {
-    local messages=$1
+    local messages="$1"
     local result=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
         -H "Authorization: Bearer ${OPENAI_API_KEY:?}" \
         -H "Content-Type: application/json" \
@@ -20,14 +20,16 @@ function do_completion_openai() {
             "max_tokens": 200,
             "messages": '"$messages"'
         }')
+
     echo "$result" |
         handle_multiline_results |
         jq -r '.choices[0].message.content'
 }
 
 function do_completion_claude() {
-    local messages=$1
+    local messages="$1"
     echo "$messages" > "/tmp/messages.json"
+
     local body=$(echo '{
         "model": "claude-3-5-sonnet-20241022",
         "max_tokens": 200,
@@ -35,12 +37,14 @@ function do_completion_claude() {
         "messages": '"$(echo "$messages" | jq ".[1:]")"'
     }')
     echo "$body" > "/tmp/completion_request.json"
+
     local result=$(curl -s -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: ${ANTHROPIC_API_KEY:?}" \
         -H "anthropic-version: 2023-06-01" \
         -H "Content-Type: application/json" \
         -d "$body")
     echo "$result" > "/tmp/completion_response.json"
+
     echo "$result" |
         handle_multiline_results |
         jq -r '.content[0].text'
@@ -66,5 +70,7 @@ function create_completion() {
     CURSOR=${#BUFFER}
 }
 
+zle -N do_completion_openai
+zle -N do_completion_claude
 zle -N create_completion
 bindkey '^X' create_completion
