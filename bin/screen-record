@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Check if the script is already running
+if pgrep -f "$(basename "$0")" | grep -v $$ > /dev/null; then
+    echo "Stopping recording..."
+    pkill -SIGTERM ffmpeg
+    exit 0
+fi
+
+# Check if slop and ffmpeg are installed
+if ! command -v slop &> /dev/null || ! command -v ffmpeg &> /dev/null; then
+    echo "Error: slop and ffmpeg are required. Please install them."
+    exit 1
+fi
+
+# Get the selection coordinates from slop
+selection=$(slop -l -c 0.3,0.4,0.6,0.4) || exit 1
+
+# Check if selection is empty (user cancelled)
+if [ -z "$selection" ]; then
+    echo "Selection cancelled."
+    exit 1
+fi
+
+# Create output filename with timestamp
+output="$HOME/Videos/screencasts/screen_recording_$(date +%Y%m%d_%H%M%S).mp4"
+
+set-status --recording
+
+selection_size="${selection%%+*}"
+selection_pos=$(echo "${selection#*+}" | sed 's/+/,/')
+
+# Start recording with ffmpeg
+ffmpeg -f x11grab -probesize 50K -analyzeduration 50K \
+    -video_size "$selection_size" -i ":0.0+$selection_pos" \
+    -framerate 30 -c:v libx264 -preset fast -crf 23 -fs 250M "$output"
+
+set-status --not-recording
+
+echo "Recording saved to $output"

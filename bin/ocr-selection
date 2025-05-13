@@ -1,0 +1,6 @@
+#!/bin/bash
+
+scrot -s -f - |
+    tesseract stdin stdout -l eng |
+    tr -d '\n' |
+    xclip -in -selection primary
