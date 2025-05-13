@@ -125,7 +125,7 @@ set invwrap
 
 mark b ~/bin
 mark h ~
-mark i ~/images
+mark i ~/Pictures
 mark m ~/Music
 mark n ~/OneDrive/Documents/Notes
 mark p ~/Projects
