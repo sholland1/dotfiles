@@ -26,6 +26,7 @@ fcitx -dr &
 
 xargs redshift -t 6500:3000 -l <~/.cache/.location &
 set-keyboard-settings &
+init-mic &
 
 wal -R &
 ([ "$(xset q | awk '/Num /{print $8}')" = "off" ] && xdotool key Num_Lock) &
