@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Get the git diff output
 diff_output=$(git diff --cached | sed 's/\\/\\\\/g; s/"/\\"/g' | tr '\n' ' ' | sed 's/ \\n /\\n/g')
 # Create a properly JSON-encoded version of your diff output
