@@ -3,4 +3,5 @@
 scrot -s -f - |
     tesseract stdin stdout -l eng |
     tr -d '\n' |
-    xclip -in -selection primary
+    tee >(notify-send "Text copied to clipboard." "$(cat)") |
+    xclip -in -selection clipboard

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source "$HOME/bin/logging.sh"
+
+SPEECH_FILE="/tmp/mic_input.wav"
+MODEL_FILE="$HOME/.cache/whisper/ggml-tiny.en.bin"
+
+if [ "$1" = "stop" ]; then
+  log info "Stopping recording..."
+  set-status --not-recording
+  pkill -SIGTERM parec
+  exit 0
+fi
+
+log info "Starting speech-to-text process..."
+
+log info "Display recording status..."
+set-status --recording
+
+log info "Starting audio recording..."
+MIC_INDEX=$(arecord -l | grep K66 | awk -F':', '{print substr($1,6,1)}')
+log debug "MIC_INDEX: $MIC_INDEX"
+
+amixer set Mic -c $MIC_INDEX cap > /dev/null # Unmute
+parec --rate=16000 --latency-msec=20 --file-format=wav \
+  -d alsa_input.usb-K66_K66_20190805V001-00.analog-stereo > "$SPEECH_FILE"
+amixer set Mic -c $MIC_INDEX nocap > /dev/null # Mute
+
+log info "Transcribing audio..."
+TRANSCRIPTION=$(
+  whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" | \
+    sed '/^$/d;s/^[[:space:]]*//')
+
+if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
+  log info "Transcription: '$TRANSCRIPTION'"
+  notify-send "Copied text to clipboard." "$TRANSCRIPTION"
+  echo -n "$TRANSCRIPTION" | xclip -selection clipboard && xdotool key shift+Insert
+  log info "Done."
+else
+  log info "No text to output. The transcription may have failed or produced no results."
+fi
+

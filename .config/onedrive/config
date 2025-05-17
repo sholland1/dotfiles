@@ -2,3 +2,4 @@
 sync_dir = "~/OneDrive"
 # Skip files and directories that match this pattern
 skip_file = ".~*|~*|*.mp3"
+disable_notifications = "true"

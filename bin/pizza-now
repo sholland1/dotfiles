@@ -1,5 +1,12 @@
 #!/bin/bash
 
+source "$HOME/bin/logging.sh"
+
+if pgrep -x "pizza-time" > /dev/null; then
+    log error "pizza-time is already running. Exiting."
+    exit 1
+fi
+
 pizza-time --default-order --track
 
 read -n1 -sp 'Press any key to exit...'

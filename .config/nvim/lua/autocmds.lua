@@ -9,6 +9,7 @@ end
 
 createAutocmd(".zshrc", "!source %")
 createAutocmd("picom.conf", "!pkill -USR1 picom")
+createAutocmd("dunstrc", "!dunstctl reload")
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = group,

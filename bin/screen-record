@@ -1,15 +1,17 @@
 #!/bin/bash
 
+source "$HOME/bin/logging.sh"
+
 # Check if the script is already running
 if pgrep -f "$(basename "$0")" | grep -v $$ > /dev/null; then
-    echo "Stopping recording..."
+    log info "Stopping recording..."
     pkill -SIGTERM ffmpeg
     exit 0
 fi
 
 # Check if slop and ffmpeg are installed
 if ! command -v slop &> /dev/null || ! command -v ffmpeg &> /dev/null; then
-    echo "Error: slop and ffmpeg are required. Please install them."
+    log error "Error: slop and ffmpeg are required. Please install them."
     exit 1
 fi
 
@@ -18,7 +20,7 @@ selection=$(slop -l -c 0.3,0.4,0.6,0.4) || exit 1
 
 # Check if selection is empty (user cancelled)
 if [ -z "$selection" ]; then
-    echo "Selection cancelled."
+    log info "Selection cancelled."
     exit 1
 fi
 
@@ -37,4 +39,6 @@ ffmpeg -f x11grab -probesize 50K -analyzeduration 50K \
 
 set-status --not-recording
 
-echo "Recording saved to $output"
+log info "Recording saved to $output"
+notify-send "Screen recording saved." "$output"
+
