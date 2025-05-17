@@ -73,17 +73,18 @@ export HISTFILE="$XDG_STATE_HOME/zsh/history"
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
 if [ ! -d "$ZSH_CACHE_DIR" ]; then
     mkdir "$ZSH_CACHE_DIR"
 fi
 
-set -a; source ~/.env; set +a
-source $ZSH/oh-my-zsh.sh
+set -a; source "$HOME/.env"; set +a
+source "$ZSH/oh-my-zsh.sh"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/bin/cmd-assistant.plugin.zsh
-source ~/bin/frepl.plugin.zsh
+source "$HOME/bin/cmd-assistant.plugin.zsh"
+source "$HOME/bin/frepl.plugin.zsh"
 
+# remove all aliases
 unalias -a
 
 alias v=$EDITOR

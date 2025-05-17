@@ -1,5 +1,5 @@
 #!/bin/bash
 
-set -a; source ~/.env; set +a
+set -a; source "$HOME/.env"; set +a
 [ -f Session.vim ] || touch Session.vim
 $EDITOR -S Session.vim

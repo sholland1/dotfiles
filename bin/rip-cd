@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=~/Music/ripped_disc
+DIR="$HOME/Music/ripped_disc"
 mkdir $DIR
 pushd $DIR > /dev/null || exit
 cdparanoia -B

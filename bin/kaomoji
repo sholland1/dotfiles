@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RESULT=$(fzf < ~/.local/share/kaomoji.txt | cut -d'	' -f1)
+RESULT=$(fzf < "$HOME/.local/share/kaomoji.txt" | cut -d'	' -f1)
 
 if [ -z "$RESULT" ]; then
     xsel -c

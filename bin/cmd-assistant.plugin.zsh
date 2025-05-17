@@ -11,6 +11,8 @@ function handle_multiline_results() {
 
 function do_completion_openai() {
     local messages="$1"
+    echo "$messages" > "/tmp/completion_messages.json"
+
     local result=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
         -H "Authorization: Bearer ${OPENAI_API_KEY:?}" \
         -H "Content-Type: application/json" \
@@ -20,6 +22,7 @@ function do_completion_openai() {
             "max_tokens": 200,
             "messages": '"$messages"'
         }')
+    echo "$result" > "/tmp/completion_response.json"
 
     echo "$result" |
         handle_multiline_results |
@@ -28,7 +31,7 @@ function do_completion_openai() {
 
 function do_completion_claude() {
     local messages="$1"
-    echo "$messages" > "/tmp/messages.json"
+    echo "$messages" > "/tmp/completion_messages.json"
 
     local body=$(echo '{
         "model": "claude-3-5-sonnet-20241022",
@@ -51,12 +54,17 @@ function do_completion_claude() {
 }
 
 function create_completion() {
-    local system_messages_file=~/bin/CmdLinePrompt.jsonl
+    local system_messages_file="$HOME/bin/CmdLinePrompt.jsonl"
     local prompt_file=/tmp/PROMPT_MSG
     local text_from_cmd=${BUFFER}
 
     echo -n "$text_from_cmd" > "$prompt_file"
-    $EDITOR "$prompt_file" || { echo "Editor failed" >&2; return 1; }
+    $EDITOR "$prompt_file" 2>/dev/null || {
+        notify-send -t 8000 -u critical \
+            "Error in [cmd-assistant] script" \
+            "Failed to open editor: $EDITOR" 2>/dev/null || true
+        return 1
+    }
 
     local content=$(<"$prompt_file" | sed ':a;N;$!ba;s/\n/\\\\n/g')
 

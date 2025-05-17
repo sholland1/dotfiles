@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RESULT=$(fzf -d';' --with-nth=1 < ~/.local/share/emoji.txt | sed 's/ .*//')
+RESULT=$(fzf -d';' --with-nth=1 < "$HOME/.local/share/emoji.txt" | sed 's/ .*//')
 
 if [ -z "$RESULT" ]; then
     xsel -c

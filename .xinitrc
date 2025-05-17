@@ -6,7 +6,7 @@ export TERM=/usr/bin/alacritty
 export EDITOR=/usr/bin/nvim
 export GIT_EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/firefox
-export FILE=~/.config/vifm/scripts/vifmrun
+export FILE="$XDG_CONFIG_HOME/vifm/scripts/vifmrun"
 
 export FZF_DEFAULT_OPTS='--exact --tiebreak=begin --reverse --cycle --color=16
     --bind=alt-j:down,alt-k:up,ctrl-a:select-all,ctrl-z:deselect-all,ctrl-d:half-page-down,ctrl-u:half-page-up,alt-down:preview-down,alt-up:preview-up'
@@ -24,7 +24,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 fcitx -dr &
 
-xargs redshift -t 6500:3000 -l <~/.cache/.location &
+xargs redshift -t 6500:3000 -l <"$HOME/.cache/.location" &
 set-keyboard-settings &
 init-mic &
 

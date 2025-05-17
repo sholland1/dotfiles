@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=~/Music/tmp
+DIR="$HOME/Music/tmp"
 mpc -q clear
 rm $DIR/*
 cp "$@" $DIR
