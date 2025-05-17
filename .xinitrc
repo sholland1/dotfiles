@@ -45,6 +45,7 @@ while true; do
   sleep 0.5s
 done &
 
+xrdb -merge $XDG_CACHE_HOME/wal/colors.Xresources
 while true; do
   dwm > /dev/null
 done
