@@ -16,7 +16,7 @@ super + {shift, alt} + e
         NAME='{e,kao}moji';\
         setsid $TERM -t "fzf: $NAME" -e \
           zsh -c "$NAME";\
-        xdotool key Shift+Insert
+        xdotool key shift+Insert
 
 super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,control + v}
         fuzzy_win {system,system,open-project,programs,fpacin,fyain,fpacrem,fkill,paste-from-history}
@@ -25,11 +25,11 @@ control + shift + {BackSpace,grave,w}
         fuzzy_win {system,system,window-switcher}
 
 super + f
-        $TERM -t "vifm" -e "$FILE"
+        $TERM -t vifm -e "$FILE"
 super + s
-        $TERM -t "Manage Services" -e "sysz"
+        $TERM -t "Manage Services" -e sysz
 super + u
-        $TERM -t "System Update" -e "update"
+        $TERM -t "System Update" -e update
 
 super + i
         $BROWSER
@@ -40,7 +40,7 @@ super + t
         toggle-light-dark
 
 super + shift + z
-        $TERM -e pizza-now
+        $TERM -t 'Pizza Time 🍕' -e pizza-now
 
 {_,shift + }button{8,9}
         xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}

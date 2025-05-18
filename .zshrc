@@ -88,11 +88,10 @@ source "$HOME/bin/frepl.plugin.zsh"
 unalias -a
 
 alias v=$EDITOR
-alias f=$FILE
+alias f='$FILE .'
 alias ls='eza --icons=always --group-directories-first -l'
 alias tree='eza --icons=always --group-directories-first --tree'
 alias cloc=tokei
-alias insomnia=insomnium
 alias fetch=fastfetch
 
 GIT_ENV='GIT_DIR=$HOME/dotfiles.git GIT_WORK_TREE=$HOME'
