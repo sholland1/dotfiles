@@ -21,12 +21,13 @@ super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,control + v}
 control + shift + {BackSpace,grave,w}
         fuzzy_win {system,system,window-switcher}
 
-super + f
-        $TERM -t vifm -e "$FILE"
-super + s
-        $TERM -t "Manage Services" -e sysz
-super + u
-        $TERM -t "System Update" -e update
+super + {f,s,u,shift + z}
+        $TERM -t { \
+          vifm -e "$FILE", \
+          'Manage Services' -e sysz, \
+          'System Update' -e update, \
+          'Pizza Time 🍕' -e pizza-now \
+        }
 
 super + i
         $BROWSER
@@ -35,9 +36,6 @@ super {_,+ control} + w
         select-wallpaper {_,random}
 super + t
         toggle-light-dark
-
-super + shift + z
-        $TERM -t 'Pizza Time 🍕' -e pizza-now
 
 {_,shift + }button{8,9}
         xdotool key --clearmodifiers ctrl+{_,shift+}Page_{Down,Up}

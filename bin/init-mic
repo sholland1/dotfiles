@@ -1,3 +1,4 @@
 #!/bin/bash
 
 timeout 0.1s parec -d alsa_input.usb-K66_K66_20190805V001-00.analog-stereo
+

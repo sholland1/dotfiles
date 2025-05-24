@@ -33,8 +33,8 @@ TRANSCRIPTION=$(
 
 if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
   log info "Transcription: '$TRANSCRIPTION'"
+  echo -n "$TRANSCRIPTION" | xsel -b && xdotool key shift+Insert &
   notify-send "Copied text to clipboard." "$TRANSCRIPTION"
-  echo -n "$TRANSCRIPTION" | xclip -selection clipboard && xdotool key shift+Insert
   log info "Done."
 else
   log info "No text to output. The transcription may have failed or produced no results."
