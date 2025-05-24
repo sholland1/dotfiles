@@ -6,6 +6,9 @@ XF86AudioMute
         pulsemixer --toggle-mute;\
         set-status --sound
 
+XF86Audio{Play,Stop,Prev,Next}
+        playerctl {play-pause,stop,previous,next}
+
 super + XF86AudioStop
         eject_disc
 
