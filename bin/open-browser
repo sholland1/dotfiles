@@ -1,0 +1,9 @@
+#!/bin/bash
+
+b="$(basename "$BROWSER")"
+
+if pgrep -x "$b" > /dev/null; then
+    wmctrl -a "$b"
+else
+    "$BROWSER" &
+fi

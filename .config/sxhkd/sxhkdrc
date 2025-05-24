@@ -32,8 +32,8 @@ super + {f,s,u,shift + z}
           'Pizza Time 🍕' -e pizza-now \
         }
 
-super + i
-        $BROWSER
+super {_,+ control} + i
+        open-{browser,llm}
 
 super {_,+ control} + w
         select-wallpaper {_,random}

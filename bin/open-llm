@@ -1,0 +1,13 @@
+#!/bin/bash
+
+llm=Grok
+desktop_file="$XDG_DATA_HOME/applications/brave-ggjocahimgaohmigbfhghnlfcnjemagj-Default.desktop"
+
+id=$(xwininfo -name "$llm" | grep "Window id:" | cut -d" " -f4)
+
+if [ -n "$id" ]; then
+    wmctrl -i -a "$id"
+else
+    gio launch "$desktop_file" &
+fi
+
