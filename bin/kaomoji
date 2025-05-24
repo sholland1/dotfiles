@@ -1,12 +1,8 @@
 #!/bin/bash
 
-RESULT=$(fzf < "$HOME/.local/share/kaomoji.txt" | cut -d'	' -f1)
+set -m
 
-if [ -z "$RESULT" ]; then
-    xsel -c
-    exit
-fi
+RESULT=$(fzf < "$XDG_DATA_HOME/kaomoji.txt" | cut -d'	' -f1)
 
-echo -n "$RESULT" | xsel -p
-echo -n "$RESULT" | xsel -s
-echo -n "$RESULT" | xsel -b
+[ -n "$RESULT" ] && echo -n "$RESULT" | xsel -b && xdotool key shift+Insert &
+

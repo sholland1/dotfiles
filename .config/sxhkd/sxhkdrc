@@ -12,11 +12,8 @@ super + XF86AudioStop
 {_, @}Control_R
         speech-to-text {start, stop}
 
-super + {shift, alt} + e
-        NAME='{e,kao}moji';\
-        setsid $TERM -t "fzf: $NAME" -e \
-          zsh -c "$NAME";\
-        xdotool key shift+Insert
+super {_,+ control} + e
+        fuzzy_win {e,kao}moji
 
 super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,control + v}
         fuzzy_win {system,system,open-project,programs,fpacin,fyain,fpacrem,fkill,paste-from-history}
