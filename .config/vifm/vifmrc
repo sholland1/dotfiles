@@ -379,8 +379,8 @@ filetype *.tudu tudu -f %c
 filextype *.pro qtcreator %f &
 
 " Directories
-fileviewer ../ eza --color=always --icons=always --group-directories-first --tree %d
-fileviewer */,.*/ eza --color=always --icons=always --group-directories-first --tree %f
+fileviewer ../ eza --color=always --icons=always --group-directories-first -l %d
+fileviewer */,.*/ eza --color=always --icons=always --group-directories-first -l %f
 filextype */
         \ {View in thunar}
         \ Thunar %f &
