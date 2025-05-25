@@ -36,7 +36,7 @@ super + {f,s,u,shift + z}
         }
 
 super {_,+ control} + i
-        open-{browser,llm}
+        open-{browser,llm Grok}
 
 super {_,+ control} + w
         select-wallpaper {_,random}

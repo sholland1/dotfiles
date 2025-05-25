@@ -1,13 +1,13 @@
 #!/bin/bash
 
-llm=Grok
-desktop_file="$XDG_DATA_HOME/applications/brave-ggjocahimgaohmigbfhghnlfcnjemagj-Default.desktop"
+LLM_NAME=$1
+DESKTOP_FILE=$(desktop-program-list | rg "$LLM_NAME" | cut -f2)
 
-id=$(xwininfo -name "$llm" | grep "Window id:" | cut -d" " -f4)
+ID=$(wmctrl -lx | rg "$(echo "$DESKTOP_FILE" | cut -d- -f2)" | cut -d' ' -f1)
 
-if [ -n "$id" ]; then
-    wmctrl -i -a "$id"
+if [ -n "$ID" ]; then
+    wmctrl -i -a "$ID"
 else
-    gio launch "$desktop_file" &
+    gio launch "$DESKTOP_FILE" &
 fi
 
