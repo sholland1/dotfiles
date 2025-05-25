@@ -18,13 +18,10 @@ log info "Display recording status..."
 set-status --recording
 
 log info "Starting audio recording..."
-MIC_INDEX=$(arecord -l | grep K66 | awk -F':', '{print substr($1,6,1)}')
-log debug "MIC_INDEX: $MIC_INDEX"
-
-amixer set Mic -c $MIC_INDEX cap > /dev/null # Unmute
-parec --rate=16000 --latency-msec=20 --file-format=wav \
+amixer set Mic -D hw:K66 cap > /dev/null # Unmute
+timeout 180s parec --rate=16000 --latency-msec=20 --file-format=wav \
   -d alsa_input.usb-K66_K66_20190805V001-00.analog-stereo > "$SPEECH_FILE"
-amixer set Mic -c $MIC_INDEX nocap > /dev/null # Mute
+amixer set Mic -D hw:K66 nocap > /dev/null # Mute
 
 log info "Transcribing audio..."
 TRANSCRIPTION=$(
@@ -38,5 +35,6 @@ if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
   log info "Done."
 else
   log info "No text to output. The transcription may have failed or produced no results."
+  notify-send "No text to output." "The transcription may have failed or produced no results."
 fi
 
