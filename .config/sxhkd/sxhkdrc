@@ -18,11 +18,14 @@ super + XF86AudioStop
 super {_,+ control} + e
         fuzzy_win {e,kao}moji
 
-super + {BackSpace,grave,c,d,p,shift + p,r,shift + x,control + v}
-        fuzzy_win {system,system,open-project,programs,fpacin,fyain,fpacrem,fkill,paste-from-history}
+super + {c,d,p,shift + p,r,shift + x,control + v}
+        fuzzy_win {open-project,programs,fpacin,fyain,fpacrem,fkill,paste-from-history}
 
-control + shift + {BackSpace,grave,w}
-        fuzzy_win {system,system,window-switcher}
+control + shift + w
+        fuzzy_win window-switcher
+
+{super, control + shift} + {BackSpace,grave}
+        fuzzy_win system
 
 super + {f,s,u,shift + z}
         $TERM -t { \
