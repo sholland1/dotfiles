@@ -23,10 +23,19 @@ timeout 180s parec --rate=16000 --latency-msec=20 --file-format=wav \
   -d alsa_input.usb-K66_K66_20190805V001-00.analog-stereo > "$SPEECH_FILE"
 amixer set Mic -D hw:K66 nocap > /dev/null # Mute
 
+#Log length of audio file.
+AUDIO_LENGTH=$(soxi -D "$SPEECH_FILE")
+log info "Audio length: $AUDIO_LENGTH seconds"
+
 log info "Transcribing audio..."
+START_TIME=$(date +%s.%N)
 TRANSCRIPTION=$(
   whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" | \
     sed '/^$/d;s/^[[:space:]]*//')
+END_TIME=$(date +%s.%N)
+
+ELAPSED_TIME=$(awk "BEGIN {print $END_TIME - $START_TIME}")
+log info "Transcription time: $ELAPSED_TIME seconds"
 
 if [ -n "$TRANSCRIPTION" ] && [ "$TRANSCRIPTION" != "[BLANK_AUDIO]" ]; then
   log info "Transcription: '$TRANSCRIPTION'"

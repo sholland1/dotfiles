@@ -5,6 +5,18 @@
 # language, and sends the request to an LLM to get a changed
 # command
 
+function log() {
+    local message=$1
+    local log_file="$HOME/bin/script.log"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+
+    # Ensure log file exists
+    mkdir -p "$(dirname "$log_file")"
+    touch "$log_file"
+
+    echo "[$timestamp] ----- [cmd-assistant]: $message" >> "$log_file"
+}
+
 function format_multiline_output() {
     awk 'NR==1 {line=$0; next} {line=line "\\n" $0} END {print line}'
 }
@@ -13,6 +25,7 @@ function get_openai_completion() {
     local messages="$1"
     echo "$messages" > "/tmp/completion_messages.json"
 
+    local start_time=$(date +%s.%N)
     local api_response=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
         -H "Authorization: Bearer ${OPENAI_API_KEY:?}" \
         -H "Content-Type: application/json" \
@@ -22,6 +35,11 @@ function get_openai_completion() {
             "max_tokens": 200,
             "messages": '"$messages"'
         }')
+    local end_time=$(date +%s.%N)
+
+    local elapsed_time=$(awk "BEGIN {print $end_time - $start_time}")
+    log "OpenAI API call took $elapsed_time seconds"
+
     echo "$api_response" > "/tmp/completion_response.json"
 
     echo "$api_response" |
@@ -41,11 +59,17 @@ function get_claude_completion() {
     }')
     echo "$request_body" > "/tmp/completion_request.json"
 
+    local start_time=$(date +%s.%N)
     local api_response=$(curl -s -X POST https://api.anthropic.com/v1/messages \
         -H "x-api-key: ${ANTHROPIC_API_KEY:?}" \
         -H "anthropic-version: 2023-06-01" \
         -H "Content-Type: application/json" \
         -d "$request_body")
+    local end_time=$(date +%s.%N)
+
+    local elapsed_time=$(awk "BEGIN {print $end_time - $start_time}")
+    log "Claude API call took $elapsed_time seconds"
+
     echo "$api_response" > "/tmp/completion_response.json"
 
     echo "$api_response" |
@@ -82,3 +106,4 @@ zle -N get_openai_completion
 zle -N get_claude_completion
 zle -N process_command_completion
 bindkey '^X' process_command_completion
+
