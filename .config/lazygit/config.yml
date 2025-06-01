@@ -4,7 +4,8 @@ gui:
   nerdFontsVersion: "3"
 git:
   branchLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --stat {{branchName}} --'
-  allBranchesLogCmd: 'git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --stat'
+  allBranchesLogCmds:
+    - git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --stat
 os:
   editPreset: nvim
 keybinding:
