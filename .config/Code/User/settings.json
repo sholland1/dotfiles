@@ -162,12 +162,13 @@
     "github.copilot.enable": {
         "*": true,
         "plaintext": true,
-        "markdown": true,
+        "markdown": false,
         "scminput": false,
         "yaml": false,
         "zig": true,
         "rust": true,
-        "hare": false
+        "hare": false,
+        "html": false
     },
     "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
     "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, BreakBeforeBraces: Attach, IndentWidth: 4, TabWidth: 4, UseTab: Never, ColumnLimit: 0}",
@@ -197,4 +198,24 @@
     "editor.inlayHints.enabled": "on",
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.parameterNames.suppressWhenArgumentContainsName": true,
+    "debug.console.closeOnEnd": true,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "cSpell.userWords": [
+        "effectful",
+        "Functors",
+        "Kinded",
+        "LINQ",
+        "pickleball",
+        "skybox",
+        "typeclass",
+        "typeclasses",
+        "unmutes",
+        "unmuting"
+    ],
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
 }
