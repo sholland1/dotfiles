@@ -60,7 +60,7 @@ sudo updatedb
 echo -e '\nSyncing OneDrive...'
 manual-onedrive-sync -n
 
-echo -e "\nDo you want to reboot now? [Y/n]"
+echo -e "\nDo you want to reboot now? [Y/n]\c"
 read -r response
 
 if [[ "$response" =~ ^[Nn]$ ]]; then
