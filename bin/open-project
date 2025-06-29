@@ -68,7 +68,7 @@ set -m
 # Open the project in the selected editor
 case "$selected_program" in
     "Terminal")
-        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM --working-directory="$PROJ_DIR" &
+        $TERM --working-directory="$PROJ_DIR" &
         ;;
     "Lazygit")
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR $TERM -t "Lazygit: $PROJ_DIR" -e lazygit &
