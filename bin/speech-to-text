@@ -30,7 +30,7 @@ log info "Audio length: $AUDIO_LENGTH seconds"
 log info "Transcribing audio..."
 START_TIME=$(date +%s.%N)
 TRANSCRIPTION=$(
-  whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" | \
+  whisper -nt -np -m "$MODEL_FILE" -f "$SPEECH_FILE" |
     sed '/^$/d;s/^[[:space:]]*//')
 END_TIME=$(date +%s.%N)
 

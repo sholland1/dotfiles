@@ -172,7 +172,6 @@
     },
     "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
     "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, BreakBeforeBraces: Attach, IndentWidth: 4, TabWidth: 4, UseTab: Never, ColumnLimit: 0}",
-    "zig.zls.path": "/home/sholland/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
     "workbench.editorAssociations": {
         "*.eep": "hexEditor.hexedit",
         "*.sra": "hexEditor.hexedit",
@@ -182,7 +181,6 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "explorer.confirmDragAndDrop": false,
     "rust-analyzer.inlayHints.parameterHints.enable": false,
-    "zig.initialSetupDone": false,
     "github.copilot.editor.enableAutoCompletions": true,
     "makefile.configureOnOpen": true,
     "files.insertFinalNewline": true,
@@ -204,6 +202,7 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "cSpell.userWords": [
+        "Deadlift",
         "effectful",
         "Functors",
         "Kinded",
@@ -218,4 +217,8 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+    "[typescript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "zig.zls.enabled": "on",
 }
