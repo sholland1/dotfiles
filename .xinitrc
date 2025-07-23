@@ -1,5 +1,5 @@
 #!/bin/sh
-export PATH=$XDG_DATA_HOME/.local/bin:$HOME/bin:$CARGO_HOME/bin:$XDG_DATA_HOME/npm/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$CARGO_HOME/bin:$XDG_DATA_HOME/npm/bin:$PATH
 export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 export TERM=/usr/bin/alacritty
