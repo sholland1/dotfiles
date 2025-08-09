@@ -16,7 +16,7 @@ super + XF86AudioStop
         speech-to-text {start, stop}
 
 super {_,+ control} + e
-        fuzzy_win {e,kao}moji
+        {emote, fuzzy_win kaomoji}
 
 super + {c,d,p,shift + p,r,shift + x,control + v}
         fuzzy_win {open-project,programs,fpacin,fyain,fpacrem,fkill,paste-from-history}

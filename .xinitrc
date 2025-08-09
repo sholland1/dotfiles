@@ -34,6 +34,7 @@ picom &
 sxhkd &
 mpd &
 flameshot &
+emote &
 
 systemctl --user import-environment DISPLAY
 clipmenud &

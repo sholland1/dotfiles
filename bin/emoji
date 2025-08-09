@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -m
-
-RESULT=$(fzf -d';' --with-nth=1 < "$XDG_DATA_HOME/emoji.txt" | sed 's/ .*//')
-
-[ -n "$RESULT" ] && echo -n "$RESULT" | xsel -b && xdotool key shift+Insert &
-
