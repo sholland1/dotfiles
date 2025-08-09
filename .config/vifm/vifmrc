@@ -124,6 +124,7 @@ set invwrap
 " :mark mark /full/directory/path [filename]
 
 mark b ~/bin
+mark g ~/Games
 mark h ~
 mark i ~/Pictures
 mark m ~/Music
