@@ -216,4 +216,6 @@
         "editor.defaultFormatter": "denoland.vscode-deno"
     },
     "zig.zls.enabled": "on",
+    "vim.useSystemClipboard": true,
+    "editor.mouseWheelScrollSensitivity": 3,
 }
