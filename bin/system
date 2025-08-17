@@ -4,12 +4,15 @@ lock () {
   i3lock-fancy-rapid 5 3
 }
 
-RESULT=$(echo -e "sleep\nlock\nlogout\nreboot\nshutdown" | fzf)
+RESULT=$(echo -e "sleep\nlock\nlogout\nsoft-reboot\nkernel-reboot\nhard-reboot\nshutdown" | fzf)
 set -m
 case $RESULT in
   sleep) manual-onedrive-sync; lock; sleep 0.5; systemctl suspend ;;
   lock) manual-onedrive-sync; lock ;;
   logout) manual-onedrive-sync -n; setxkbmap -option; who | cut -d' ' -f1 | xargs pkill -Kill -u ;;
-  reboot) systemctl reboot ;;
+  soft-reboot) systemctl soft-reboot ;;
+  kernel-reboot) sudo kexec -l /boot/vmlinuz-linux --initrd /boot/initramfs-linux.img --reuse-cmdline; sudo kexec -e ;;
+  # hard-reboot-to-firmware) systemctl reboot --firmware-setup ;; # kernel doesn't support this :(
+  hard-reboot) systemctl reboot ;;
   shutdown) manual-onedrive-sync -n; systemctl poweroff ;;
 esac
