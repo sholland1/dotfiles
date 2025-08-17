@@ -13,3 +13,12 @@ gsettings set org.gnome.desktop.interface color-scheme "prefer-$current_theme"
 
 # Send signal to reload colors to dwm
 xsetroot -name "fsignal:1"
+
+# Change chromium theme
+# TODO: switch to Brave eventually
+jq -r '.colors.color4' "$HOME/.cache/wal/colors.json" | \
+    sed 's/#//' | \
+    sed 's/../0x& /g' | \
+    xargs printf "%d,%d,%d\n" | \
+    xargs -I% chromium --no-startup-window --set-user-color='%'
+chromium --no-startup-window --set-color-scheme="$current_theme"
