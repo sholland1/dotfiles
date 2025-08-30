@@ -22,6 +22,9 @@ vim.opt.updatetime = 1000
 vim.opt.timeoutlen = 3000
 vim.opt.wildignorecase = true
 vim.o.background = nil
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 if vim.fn.has('win32') == 1 then
   vim.opt.shell = 'powershell'
