@@ -40,7 +40,7 @@ echo "$selected_project" > "$LAST_PROJECT_FILE"
 last_editor=$([ -f "$LAST_EDITOR_FILE" ] && cat "$LAST_EDITOR_FILE" || echo "")
 
 # List of available editors
-editors="Terminal\nLazygit\nVifm\nVS Code\nNeovim\nZed"
+editors="Terminal\nLazygit\nGit Gui\nVifm\nVS Code\nNeovim\nZed"
 
 # Add the last selected editor to the top of the list if it exists
 if [ -n "$last_editor" ]; then
@@ -74,6 +74,9 @@ case "$selected_program" in
     "Lazygit")
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR \
             $TERM -t "Lazygit: $PROJ_DIR" -e bash -c "lazygit; exec $SHELL" &
+        ;;
+    "Git Gui")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR git gui &
         ;;
     "Vifm")
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR \
