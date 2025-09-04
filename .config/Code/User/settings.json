@@ -216,6 +216,17 @@
         "editor.defaultFormatter": "denoland.vscode-deno"
     },
     "zig.zls.enabled": "on",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
     "vim.useSystemClipboard": true,
+    "python.analysis.typeCheckingMode": "standard",
     "editor.mouseWheelScrollSensitivity": 3,
+    "javascript.format.semicolons": "insert",
+    "typescript.format.semicolons": "insert",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "search.seedWithNearestWord": true,
+    "search.searchEditor.focusResultsOnSearch": true,
 }
