@@ -6,3 +6,4 @@ system: 'Given a description of a linux command, return the command to run.
     Assume Arch Linux and zsh shell.'
 options:
     temperature: 0.0
+extract: true
