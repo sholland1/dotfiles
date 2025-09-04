@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#TODO: need script to manage mounts instead
+set -e
+
+if [ -z "$1" ]; then
+  echo "Error: Missing parameter. Please provide a mount point."
+  exit 1
+fi
+
+SD_DIR="/mnt/$1"
+
+if mount | rg $SD_DIR > /dev/null; then
+  sudo umount $SD_DIR
+  echo "$SD_DIR unmounted"
+else
+  sudo mount $SD_DIR
+  echo "$SD_DIR mounted"
+fi
