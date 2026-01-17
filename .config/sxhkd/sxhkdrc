@@ -12,7 +12,8 @@ XF86Audio{Play,Stop,Prev,Next}
 super + XF86AudioStop
         eject_disc
 
-{_, @}Control_R
+{_, @}Alt_R
+        speech-to-text {start, stop}
         speech-to-text {start, stop}
 
 super {_,+ control} + e
