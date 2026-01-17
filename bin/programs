@@ -2,6 +2,6 @@
 
 set -m
 desktop-program-list |
-  fzf --with-nth=1 -d '\t' |
+  fzf --with-nth=1 -d '\t' -m |
   cut -f2 |
-  xargs -r gio launch
+  xargs -r -n 1 gio launch
