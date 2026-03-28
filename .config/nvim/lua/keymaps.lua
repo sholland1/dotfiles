@@ -3,7 +3,7 @@ vim.keymap.set('n', '<leader>x', '<Plug>ToggleCheckbox', { desc = 'Toggle checkb
 
 vim.keymap.set('n', '<leader>d', '<cmd>bd<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>q', '<C-w>q', { desc = 'Close window' })
-vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Write' })
+vim.keymap.set('n', '<leader>w', Utils.write_current_buffer, { desc = 'Write' })
 vim.keymap.set('n', '<leader>o', '<cmd>only<cr>', { desc = 'Only window' })
 vim.keymap.set('n', '-', '<cmd>split<cr>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '|', '<cmd>vsplit<cr>', { desc = 'Vertical split' })
@@ -36,7 +36,7 @@ vim.keymap.set('n', '<C-i>', '<C-i>', { remap = false })
 vim.keymap.set('n', '<C-j>', 'mzyyp`zj', { desc = 'Duplicate line' })
 vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns preview_hunk_inline<cr>', { remap = false })
 vim.keymap.set('n', '<M-m>', '<cmd>messages<cr>', { desc = 'Display Messages', remap = false })
-vim.keymap.set('i', '<C-s>', '<cmd>wq<cr>', { remap = false })
+vim.keymap.set('i', '<C-s>', Utils.write_quit_current_buffer, { remap = false })
 
 vim.keymap.set('n', '<M-j>', 'mz:m+<cr>`z', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', 'mz:m-2<cr>`z', { desc = 'Move line up' })

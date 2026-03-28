@@ -47,17 +47,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Reload the file if it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = vim.api.nvim_create_augroup("reload", { clear = true }),
-  callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("TrimWhitespace", { clear = true }),
   callback = Utils.trim_whitespace,
+})
+
+-- Suppress the FileChangedShell warning only inside ~/Notes
+vim.api.nvim_create_autocmd("FileChangedShell", {
+  pattern = vim.fn.expand("~/OneDrive/Documents/Notes") .. "/**",   -- matches ~/Notes and all subdirectories
+  nested = true,
+  callback = function()
+    -- Do nothing (this prevents the interactive prompt)
+    -- You can optionally force reload or ignore here if desired
+    vim.v.fcs_choice = ""   -- or "ask" (default) or "edit" or ""
+  end,
 })

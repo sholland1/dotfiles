@@ -150,6 +150,29 @@ function Utils.telescope_wrapper(telescope_command, opts)
   end
 end
 
+function Utils.is_onedrive_path(path)
+  local file = path or vim.fn.expand('%:p')
+  local onedrive_root = vim.fn.expand("~/OneDrive") .. "/"
+
+  return file ~= "" and vim.startswith(file, onedrive_root)
+end
+
+function Utils.write_cmd(cmd)
+  if Utils.is_onedrive_path() and not cmd:find("!", 1, true) then
+    return cmd .. "!"
+  end
+
+  return cmd
+end
+
+function Utils.write_current_buffer()
+  vim.cmd(Utils.write_cmd("write"))
+end
+
+function Utils.write_quit_current_buffer()
+  vim.cmd(Utils.write_cmd("wq"))
+end
+
 -- Function to toggle the checkbox on the current line
 function Utils.toggle_checkbox()
   local current_line = vim.fn.line '.'
@@ -166,7 +189,7 @@ function Utils.toggle_checkbox()
   vim.fn['repeat#set'](vim.api.nvim_replace_termcodes('<Plug>ToggleCheckbox', true, true, true))
   -- Write the changes to the file
   if vim.fn.expand('%') ~= '' then
-    vim.cmd 'write'
+    Utils.write_current_buffer()
   end
 end
 

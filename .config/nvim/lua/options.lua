@@ -25,6 +25,8 @@ vim.o.background = nil
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.autoread = true
+vim.v.fcs_choice = "reload"
 
 if vim.fn.has('win32') == 1 then
   vim.opt.shell = 'powershell'
