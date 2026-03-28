@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local group = vim.api.nvim_create_augroup("execOnWrite", { clear = true })
 local function createAutocmd(pattern, command)
   vim.api.nvim_create_autocmd("BufWritePost", {
