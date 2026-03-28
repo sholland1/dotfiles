@@ -19,7 +19,7 @@ case $CD_TYPE in
         while read f; do
             filename=$(basename -- "$f")
             filename="${filename%.*}.wav"
-            sox "$f" -c 2 "$filename"
+            sox "$f" -r 44100 -b 16 -c 2 "$filename"
 
             FILE_LIST+=" '$filename'"
         done < $BURN_FILE

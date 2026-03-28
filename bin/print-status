@@ -48,4 +48,4 @@ up_status=$(uptime -p | sed -r 's/ ([a-z])[a-z]*,?/\1/g;s/^up/⬆/')
 # Current date and time
 current_datetime="$(date +'%m/%d/%Y %I:%M %p')"
 
-echo -n " $record_status$last_update :: $up_status :: $cpu_status :: 💽 $disk_data :: 🧮 $mem_data :: $volume_status :: $current_datetime"
+echo -n " $record_status$last_update :: $up_status :: $cpu_status :: 💽 $disk_data :: 🧠 $mem_data :: $volume_status :: $current_datetime"

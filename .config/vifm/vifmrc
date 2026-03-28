@@ -388,6 +388,8 @@ filextype */
 
 " Gameboy
 filetype *.gb,*.gbc,*.gba mgba -2 %f &
+" SNES
+filetype *.smc,*.sfc snes9x -xvideo %f &
 " N64
 filetype *.n64,*.z64 mupen64plus %f &
 

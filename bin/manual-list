@@ -1,7 +1,0 @@
-#!/bin/bash
-
-man -k . |
-  fzf --preview 'man -P cat {1} 2>/dev/null' \
-      --preview-window=down:80% |
-  cut -d' ' -f1 |
-  xargs -r man

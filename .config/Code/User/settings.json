@@ -200,6 +200,7 @@
         "Deadlift",
         "effectful",
         "Functors",
+        "Jetpack",
         "Kinded",
         "LINQ",
         "pickleball",
@@ -229,4 +230,8 @@
     },
     "search.seedWithNearestWord": true,
     "search.searchEditor.focusResultsOnSearch": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "chat.viewSessions.orientation": "stacked",
 }
