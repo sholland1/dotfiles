@@ -36,6 +36,9 @@ yay -Sc --aur --noconfirm
 echo -e '\nResetting keyboard settings...'
 set-keyboard-settings
 
+echo -e '\nUpdating uv tools...'
+uv tool upgrade --all
+
 echo -e '\nUpdating Neovim...'
 nvim --headless '+Lazy! sync' +MasonToolsUpdateSync +qa
 
