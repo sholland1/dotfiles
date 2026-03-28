@@ -14,18 +14,9 @@ echo -e 'Initiating system update...'
 
 if [ "$skip_mirrors" = false ]; then
     echo -e '\nUpdating mirrors...'
-    export TMPFILE="$(mktemp)"
-    if ! sudo true; then
-        echo "Error: Failed to obtain sudo privileges"
+    if ! sudo shiny-mirrors refresh --max 10 --limit 20 -u; then
         exit 1
     fi
-    if ! rate-mirrors --save=$TMPFILE arch --max-delay=21600; then
-        echo "Error: Failed to update mirrors"
-        rm $TMPFILE
-        exit 1
-    fi
-    sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
-    sudo mv $TMPFILE /etc/pacman.d/mirrorlist
 else
     echo -e '\nSkipping mirror update...'
 fi
