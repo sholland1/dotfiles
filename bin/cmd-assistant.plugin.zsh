@@ -18,7 +18,7 @@ function process_command_completion() {
         return 1
     }
 
-    local completion_result=$(cat "$user_prompt_file" | llm -t "$template_file" 2>&1)
+    local completion_result=$(with-spinner 'cat "$user_prompt_file" | llm -t "$template_file"')
     if [[ $completion_result == Error* ]]; then
         notify-send -t 8000 -u critical \
             "Error in [cmd-assistant] script" \
@@ -26,6 +26,7 @@ function process_command_completion() {
         return 1
     fi
 
+    print -nP "$PROMPT" >&2
     BUFFER=$completion_result
     CURSOR=${#BUFFER}
 }

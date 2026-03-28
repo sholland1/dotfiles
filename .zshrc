@@ -82,7 +82,7 @@ set -a; source "$HOME/.env"; set +a
 source "$ZSH/oh-my-zsh.sh"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source "$HOME/bin/cmd-assistant.plugin.zsh"
-source "$HOME/bin/frepl.plugin.zsh"
+source "$HOME/bin/with-spinner.zsh"
 
 # remove all aliases
 unalias -a
