@@ -14,7 +14,6 @@ super + XF86AudioStop
 
 {_, @}Alt_R
         speech-to-text {start, stop}
-        speech-to-text {start, stop}
 
 super {_,+ control} + e
         {emote, fuzzy_win kaomoji}
