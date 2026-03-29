@@ -57,3 +57,11 @@ vim.keymap.set({'n','v'}, '<leader>c', 'gc', { remap = true })
 vim.keymap.set('n', '<leader>ku', 'gcgc', { remap = true })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy plugins' })
+
+vim.api.nvim_create_user_command('MinifyJS', function()
+  local file = vim.fn.expand('%')
+  local cmd = string.format('npx terser --compress --mangle -- %s | xclip -selection clipboard', file)
+  vim.fn.system(cmd)
+  print('Minified and copied to clipboard')
+end, {})
+
