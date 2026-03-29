@@ -68,10 +68,12 @@ set -m
 # Open the project in the selected editor
 case "$selected_program" in
     "Terminal")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR \
         $TERM --working-directory="$PROJ_DIR" \
             -e bash -c "eza --icons=always --group-directories-first --tree --git-ignore; exec $SHELL" &
         ;;
     "Lazygit")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR \
         $TERM --working-directory="$PROJ_DIR" -t "Lazygit: $PROJ_DIR" -e bash -c "lazygit; exec $SHELL" &
         ;;
     "Git Gui")
@@ -84,6 +86,7 @@ case "$selected_program" in
         GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR code "$PROJ_DIR" &
         ;;
     "Neovim")
+        GIT_DIR=$PROJ_DIR/.git GIT_WORK_TREE=$PROJ_DIR \
         $TERM --working-directory="$PROJ_DIR" -t "$selected_project" -e open-in-editor &
         ;;
     "Zed")
