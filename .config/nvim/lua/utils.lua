@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local function fkey_map()
   local key_map = {}
   local shift_prefix = vim.fn.has('win32') == 1 and '<S-F' or '<F'
