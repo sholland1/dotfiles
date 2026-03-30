@@ -183,7 +183,7 @@ function Utils.toggle_checkbox()
   -- Toggle the checkbox indicator by adding or removing "x"
   local updated_line = line_content:gsub('%[.-%]', function(match)
     return match == '[x]' and '[ ]' or '[x]'
-  end)
+  end, 1)
 
   -- Update the line with the modified content
   vim.fn.setline(current_line, updated_line)
