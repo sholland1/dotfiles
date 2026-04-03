@@ -31,7 +31,7 @@ super + {f,s,u,shift + z}
         $TERM -t { \
           vifm -e "$FILE", \
           'Manage Services' -e sysz, \
-          'System Update' -e bash -c "update; exec $SHELL" \
+          'System Update' -e bash -c "update; exec $SHELL", \
           'Pizza Time 🍕' -e bash -c "pizza-now; exec $SHELL" \
         }
 
