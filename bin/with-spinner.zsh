@@ -12,7 +12,7 @@ function with-spinner() {
 
     local i=1
     while kill -0 $pid 2>/dev/null; do
-        printf "\r%s %s" "${spinner_chars[$i]}" "$status_text" >&2
+        printf "\r%s %s\033[K" "${spinner_chars[$i]}" "$status_text" >&2
         i=$(( (i+1) % ${#spinner_chars[@]}))
         ((i++))
         sleep $spinner_speed
