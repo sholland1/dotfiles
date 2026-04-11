@@ -8,7 +8,6 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.signcolumn = "yes"
-vim.opt.mousescroll = "ver:8,hor:6"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrap = false
@@ -37,6 +36,8 @@ if vim.fn.has('win32') == 1 then
   vim.opt.shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
   vim.opt.shellquote = ''
   vim.opt.shellxquote = ''
+elseif vim.fn.has('linux') == 1 then
+  vim.opt.mousescroll = "ver:8,hor:6"
 end
 
 vim.g.markdown_fenced_languages = {
