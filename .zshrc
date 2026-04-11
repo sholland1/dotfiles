@@ -56,8 +56,8 @@ unalias -a
 
 alias v=$EDITOR
 alias f='$FILE .'
-alias ls='eza --icons=always --group-directories-first --git-ignore -la'
-alias tree='eza --icons=always --group-directories-first --git-ignore --tree'
+alias ls='eza --icons=always --group-directories-first -la'
+alias tree='eza --icons=always --group-directories-first --tree'
 alias cloc=tokei
 alias fetch=fastfetch
 
