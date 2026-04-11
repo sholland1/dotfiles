@@ -6,7 +6,7 @@ return {
       vim.cmd.colorscheme 'tokyonight-day'
       vim.cmd.hi 'Comment gui=none'
     end,
-  } or {
+  } or vim.fn.has('linux') == 1 and {
     "RedsXDD/neopywal.nvim",
     name = "neopywal",
     lazy = false,
@@ -17,6 +17,24 @@ return {
       neopywal.setup()
       vim.cmd.colorscheme("neopywal")
     end
+  } or vim.fn.has('macunix') == 1 and {
+    "f-person/auto-dark-mode.nvim",
+    priority = 1000,
+    config = function()
+      vim.opt.termguicolors = true
+      vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.hi 'Comment gui=none'
+
+      require("auto-dark-mode").setup({
+        update_interval = 1000,
+        set_dark_mode = function()
+          vim.o.background = "dark"
+        end,
+        set_light_mode = function()
+          vim.o.background = "light"
+        end,
+      })
+    end,
   },
 
   {
@@ -239,7 +257,7 @@ return {
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
       ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
+      require('nvim-treesitter.config').setup(opts)
 
       vim.keymap.set('n', '<leader>ts', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter' })
       -- There are additional nvim-treesitter modules that you can use to interact
@@ -660,7 +678,7 @@ return {
   },
 
   {
-    "norcalli/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     config = function()
       require('colorizer').setup(
         { 'css', 'html' },

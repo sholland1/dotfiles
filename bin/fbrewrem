@@ -1,0 +1,9 @@
+#!/bin/bash
+
+RESULT=$(brew leaves |
+    fzf --multi --preview 'brew info {}' --preview-window=:75%)
+
+if [ $? -eq 0 ]; then
+    echo "$RESULT" | xargs -n1 brew uninstall
+    read -n1 -sp 'Press any key to exit...'
+fi

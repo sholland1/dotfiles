@@ -10,6 +10,8 @@ local function createAutocmd(pattern, command)
 end
 
 createAutocmd(".zshrc", "!source %")
+createAutocmd(".zshenv", "!source %")
+createAutocmd("tmux.conf", "!tmux source %")
 createAutocmd("picom.conf", "!pkill -USR1 picom")
 createAutocmd("dunstrc", "!dunstctl reload")
 

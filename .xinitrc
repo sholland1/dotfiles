@@ -1,18 +1,4 @@
 #!/bin/sh
-export PATH=$HOME/.local/bin:$HOME/bin:$CARGO_HOME/bin:$XDG_DATA_HOME/npm/bin:$PATH
-export NODE_PATH=$NODE_PATH:$(npm root -g)
-
-export TERM=/usr/bin/alacritty
-export EDITOR=/usr/bin/nvim
-export GIT_EDITOR=/usr/bin/nvim
-export BROWSER=/usr/bin/firefox
-export FILE="$XDG_CONFIG_HOME/vifm/scripts/vifmrun"
-
-export FZF_DEFAULT_OPTS='--exact --tiebreak=begin --reverse --cycle --color=16 --height 100%
-    --bind=alt-j:down,alt-k:up,ctrl-a:select-all,ctrl-z:deselect-all,ctrl-d:half-page-down,ctrl-u:half-page-up,alt-down:preview-down,alt-up:preview-up'
-export FZF_DEFAULT_COMMAND='git ls-files --cached --others --exclude .git || find -type f'
-#export FZF_COMPLETION_TRIGGER='##'
-
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)

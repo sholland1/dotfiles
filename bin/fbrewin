@@ -1,0 +1,11 @@
+#!/bin/bash
+
+RESULT=$(brew formulae |
+    fzf --multi --preview 'brew info {}' --preview-window=:75%)
+
+if [ $? -eq 0 ]; then
+  echo $RESULT | xargs -n1 brew install
+  if [ $? -eq 0 ]; then
+    read -n1 -sp 'Press any key to exit...'
+  fi
+fi
