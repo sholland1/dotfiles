@@ -54,6 +54,10 @@ source "$HOME/bin/with-spinner.zsh"
 # remove all aliases
 unalias -a
 
+replace() {
+    rg -l "$1" | xargs sed -i '' "s/$1/$2/g"
+}
+
 alias v=$EDITOR
 alias f='$FILE .'
 alias ls='eza --icons=always --group-directories-first -la'
