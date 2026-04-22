@@ -242,16 +242,14 @@ return {
     build = ':TSUpdate',
     opts = {
       ensure_installed = {
-        'html', 'css', 'markdown', 'toml', 'xml',
+        'html', 'css', 'markdown', 'toml', 'xml', 'json',
         'vim', 'vimdoc',
         'bash',
-        'c', 'c_sharp', 'lua', 'python', 'rust',
+        'c', 'cpp', 'c_sharp', 'lua', 'python', 'rust',
         'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -259,7 +257,6 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.config').setup(opts)
 
-      vim.keymap.set('n', '<leader>ts', '<cmd>TSInstallInfo<cr>', { desc = 'Treesitter' })
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
       --
@@ -268,9 +265,29 @@ return {
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 
       -- Setup folding
+      -- Highlighting: use built-in instead of nvim-treesitter's
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          local ok = pcall(vim.treesitter.start)
+          if not ok then
+            -- fallback to regex syntax highlighting
+            vim.cmd('syntax on')
+          end
+        end,
+      })
+
+      -- Folding: use built-in (requires Neovim 0.10+)
       vim.opt.foldlevelstart = 99
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          local ok = pcall(vim.treesitter.get_parser, 0)
+          if ok then
+            vim.opt_local.foldmethod = 'expr'
+            vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+            vim.opt_local.foldtext = ''
+          end
+        end,
+      })
     end,
   },
 
