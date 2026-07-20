@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# *Update visudo to disable password for use of pmset
+
+# Check current SleepDisabled state directly via pmset
+current=$(pmset -g | awk '/SleepDisabled/ {print $2}')
+
+if [ "$current" = "1" ]; then
+    # Currently ON -> turn OFF
+    sudo pmset -b sleep 1
+    sudo pmset -b disablesleep 0
+
+    echo 'Lid sleep enabled.'
+else
+    # Currently OFF -> turn ON
+    sudo pmset -b sleep 0
+    sudo pmset -b disablesleep 1
+
+    echo 'Lid sleep disabled.'
+fi
